@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIColor {
     static var ypYellow = UIColor(named: "ypYellow")
     static var ypWhite = UIColor(named: "ypWhite")
