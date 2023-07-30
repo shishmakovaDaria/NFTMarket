@@ -9,10 +9,10 @@ import UIKit
 
 extension UIImage {
     // TabBar Icons
-    static let profileTab = UIImage(systemName: "person.crop.circle.fill")
-    static let catalogueTab = UIImage(systemName: "rectangle.stack.fill")
+    static let profileTab = UIImage(systemName: "person.crop.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
+    static let catalogueTab = UIImage(systemName: "rectangle.stack.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
     static let cartTab = UIImage(named: "cartTab")
-    static let statisticsTab = UIImage(systemName: "flag.2.crossed.fill")
+    static let statisticsTab = UIImage(systemName: "flag.2.crossed.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
     
     // Crypto
     static let apeCoin = UIImage(named: "apeCoin")
