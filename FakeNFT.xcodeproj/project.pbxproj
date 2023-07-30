@@ -33,6 +33,9 @@
 		E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */; };
 		E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */; };
 		E29A5BD72A76A92C00A76D9C /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD62A76A92C00A76D9C /* ShoppingCartViewController.swift */; };
+		E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD82A76B53200A76D9C /* ReuseIdentifier.swift */; };
+		E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BDA2A76B54400A76D9C /* UICollectionViewCell + Ext.swift */; };
+		E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BDC2A76B5FC00A76D9C /* UITableViewCell + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		E29A5BD62A76A92C00A76D9C /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		E29A5BD82A76B53200A76D9C /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		E29A5BDA2A76B54400A76D9C /* UICollectionViewCell + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Ext.swift"; sourceTree = "<group>"; };
+		E29A5BDC2A76B5FC00A76D9C /* UITableViewCell + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +258,9 @@
 			children = (
 				C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */,
 				C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */,
+				E29A5BD82A76B53200A76D9C /* ReuseIdentifier.swift */,
+				E29A5BDA2A76B54400A76D9C /* UICollectionViewCell + Ext.swift */,
+				E29A5BDC2A76B5FC00A76D9C /* UITableViewCell + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -418,6 +427,8 @@
 			files = (
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
+				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,
+				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
@@ -429,6 +440,7 @@
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* ShoppingCartViewController.swift in Sources */,
+				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
