@@ -11,8 +11,6 @@ final class StatisticCell: UITableViewCell {
     
     private lazy var avatarImageView: UIImageView = {
         let view = UIImageView()
-//        view.layer.cornerRadius = self.bounds.height / 2
-//        view.layer.masksToBounds = true
         view.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
         view.image = UIImage.bitcoin
         view.backgroundColor = .red
@@ -24,10 +22,13 @@ final class StatisticCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
         setupLayout()
+
     }
     
     private func setupUI() {
         addSubview(avatarImageView)
+        avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
+        avatarImageView.layer.masksToBounds = true
     }
     
     private func setupLayout() {
