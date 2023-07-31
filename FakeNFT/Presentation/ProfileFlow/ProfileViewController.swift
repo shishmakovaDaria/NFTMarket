@@ -42,6 +42,19 @@ final class ProfileViewController: UIViewController {
         return profileWebsite
     }()
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorColor = .whiteDay
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
+    }()
+    
+    private var tableHeaders = [
+        "Мои NFT (112)",
+        "Избранные NFT (11)",
+        "О разработчике"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -49,19 +62,22 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupUI() {
+        tableView.dataSource = self
+        tableView.delegate = self
         view.backgroundColor = .whiteDay
-        //navigationBar.barTintColor = .white
-        //navigationBar.shadowImage = UIImage()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: .edit))
         
         view.addSubview(profilePhoto)
         view.addSubview(nameLabel)
         view.addSubview(descriptionLabel)
         view.addSubview(profileWebsite)
+        view.addSubview(tableView)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         profilePhoto.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         profileWebsite.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupConstraints() {
@@ -79,7 +95,37 @@ final class ProfileViewController: UIViewController {
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
             
             profileWebsite.leadingAnchor.constraint(equalTo: profilePhoto.leadingAnchor),
-            profileWebsite.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12)
+            profileWebsite.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
+            
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: 162),
+            tableView.topAnchor.constraint(equalTo: profileWebsite.bottomAnchor, constant: 40)
         ])
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = tableHeaders[indexPath.row]
+        cell.textLabel?.textColor = .blackDay
+        cell.textLabel?.font = .boldSystemFont(ofSize: 17)
+        cell.accessoryType = .disclosureIndicator
+        cell.backgroundColor = .whiteDay
+        
+        return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54
     }
 }
