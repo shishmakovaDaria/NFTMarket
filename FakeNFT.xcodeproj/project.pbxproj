@@ -26,6 +26,7 @@
 		3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C38A29D242E90081F015 /* ProductDetailsTableViewCell.swift */; };
 		3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39029D2453B0081F015 /* ExampleRequest.swift */; };
 		3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */; };
+		C44238102A77AA1E0098C0A0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C442380F2A77AA1E0098C0A0 /* Observable.swift */; };
 		C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
@@ -77,6 +78,7 @@
 		3FC8C38A29D242E90081F015 /* ProductDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		3FC8C39029D2453B0081F015 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
 		3FC8C39229D246BA0081F015 /* DateFormatters+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatters+Presets.swift"; sourceTree = "<group>"; };
+		C442380F2A77AA1E0098C0A0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = "../../../../../Downloads/iOS-FakeNFT-StarterProject-Public-4-base/FakeNFT/Observable.swift"; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,8 @@
 		3F68069529CBBAF100B4F915 /* FakeNFT */ = {
 			isa = PBXGroup;
 			children = (
+				C442380E2A77A9FC0098C0A0 /* Helpers */,
+				C44238092A77A9020098C0A0 /* Presentation */,
 				3F68069629CBBAF100B4F915 /* AppDelegate.swift */,
 				3F68069829CBBAF100B4F915 /* SceneDelegate.swift */,
 				3F478ECD29DB473000F6D39E /* DesignSystem */,
@@ -251,6 +255,53 @@
 				3FC8C39029D2453B0081F015 /* ExampleRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		C44238092A77A9020098C0A0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C442380D2A77A9490098C0A0 /* CatalogueFlow */,
+				C442380C2A77A92C0098C0A0 /* StatisticsFlow */,
+				C442380B2A77A91B0098C0A0 /* ProfileFlow */,
+				C442380A2A77A90D0098C0A0 /* CartFlow */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C442380A2A77A90D0098C0A0 /* CartFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CartFlow;
+			sourceTree = "<group>";
+		};
+		C442380B2A77A91B0098C0A0 /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		C442380C2A77A92C0098C0A0 /* StatisticsFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StatisticsFlow;
+			sourceTree = "<group>";
+		};
+		C442380D2A77A9490098C0A0 /* CatalogueFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CatalogueFlow;
+			sourceTree = "<group>";
+		};
+		C442380E2A77A9FC0098C0A0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C442380F2A77AA1E0098C0A0 /* Observable.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C465337E2A73D4D4003AB2C1 /* Extensions */ = {
@@ -441,6 +492,7 @@
 				C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* ShoppingCartViewController.swift in Sources */,
 				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
+				C44238102A77AA1E0098C0A0 /* Observable.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
