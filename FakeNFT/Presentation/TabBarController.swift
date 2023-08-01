@@ -30,10 +30,10 @@ final class TabBarController: UITabBarController {
     //-TODO: remove force unwrap image
     fileprivate func setupVCs() {
         viewControllers = [
-            createNavController(for: ProfileViewController(), title: "Профиль", image: .profileTab!),
-            createNavController(for: CatalogViewController(), title: "Каталог", image: .catalogueTab!),
-            createNavController(for: CartViewController(), title: "Корзина", image: .cartTab!),
-            createNavController(for: StatisticViewController(), title: "Статистика", image: .statisticsTab!)
+            createNavController(for: ProfileViewController(), title: "Profile".localized(), image: .profileTab!),
+            createNavController(for: CatalogViewController(), title: "Catalog".localized(), image: .catalogueTab!),
+            createNavController(for: CartViewController(), title: "Cart".localized(), image: .cartTab!),
+            createNavController(for: StatisticViewController(), title: "Statistics".localized(), image: .statisticsTab!)
         ]
         tabBar.unselectedItemTintColor = .blackDay
     }
