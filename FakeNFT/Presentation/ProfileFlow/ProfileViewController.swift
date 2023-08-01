@@ -9,6 +9,15 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    private let viewModel = ProfileViewModel()
+    
+    private lazy var editButton: UIButton = {
+        let editButton = UIButton(type: .system)
+        editButton.setBackgroundImage(.edit, for: .normal)
+        editButton.addTarget(self, action: #selector(editButtonDidTap(_:)), for: .touchUpInside)
+        return editButton
+    }()
+    
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView()
         profilePhoto.layer.cornerRadius = 35
@@ -18,7 +27,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "Joaquin Phoenix"
+        nameLabel.text = viewModel.profile.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .boldSystemFont(ofSize: 22)
         nameLabel.minimumScaleFactor = 15
@@ -27,7 +36,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям."
+        descriptionLabel.text = viewModel.profile.description
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -36,7 +45,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileWebsite: UILabel = {
         let profileWebsite = UILabel()
-        profileWebsite.text = "Joaquin Phoenix.com"
+        profileWebsite.text = viewModel.profile.website
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .systemFont(ofSize: 15, weight: .regular)
         return profileWebsite
@@ -49,23 +58,21 @@ final class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    private var tableHeaders = [
-        "Мои NFT (112)",
-        "Избранные NFT (11)",
-        "О разработчике"
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
     }
     
+    @objc private func editButtonDidTap(_ sender: Any?) {
+        present(ProfileEditingViewController() , animated: true)
+    }
+    
     private func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
         view.backgroundColor = .whiteDay
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: .edit))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
         view.addSubview(profilePhoto)
         view.addSubview(nameLabel)
@@ -73,6 +80,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(profileWebsite)
         view.addSubview(tableView)
         
+        editButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         profilePhoto.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -113,10 +121,12 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let tableHeaders = viewModel.provideTableHeaders()
         cell.textLabel?.text = tableHeaders[indexPath.row]
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .boldSystemFont(ofSize: 17)
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryView = UIImageView(image: UIImage(systemName: "chevron.forward"))
+        cell.accessoryView?.tintColor = .blackDay
         cell.backgroundColor = .whiteDay
         
         return cell
@@ -127,5 +137,9 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
