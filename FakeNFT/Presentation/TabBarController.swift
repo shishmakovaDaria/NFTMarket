@@ -11,6 +11,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        tabBar.backgroundColor = .whiteDay
         UITabBar.appearance().barTintColor = .systemBackground
         setupVCs()
         
@@ -26,13 +27,12 @@ final class TabBarController: UITabBarController {
           return navController
     }
     
-    
     //-TODO: remove force unwrap image
     fileprivate func setupVCs() {
         viewControllers = [
             createNavController(for: ProfileViewController(), title: "Профиль", image: .profileTab!),
             createNavController(for: CatalogViewController(), title: "Каталог", image: .catalogueTab!),
-            createNavController(for: ShoppingCartViewController(), title: "Корзина", image: .cartTab!),
+            createNavController(for: CartViewController(), title: "Корзина", image: .cartTab!),
             createNavController(for: StatisticViewController(), title: "Статистика", image: .statisticsTab!)
         ]
         tabBar.unselectedItemTintColor = .blackDay
