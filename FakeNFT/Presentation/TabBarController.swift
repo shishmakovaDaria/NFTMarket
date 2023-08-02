@@ -9,7 +9,10 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    private let cartViewModel = CartViewModel()
+    let catalogueViewModel = CatalogueViewModel()
+    let profileViewModel = ProfileViewModel()
+    let cartViewModel = CartViewModel()
+    let statisticViewModel = StatisticViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +33,12 @@ final class TabBarController: UITabBarController {
           return navController
     }
     
-    
     fileprivate func setupVCs() {
         viewControllers = [
-            createNavController(for: ProfileViewController(), title: "Профиль", image: .profileTab!),
-            createNavController(for: CatalogViewController(), title: "Каталог", image: .catalogueTab!),
-            createNavController(for: CartViewController(viewModel: cartViewModel), title: "Корзина", image: .cartTab!),
-            createNavController(for: StatisticViewController(), title: "Статистика", image: .statisticsTab!)
+            createNavController(for: ProfileViewController(viewModel: profileViewModel), title: "Profile".localized(), image: .Icons.profileTab!),
+            createNavController(for: CatalogViewController(viewModel: catalogueViewModel), title: "Catalog".localized(), image: .Icons.catalogueTab!),
+            createNavController(for: CartViewController(viewModel: cartViewModel), title: "Cart".localized(), image: .Icons.cartTab!),
+            createNavController(for: StatisticViewController(viewModel: statisticViewModel), title: "Statistics".localized(), image: .Icons.statisticsTab!)
         ]
         tabBar.unselectedItemTintColor = .blackDay
     }
