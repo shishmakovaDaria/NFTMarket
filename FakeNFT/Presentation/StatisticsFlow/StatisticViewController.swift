@@ -18,6 +18,7 @@ final class StatisticViewController: UIViewController {
     
     private lazy var statsTableView: UITableView = {
         let tableView = UITableView(frame: view.bounds)
+        tableView.separatorStyle = .none
         tableView.register(StatisticCell.self, forCellReuseIdentifier: StatisticCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -39,15 +40,17 @@ final class StatisticViewController: UIViewController {
         NSLayoutConstraint.activate([
             statsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             statsTableView.trailingAnchor.constraint(equalTo: view
-                .trailingAnchor),
-            statsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 9),
+                .trailingAnchor, constant: -16),
+            statsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             statsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
 
+//MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension StatisticViewController: UITableViewDelegate {
-    
+
 }
 
 extension StatisticViewController: UITableViewDataSource {
@@ -56,11 +59,14 @@ extension StatisticViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        75
+        88
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = StatisticCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
         return cell
     }
+    
+
 }
+
