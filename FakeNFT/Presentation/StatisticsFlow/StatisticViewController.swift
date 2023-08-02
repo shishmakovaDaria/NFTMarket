@@ -9,6 +9,7 @@ import UIKit
 
 final class StatisticViewController: UIViewController {
     
+
     private lazy var sortButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage.sort, for: .normal)
@@ -23,6 +24,17 @@ final class StatisticViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+
+    private var viewModel: StatisticViewModel?
+    init(viewModel: StatisticViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     
     override func viewDidLoad() {
         setupUI()
