@@ -9,6 +9,8 @@ import UIKit
 
 final class StatisticCell: UITableViewCell {
     
+    //MARK: - Layout properties
+    
     private lazy var backgroundColorView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 12
@@ -50,6 +52,8 @@ final class StatisticCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -57,6 +61,15 @@ final class StatisticCell: UITableViewCell {
         setupUI()
         setupLayout()
 
+    }
+    
+    //MARK: - Methods
+    
+    func configure(model: StatisticCellModel,  indexNumber: Int) {
+        self.avatarImageView.image = model.avatar
+        self.nameLabel.text = model.name
+        self.countLabel.text = "\(model.count)"
+        self.numberOfCell.text = "\(indexNumber)"
     }
     
     private func setupUI() {

@@ -9,7 +9,8 @@ import UIKit
 
 final class StatisticViewController: UIViewController {
     
-
+    //MARK: - Layout properties
+    
     private lazy var sortButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage.Icons.sort, for: .normal)
@@ -24,8 +25,13 @@ final class StatisticViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    // MARK: - Properties
 
     private var viewModel: StatisticViewModel?
+    
+    //MARK: - LifeCyle
+    
     init(viewModel: StatisticViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -37,9 +43,17 @@ final class StatisticViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        bind()
         setupUI()
         setupLayout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.startObserve()
+    }
+    
+    // MARK: - Methods
     
     private func setupUI() {
         statsTableView.delegate = self
@@ -57,6 +71,13 @@ final class StatisticViewController: UIViewController {
             statsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func bind() {
+        guard let viewModel = viewModel else { return }
+        viewModel.$staticsCellModels.bind { [weak self] _ in
+            self?.statsTableView.reloadData()
+        }
+    }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -67,7 +88,7 @@ extension StatisticViewController: UITableViewDelegate {
 
 extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        viewModel?.staticsCellModels.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,6 +97,9 @@ extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
+        guard let model = viewModel?.staticsCellModels[indexPath.row] else { return cell}
+        let indexNumber = indexPath.row + 1
+        cell.configure(model: model, indexNumber: indexNumber)
         return cell
     }
     
