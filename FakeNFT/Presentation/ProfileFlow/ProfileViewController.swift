@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -31,6 +32,7 @@ final class ProfileViewController: UIViewController {
         let profilePhoto = UIImageView()
         profilePhoto.layer.cornerRadius = 35
         profilePhoto.backgroundColor = .blackDay
+        profilePhoto.clipsToBounds = true
         return profilePhoto
     }()
     
@@ -71,10 +73,26 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        updateAvatar()
     }
     
     @objc private func editButtonDidTap(_ sender: Any?) {
         present(ProfileEditingViewController() , animated: true)
+    }
+    
+    private func updateAvatar() {
+        guard let avatarURL = viewModel?.profile.avatar,
+              let url = URL(string: avatarURL)
+        else { return }
+        
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .days(1)
+        let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
+        profilePhoto.kf.indicatorType = .activity
+        profilePhoto.kf.setImage(with: url,
+                                 placeholder: nil,
+                                 options: [.processor(processor),
+                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
     private func setupUI() {
