@@ -46,7 +46,7 @@ final class CartNFTCell: UITableViewCell {
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage.deleteFromCart, for: .normal)
+        button.setImage(UIImage.Icons.deleteFromCart, for: .normal)
         button.addTarget(self, action: #selector(didTapRemoveButton), for: .touchUpInside)
         return button
     }()
@@ -78,12 +78,12 @@ final class CartNFTCell: UITableViewCell {
         nftLabel.text = model.name
         priceValue.text = "\(model.price) ETH"
         switch model.rating {
-        case 0: ratingImageView.image = UIImage.zeroStarRating
-        case 1: ratingImageView.image = UIImage.oneStarRating
-        case 2: ratingImageView.image = UIImage.twoStarRating
-        case 3: ratingImageView.image = UIImage.threeStarRating
-        case 4: ratingImageView.image = UIImage.fourStarRating
-        case 5: ratingImageView.image = UIImage.fiveStarRating
+        case 0: ratingImageView.image = UIImage.Icons.zeroStarRating
+        case 1: ratingImageView.image = UIImage.Icons.oneStarRating
+        case 2: ratingImageView.image = UIImage.Icons.twoStarRating
+        case 3: ratingImageView.image = UIImage.Icons.threeStarRating
+        case 4: ratingImageView.image = UIImage.Icons.fourStarRating
+        case 5: ratingImageView.image = UIImage.Icons.fiveStarRating
         default:
             break
         }

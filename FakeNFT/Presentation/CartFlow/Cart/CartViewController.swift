@@ -11,7 +11,7 @@ final class CartViewController: UIViewController {
     
     //MARK: - Layout properties
     private lazy var sortButton = UIBarButtonItem(
-        image: UIImage.sort,
+        image: UIImage.Icons.sort,
         style: .plain,
         target: self,
         action: #selector(didTapSortButton)
