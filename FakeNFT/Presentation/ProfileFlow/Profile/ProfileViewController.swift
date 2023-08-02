@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel?.profile.name
+        nameLabel.text = viewModel?.profileName
         nameLabel.textColor = .blackDay
         nameLabel.font = .boldSystemFont(ofSize: 22)
         nameLabel.minimumScaleFactor = 15
@@ -47,7 +47,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = viewModel?.profile.description
+        descriptionLabel.text = viewModel?.profileDescription
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -56,7 +56,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileWebsite: UILabel = {
         let profileWebsite = UILabel()
-        profileWebsite.text = viewModel?.profile.website
+        profileWebsite.text = viewModel?.profileWebsite
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .systemFont(ofSize: 15, weight: .regular)
         return profileWebsite
@@ -73,26 +73,44 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
-        updateAvatar()
+        bind()
+        guard let url = viewModel?.profileAvatarURL else { return }
+        updateAvatar(url: url)
     }
     
     @objc private func editButtonDidTap(_ sender: Any?) {
         present(ProfileEditingViewController() , animated: true)
     }
     
-    private func updateAvatar() {
-        guard let avatarURL = viewModel?.profile.avatar,
-              let url = URL(string: avatarURL)
-        else { return }
-        
+    private func updateAvatar(url: URL) {
         let cache = ImageCache.default
-        cache.diskStorage.config.expiration = .days(1)
+        cache.diskStorage.config.expiration = .seconds(1)
+        
         let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
         profilePhoto.kf.indicatorType = .activity
         profilePhoto.kf.setImage(with: url,
                                  placeholder: nil,
                                  options: [.processor(processor),
                                            .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+    }
+    
+    private func bind() {
+        viewModel?.$profileName.bind { [weak self] _ in
+            self?.nameLabel.text = self?.viewModel?.profileName
+        }
+        
+        viewModel?.$profileDescription.bind { [weak self] _ in
+            self?.descriptionLabel.text = self?.viewModel?.profileDescription
+        }
+        
+        viewModel?.$profileWebsite.bind { [weak self] _ in
+            self?.profileWebsite.text = self?.viewModel?.profileWebsite
+        }
+        
+        viewModel?.$profileAvatarURL.bind { [weak self] _ in
+            guard let url = self?.viewModel?.profileAvatarURL else { return }
+            self?.updateAvatar(url: url)
+        }
     }
     
     private func setupUI() {

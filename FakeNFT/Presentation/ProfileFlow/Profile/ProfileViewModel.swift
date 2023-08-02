@@ -8,27 +8,53 @@
 import Foundation
 
 final class ProfileViewModel {
+    
+    @Observable
+    private(set) var profileName = ""
+    
+    @Observable
+    private(set) var profileDescription = ""
+    
+    @Observable
+    private(set) var profileWebsite = ""
+    
+    @Observable
+    private(set) var profileAvatarURL = URL(string: "")
+    
+    private let dataProvider: DataProvider
+    private var profile: ProfileModel?
+    
+    convenience init() {
+        self.init(dataProvider: DataProvider())
+    }
 
-    let profile = ProfileModel(name: "Joaquin Phoenix",
-                                       avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cable_Car_No._1_and_Alcatraz_Island.jpg/1024px-Cable_Car_No._1_and_Alcatraz_Island.jpg",
-                                       description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
-                                       website: "https://practicum.yandex.ru/ios-developer",
-                                       nfts: ["", "", ""],
-                                       likes: [""],
-                                       id: "1")
-
+    init(dataProvider: DataProvider) {
+        self.dataProvider = dataProvider
+        updateProfile()
+        profileName = profile?.name ?? ""
+        profileDescription = profile?.description ?? ""
+        profileWebsite = profile?.website ?? ""
+        guard let avatarURL = profile?.avatar,
+              let url = URL(string: avatarURL)
+        else { return }
+        profileAvatarURL = url
+    }
+    
+    func updateProfile() {
+        profile = dataProvider.getUserInfo()
+    }
     
     func provideTableHeaders() -> [String] {
         let tableHeaders: [String] = [
-            "\("My NFTs".localized()) (\(profile.nfts.count))",
-            "\("Favorite NFTs".localized()) (\(profile.likes.count))",
+            "\("My NFTs".localized()) (\(profile?.nfts.count ?? 0))",
+            "\("Favorite NFTs".localized()) (\(profile?.likes.count ?? 0))",
             "About the developer".localized()
         ]
         return tableHeaders
     }
     
     func provideWebsiteURL() -> URL? {
-        let url = URL(string: profile.website)
+        let url = URL(string: profile?.website ?? "")
         return url
     }
 }

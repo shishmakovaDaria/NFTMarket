@@ -34,6 +34,7 @@
 		6108DCE52A7AE4F200AAEB34 /* MyNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */; };
 		6108DCE92A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */; };
 		6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */; };
+		6108DCED2A7AF53A00AAEB34 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */; };
 		C452BA182A7825BE00862092 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C452BA172A7825BE00862092 /* Observable.swift */; };
 		C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
@@ -98,6 +99,7 @@
 		6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTsViewController.swift; sourceTree = "<group>"; };
 		6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNFTsViewController.swift; sourceTree = "<group>"; };
 		6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWebsiteViewController.swift; sourceTree = "<group>"; };
+		6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		C452BA172A7825BE00862092 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 		C452BA1D2A78266B00862092 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
+				6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */,
 				6108DCE72A7AE5F200AAEB34 /* Profile */,
 				6108DCE32A7AE49D00AAEB34 /* MyNFTs */,
 				6108DCE62A7AE5E700AAEB34 /* FavoriteNFTs */,
@@ -579,6 +582,7 @@
 				E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				6108DCD02A78519900AAEB34 /* String+extensions.swift in Sources */,
+				6108DCED2A7AF53A00AAEB34 /* DataProvider.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				6108DCDD2A798DD400AAEB34 /* ProfileModel.swift in Sources */,
