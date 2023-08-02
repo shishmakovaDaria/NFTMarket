@@ -31,6 +31,9 @@
 		6108DCD92A798B6300AAEB34 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */; };
 		6108DCDB2A798D0900AAEB34 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCDA2A798D0900AAEB34 /* ProfileViewModel.swift */; };
 		6108DCDD2A798DD400AAEB34 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCDC2A798DD400AAEB34 /* ProfileModel.swift */; };
+		6108DCE52A7AE4F200AAEB34 /* MyNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */; };
+		6108DCE92A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */; };
+		6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */; };
 		C452BA182A7825BE00862092 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C452BA172A7825BE00862092 /* Observable.swift */; };
 		C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
@@ -92,6 +95,9 @@
 		6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
 		6108DCDA2A798D0900AAEB34 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6108DCDC2A798DD400AAEB34 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTsViewController.swift; sourceTree = "<group>"; };
+		6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNFTsViewController.swift; sourceTree = "<group>"; };
+		6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWebsiteViewController.swift; sourceTree = "<group>"; };
 		C452BA172A7825BE00862092 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -288,6 +294,34 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		6108DCE32A7AE49D00AAEB34 /* MyNFTs */ = {
+			isa = PBXGroup;
+			children = (
+				6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */,
+			);
+			path = MyNFTs;
+			sourceTree = "<group>";
+		};
+		6108DCE62A7AE5E700AAEB34 /* FavoriteNFTs */ = {
+			isa = PBXGroup;
+			children = (
+				6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */,
+			);
+			path = FavoriteNFTs;
+			sourceTree = "<group>";
+		};
+		6108DCE72A7AE5F200AAEB34 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */,
+				6108DCDA2A798D0900AAEB34 /* ProfileViewModel.swift */,
+				6108DCDC2A798DD400AAEB34 /* ProfileModel.swift */,
+				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
+				6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C452BA162A78259F00862092 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,10 +362,9 @@
 		C452BA1D2A78266B00862092 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
-				E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */,
-				6108DCDA2A798D0900AAEB34 /* ProfileViewModel.swift */,
-				6108DCDC2A798DD400AAEB34 /* ProfileModel.swift */,
-				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
+				6108DCE72A7AE5F200AAEB34 /* Profile */,
+				6108DCE32A7AE49D00AAEB34 /* MyNFTs */,
+				6108DCE62A7AE5E700AAEB34 /* FavoriteNFTs */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";
@@ -531,11 +564,13 @@
 			files = (
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
+				6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
 				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,
 				6108DCDB2A798D0900AAEB34 /* ProfileViewModel.swift in Sources */,
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
+				6108DCE92A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift in Sources */,
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
@@ -550,6 +585,7 @@
 				C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
 				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
+				6108DCE52A7AE4F200AAEB34 /* MyNFTsViewController.swift in Sources */,
 				6108DCD92A798B6300AAEB34 /* ProfileEditingViewController.swift in Sources */,
 				C452BA182A7825BE00862092 /* Observable.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,

@@ -12,7 +12,7 @@ final class ProfileViewModel {
     let profile = ProfileModel(name: "Joaquin Phoenix",
                                        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cable_Car_No._1_and_Alcatraz_Island.jpg/1024px-Cable_Car_No._1_and_Alcatraz_Island.jpg",
                                        description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
-                                       website: "Joaquin Phoenix.com",
+                                       website: "https://practicum.yandex.ru/ios-developer",
                                        nfts: ["", "", ""],
                                        likes: [""],
                                        id: "1")
@@ -25,5 +25,10 @@ final class ProfileViewModel {
             "About the developer".localized()
         ]
         return tableHeaders
+    }
+    
+    func provideWebsiteURL() -> URL? {
+        let url = URL(string: profile.website)
+        return url
     }
 }

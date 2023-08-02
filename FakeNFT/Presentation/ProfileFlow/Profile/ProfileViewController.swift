@@ -168,5 +168,16 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 0 {
+            navigationController?.pushViewController(MyNFTsViewController(), animated: true)
+        }
+        if indexPath.row == 1 {
+            navigationController?.pushViewController(FavoriteNFTsViewController(), animated: true)
+        }
+        if indexPath.row == 2 {
+            guard let url = viewModel?.provideWebsiteURL() else { return }
+            let vc = ProfileWebsiteViewController(url: url)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
