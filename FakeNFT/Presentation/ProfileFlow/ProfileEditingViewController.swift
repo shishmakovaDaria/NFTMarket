@@ -11,7 +11,7 @@ final class ProfileEditingViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton(type: .system)
-        closeButton.setBackgroundImage(.close, for: .normal)
+        closeButton.setBackgroundImage(UIImage.Icons.close, for: .normal)
         closeButton.addTarget(self, action: #selector(closeButtonDidTap(_:)), for: .touchUpInside)
         return closeButton
     }()

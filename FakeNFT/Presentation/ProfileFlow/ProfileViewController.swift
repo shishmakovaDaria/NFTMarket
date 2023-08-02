@@ -10,6 +10,7 @@ import UIKit
 final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel?
+    
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -19,12 +20,9 @@ final class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    private let viewModel = ProfileViewModel()
-    
     private lazy var editButton: UIButton = {
         let editButton = UIButton(type: .system)
-        editButton.setBackgroundImage(.edit, for: .normal)
+        editButton.setBackgroundImage(UIImage.Icons.edit, for: .normal)
         editButton.addTarget(self, action: #selector(editButtonDidTap(_:)), for: .touchUpInside)
         return editButton
     }()
@@ -38,7 +36,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel.profile.name
+        nameLabel.text = viewModel?.profile.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .boldSystemFont(ofSize: 22)
         nameLabel.minimumScaleFactor = 15
@@ -47,7 +45,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = viewModel.profile.description
+        descriptionLabel.text = viewModel?.profile.description
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -56,7 +54,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileWebsite: UILabel = {
         let profileWebsite = UILabel()
-        profileWebsite.text = viewModel.profile.website
+        profileWebsite.text = viewModel?.profile.website
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .systemFont(ofSize: 15, weight: .regular)
         return profileWebsite
@@ -132,11 +130,11 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let tableHeaders = viewModel.provideTableHeaders()
-        cell.textLabel?.text = tableHeaders[indexPath.row]
+        let tableHeaders = viewModel?.provideTableHeaders()
+        cell.textLabel?.text = tableHeaders?[indexPath.row]
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .boldSystemFont(ofSize: 17)
-        cell.accessoryView = UIImageView(image: UIImage(systemName: "chevron.forward"))
+        cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
         cell.accessoryView?.tintColor = .blackDay
         cell.backgroundColor = .whiteDay
         

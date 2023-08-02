@@ -35,7 +35,6 @@
 		C46533802A73D4F6003AB2C1 /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extensions.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
 		C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E382A7A4B9F000B67FB /* CatalogueViewModel.swift */; };
-		C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3A2A7A4BCA000B67FB /* ProfileViewModel.swift */; };
 		C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */; };
 		C4D08E3F2A7A4C39000B67FB /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
@@ -153,6 +152,7 @@
 				3F6806AC29CBBAF200B4F915 /* FakeNFTTests */,
 				3F6806B629CBBAF200B4F915 /* FakeNFTUITests */,
 				3F68069429CBBAF100B4F915 /* Products */,
+				6108DCE02A7AD8D600AAEB34 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +278,14 @@
 				6108DCD62A78522B00AAEB34 /* Localizable.strings */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		6108DCE02A7AD8D600AAEB34 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C4D08E3A2A7A4BCA000B67FB /* ProfileViewModel.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C452BA162A78259F00862092 /* Helpers */ = {
@@ -524,7 +532,6 @@
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
-				C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */,
 				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,
 				6108DCDB2A798D0900AAEB34 /* ProfileViewModel.swift in Sources */,
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
