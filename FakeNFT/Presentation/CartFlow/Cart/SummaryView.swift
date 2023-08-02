@@ -13,7 +13,7 @@ protocol SummaryViewDelegate: AnyObject {
 
 final class SummaryView: UIView {
     //MARK: - Layout properties
-    private var nftCounterLabel: UILabel = {
+    private var nftCountLabel: UILabel = {
         let label = UILabel()
         label.font = .caption1
         label.textColor = .blackDay
@@ -68,6 +68,12 @@ final class SummaryView: UIView {
         delegate?.didTapToPayButton()
     }
     
+    //MARK: - methods
+    func configureSummary(with summaryInfo: SummaryInfo) {
+        nftCountLabel.text = "\(summaryInfo.countNFT) NFT"
+        priceLabel.text = "\(summaryInfo.price) ETH"
+    }
+    
     //MARK: - Layout methods
     private func setView() {
         backgroundColor = .lightGrayDay
@@ -79,7 +85,7 @@ final class SummaryView: UIView {
 
         addSubview(toPayButton)
         addSubview(labelsStack)
-        labelsStack.addArrangedSubview(nftCounterLabel)
+        labelsStack.addArrangedSubview(nftCountLabel)
         labelsStack.addArrangedSubview(priceLabel)
 
         setConstraints()

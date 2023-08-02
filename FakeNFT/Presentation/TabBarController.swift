@@ -8,6 +8,9 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
+    
+    private let cartViewModel = CartViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -27,12 +30,12 @@ final class TabBarController: UITabBarController {
           return navController
     }
     
-    //-TODO: remove force unwrap image
+    
     fileprivate func setupVCs() {
         viewControllers = [
             createNavController(for: ProfileViewController(), title: "Профиль", image: .profileTab!),
             createNavController(for: CatalogViewController(), title: "Каталог", image: .catalogueTab!),
-            createNavController(for: CartViewController(), title: "Корзина", image: .cartTab!),
+            createNavController(for: CartViewController(viewModel: cartViewModel), title: "Корзина", image: .cartTab!),
             createNavController(for: StatisticViewController(), title: "Статистика", image: .statisticsTab!)
         ]
         tabBar.unselectedItemTintColor = .blackDay
