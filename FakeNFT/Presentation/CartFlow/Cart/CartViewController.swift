@@ -19,7 +19,7 @@ final class CartViewController: UIViewController {
     
     private lazy var emptyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Корзина пуста"
+        label.text = "Cart is empty".localized()
         label.font = UIFont.bodyBold
         return label
     }()
@@ -110,17 +110,21 @@ final class CartViewController: UIViewController {
     }
     
     private func setLayout() {
-        view.backgroundColor = .ypWhite
-        
-        navigationItem.rightBarButtonItem = sortButton
-        navigationController?.navigationBar.tintColor = .blackDay
+        view.backgroundColor = .whiteDay
         
         [emptyLabel, cartTableView, summaryView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         
+        setNavBar()
         setConstraints()
+    }
+    
+    private func setNavBar() {
+        navigationItem.rightBarButtonItem = sortButton
+        navigationController?.navigationBar.tintColor = .blackDay
+        navigationController?.navigationBar.backgroundColor = .whiteDay
     }
     
     private func setConstraints() {
