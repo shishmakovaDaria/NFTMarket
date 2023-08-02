@@ -20,7 +20,7 @@ extension UIImage {
         static let apeCoin = UIImage(named: "apeCoin")
         static let bitcoin = UIImage(named: "bitcoin")
         static let cardano = UIImage(named: "cardano")
-        static let dogecoin = UIImage(named: "dogecoin")
+        static let dogecoin = UIImage(named: "Dogecoin")
         static let ethereum = UIImage(named: "ethereum")
         static let shibaInu = UIImage(named: "shibaInu")
         static let solana = UIImage(named: "solana")

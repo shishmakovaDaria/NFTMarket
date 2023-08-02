@@ -12,7 +12,7 @@ final class StatisticViewController: UIViewController {
 
     private lazy var sortButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setBackgroundImage(UIImage.sort, for: .normal)
+        button.setBackgroundImage(UIImage.Icons.sort, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -20,7 +20,7 @@ final class StatisticCell: UITableViewCell {
     private lazy var avatarImageView: UIImageView = {
         let view = UIImageView()
         view.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
-        view.image = UIImage.dogecoin
+        view.image = UIImage.Icons.dogecoin
         view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
