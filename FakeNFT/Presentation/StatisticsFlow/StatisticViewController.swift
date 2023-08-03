@@ -14,6 +14,7 @@ final class StatisticViewController: UIViewController {
     private lazy var sortButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(UIImage.Icons.sort, for: .normal)
+        button.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -52,6 +53,14 @@ final class StatisticViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel?.startObserve()
     }
+    
+    // MARK: - Actions
+    @objc
+    private func sortButtonTapped() {
+        guard let viewModel else {return}
+        showAlertSort(viewModel: viewModel, valueSort: .statistic)
+    }
+    
     
     // MARK: - Methods
     

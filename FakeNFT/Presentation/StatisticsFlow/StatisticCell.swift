@@ -68,7 +68,7 @@ final class StatisticCell: UITableViewCell {
     func configure(model: StatisticCellModel,  indexNumber: Int) {
         self.avatarImageView.image = model.avatar
         self.nameLabel.text = model.name
-        self.countLabel.text = "\(model.count)"
+        self.countLabel.text = "\(model.rating)"
         self.numberOfCell.text = "\(indexNumber)"
     }
     

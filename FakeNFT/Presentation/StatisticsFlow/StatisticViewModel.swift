@@ -10,7 +10,7 @@ import UIKit
 struct StatisticCellModel {
     let name: String
     let avatar: UIImage
-    let count: Int
+    let rating: Int
 }
 
 final class StatisticViewModel {
@@ -28,14 +28,26 @@ final class StatisticViewModel {
     }
 }
 
+extension StatisticViewModel: ViewModelProtocol {
+    func sort(param: Sort) {
+        if param == .rating {
+            staticsCellModels.sort { $0.rating < $1.rating}
+        } else if param == .name {
+            staticsCellModels.sort { $0.name < $1.name }
+        }
+    }
+    
+    
+}
+
 let mockStatsCells: [StatisticCellModel] = [
-    StatisticCellModel(name: "apeCoin", avatar: .Icons.apeCoin!, count: 1),
-    StatisticCellModel(name: "bitcoin", avatar: .Icons.bitcoin!, count: 2),
-    StatisticCellModel(name: "cardano", avatar: .Icons.cardano!, count: 3),
-    StatisticCellModel(name: "dogecoin", avatar: .Icons.dogecoin!, count: 4),
-    StatisticCellModel(name: "apeCoin", avatar: .Icons.apeCoin!, count: 5),
-    StatisticCellModel(name: "ethereum", avatar: .Icons.ethereum!, count: 6),
-    StatisticCellModel(name: "shibaInu", avatar: .Icons.shibaInu!, count: 7),
-    StatisticCellModel(name: "solana", avatar: .Icons.solana!, count: 8),
-    StatisticCellModel(name: "tether", avatar: .Icons.tether!, count: 9),
+    StatisticCellModel(name: "apeCoin", avatar: .Icons.apeCoin!, rating: 1),
+    StatisticCellModel(name: "bitcoin", avatar: .Icons.bitcoin!, rating: 2),
+    StatisticCellModel(name: "cardano", avatar: .Icons.cardano!, rating: 3),
+    StatisticCellModel(name: "dogecoin", avatar: .Icons.dogecoin!, rating: 4),
+    StatisticCellModel(name: "apeCoin", avatar: .Icons.apeCoin!, rating: 5),
+    StatisticCellModel(name: "ethereum", avatar: .Icons.ethereum!, rating: 6),
+    StatisticCellModel(name: "shibaInu", avatar: .Icons.shibaInu!, rating: 7),
+    StatisticCellModel(name: "solana", avatar: .Icons.solana!, rating: 8),
+    StatisticCellModel(name: "tether", avatar: .Icons.tether!, rating: 9),
 ]
