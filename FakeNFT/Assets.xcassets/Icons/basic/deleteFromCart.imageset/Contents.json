@@ -3,6 +3,16 @@
     {
       "filename" : "Property 1=Delete.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Cart.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
