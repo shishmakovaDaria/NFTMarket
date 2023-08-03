@@ -19,4 +19,16 @@ final class DataProvider {
                                            id: "1")
         return mockProfile
     }
+    
+    func getTestUpdate() -> ProfileModel {
+        let mockProfile = ProfileModel(name: "Даша",
+                                           avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Cable_Car_No._1_and_Alcatraz_Island.jpg/1024px-Cable_Car_No._1_and_Alcatraz_Island.jpg",
+                                           description: "Разработчица",
+                                           website: "https://journal.tinkoff.ru/",
+                                           nfts: ["", "", "", "", "", "", "",""],
+                                           likes: ["", "", "",],
+                                           id: "2")
+        return mockProfile
+    }
+    
 }

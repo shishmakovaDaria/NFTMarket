@@ -21,6 +21,12 @@ final class ProfileViewModel {
     @Observable
     private(set) var profileAvatarURL = URL(string: "")
     
+    @Observable
+    private(set) var nftCount = 0
+    
+    @Observable
+    private(set) var favoriteNftCount = 0
+    
     private let dataProvider: DataProvider
     private var profile: ProfileModel?
     
@@ -31,6 +37,14 @@ final class ProfileViewModel {
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
         updateProfile()
+    }
+    
+    func updateProfile() {
+        profile = dataProvider.getUserInfo()
+        updateObservable()
+    }
+    
+    private func updateObservable() {
         profileName = profile?.name ?? ""
         profileDescription = profile?.description ?? ""
         profileWebsite = profile?.website ?? ""
@@ -38,16 +52,14 @@ final class ProfileViewModel {
               let url = URL(string: avatarURL)
         else { return }
         profileAvatarURL = url
-    }
-    
-    func updateProfile() {
-        profile = dataProvider.getUserInfo()
+        nftCount = profile?.nfts.count ?? 0
+        favoriteNftCount = profile?.likes.count ?? 0
     }
     
     func provideTableHeaders() -> [String] {
         let tableHeaders: [String] = [
-            "\("My NFTs".localized()) (\(profile?.nfts.count ?? 0))",
-            "\("Favorite NFTs".localized()) (\(profile?.likes.count ?? 0))",
+            "\("My NFTs".localized()) (\(nftCount))",
+            "\("Favorite NFTs".localized()) (\(favoriteNftCount))",
             "About the developer".localized()
         ]
         return tableHeaders

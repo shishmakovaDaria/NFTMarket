@@ -323,10 +323,17 @@
 				E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */,
 				6108DCDA2A798D0900AAEB34 /* ProfileViewModel.swift */,
 				6108DCDC2A798DD400AAEB34 /* ProfileModel.swift */,
-				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
 				6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		6108DCEE2A7C0C2C00AAEB34 /* ProfileEditing */ = {
+			isa = PBXGroup;
+			children = (
+				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
+			);
+			path = ProfileEditing;
 			sourceTree = "<group>";
 		};
 		C452BA162A78259F00862092 /* Helpers */ = {
@@ -371,6 +378,7 @@
 			children = (
 				6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */,
 				6108DCE72A7AE5F200AAEB34 /* Profile */,
+				6108DCEE2A7C0C2C00AAEB34 /* ProfileEditing */,
 				6108DCE32A7AE49D00AAEB34 /* MyNFTs */,
 				6108DCE62A7AE5E700AAEB34 /* FavoriteNFTs */,
 			);

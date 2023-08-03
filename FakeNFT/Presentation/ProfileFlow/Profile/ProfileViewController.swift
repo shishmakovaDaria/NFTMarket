@@ -78,6 +78,11 @@ final class ProfileViewController: UIViewController {
         updateAvatar(url: url)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.updateProfile()
+    }
+    
     @objc private func editButtonDidTap(_ sender: Any?) {
         present(ProfileEditingViewController() , animated: true)
     }
@@ -110,6 +115,14 @@ final class ProfileViewController: UIViewController {
         viewModel?.$profileAvatarURL.bind { [weak self] _ in
             guard let url = self?.viewModel?.profileAvatarURL else { return }
             self?.updateAvatar(url: url)
+        }
+        
+        viewModel?.$nftCount.bind { [weak self] _ in
+            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+        
+        viewModel?.$favoriteNftCount.bind { [weak self] _ in
+            self?.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
         }
     }
     
