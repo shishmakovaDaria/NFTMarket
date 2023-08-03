@@ -37,7 +37,6 @@ final class CartViewModel {
         checkIsCartEmpty()
     }
     
-    
     private func observeNFT() {
         nfts = mockNFT
     }
@@ -47,8 +46,6 @@ final class CartViewModel {
         summaryInfo.price = nfts.reduce(0.0) { $0 + $1.price }
     }
     
-    
-    
     private func checkIsCartEmpty() {
         if nfts.isEmpty {
             isCartEmpty = true
@@ -57,9 +54,24 @@ final class CartViewModel {
     
 }
 
+extension CartViewModel: ViewModelProtocol {
+    func sort(param: Sort) {
+        switch param {
+        case .price:
+            nfts = mockNFT.sorted(by: {$0.price > $1.price} )
+        case .rating:
+            nfts = mockNFT.sorted(by: {$0.rating > $1.rating} )
+        case .name:
+            nfts = mockNFT.sorted(by: {$0.name < $1.name} )
+        case .NFTCount:
+            break
+        }
+    }
+    
+}
+
 
 // for mock data
-
 struct NFTModel {
     let createdAt: String
     let name: String

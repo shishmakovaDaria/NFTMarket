@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol CartNFTCellDelegate: AnyObject {
-    func didTapDeleteButton(on nft: NFTModel)
-}
 
 final class CartNFTCell: UITableViewCell {
     // MARK: - Layout elements

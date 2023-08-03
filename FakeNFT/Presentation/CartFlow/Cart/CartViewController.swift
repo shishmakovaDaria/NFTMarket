@@ -73,7 +73,9 @@ final class CartViewController: UIViewController {
     //MARK: - Actions
     @objc
     private func didTapSortButton() {
-        
+        guard let viewModel = viewModel else { return }
+        showAlertSort(viewModel: viewModel, valueSort: .cart)
+        cartTableView.reloadData()
     }
     
     
@@ -87,6 +89,10 @@ final class CartViewController: UIViewController {
             } else {
                 self?.showCart()
             }
+        }
+        
+        viewModel.$nfts.bind { [weak self] _ in
+            self?.cartTableView.reloadData()
         }
         
         viewModel.$summaryInfo.bind { [weak self] summaryInfo in

@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol SummaryViewDelegate: AnyObject {
-    func didTapToPayButton()
-}
 
 final class SummaryView: UIView {
     //MARK: - Layout properties
