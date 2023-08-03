@@ -38,7 +38,7 @@ final class SummaryView: UIView {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
         button.backgroundColor = .blackDay
-        button.titleLabel?.textColor = .whiteDay
+        button.setTitleColor(.whiteDay, for: .normal)
         button.setTitle("To pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
         button.addTarget(SummaryView.self, action: #selector(didTapToPayButton), for: .touchUpInside)

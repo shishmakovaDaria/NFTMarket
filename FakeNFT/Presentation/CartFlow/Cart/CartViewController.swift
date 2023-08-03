@@ -163,7 +163,11 @@ extension CartViewController: SummaryViewDelegate {
 // MARK: - CartNFTCellDelegate
 extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
-        
+        let deleteFromCartVC = DeleteFromCartViewController()
+       
+        deleteFromCartVC.modalPresentationStyle = .overCurrentContext
+        deleteFromCartVC.modalTransitionStyle = .crossDissolve
+        present(deleteFromCartVC, animated: true)
     }
 }
 

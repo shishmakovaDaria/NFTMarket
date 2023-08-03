@@ -51,6 +51,7 @@ final class CartNFTCell: UITableViewCell {
     //MARK: - Properties
     
     weak var delegate: CartNFTCellDelegate?
+    private var model: NFTModel?
     
     //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -66,11 +67,13 @@ final class CartNFTCell: UITableViewCell {
     //MARK: - Actions
     @objc
     private func didTapRemoveButton() {
-        
+        guard let model else { return }
+        delegate?.didTapDeleteButton(on: model)
     }
     
     //MARK: - Methods
     func configureCell(with model: NFTModel) {
+        self.model = model
         nftImageView.image = model.images  // TO DO via Kingfisher
         nftLabel.text = model.name
         priceValue.text = "\(model.price) ETH"
