@@ -70,6 +70,7 @@ final class StatisticViewController: UIViewController {
         statsTableView.delegate = self
         statsTableView.dataSource = self
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = .blackDay
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: sortButton)
         view.addSubview(statsTableView)
     }
