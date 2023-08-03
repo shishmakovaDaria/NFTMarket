@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
+
+struct StatisticCellModel {
+    let name: String
+    let avatar: String
+    let rating: String
+    let indexNumber: Int
+}
 
 final class StatisticCell: UITableViewCell {
     
@@ -65,11 +73,12 @@ final class StatisticCell: UITableViewCell {
     
     //MARK: - Methods
     
-    func configure(model: StatisticCellModel,  indexNumber: Int) {
-        self.avatarImageView.image = model.avatar
+    func configure(model: StatisticCellModel) {
+        let avatarUrl = URL(string: model.avatar)
+        self.avatarImageView.kf.setImage(with: avatarUrl)
         self.nameLabel.text = model.name
         self.countLabel.text = "\(model.rating)"
-        self.numberOfCell.text = "\(indexNumber)"
+        self.numberOfCell.text = "\(model.indexNumber)"
     }
     
     private func setupUI() {

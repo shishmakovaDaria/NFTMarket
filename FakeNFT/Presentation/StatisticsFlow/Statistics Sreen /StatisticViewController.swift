@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 final class StatisticViewController: UIViewController {
     
@@ -67,6 +69,7 @@ final class StatisticViewController: UIViewController {
     private func setupUI() {
         statsTableView.delegate = self
         statsTableView.dataSource = self
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: sortButton)
         view.addSubview(statsTableView)
     }
@@ -83,7 +86,7 @@ final class StatisticViewController: UIViewController {
     
     private func bind() {
         guard let viewModel = viewModel else { return }
-        viewModel.$staticsCellModels.bind { [weak self] _ in
+        viewModel.$users.bind { [weak self] _ in
             self?.statsTableView.reloadData()
         }
     }
@@ -92,12 +95,17 @@ final class StatisticViewController: UIViewController {
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension StatisticViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = UserViewModel()
+        let indexPath = indexPath
+        let userViewController = UserViewController(viewModel: viewModel, indexPath: indexPath)
+        navigationController?.pushViewController(userViewController, animated: true)
+    }
 }
 
 extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.staticsCellModels.count ?? 0
+        viewModel?.users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,9 +114,14 @@ extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
-        guard let model = viewModel?.staticsCellModels[indexPath.row] else { return cell}
         let indexNumber = indexPath.row + 1
-        cell.configure(model: model, indexNumber: indexNumber)
+        guard let userModel = viewModel?.users[indexPath.row] else { return cell }
+        let cellModel = StatisticCellModel(name: userModel.name,
+                                           avatar: userModel.avatar,
+                                           rating: userModel.rating,
+                                           indexNumber: indexNumber)
+
+        cell.configure(model: cellModel)
         return cell
     }
     

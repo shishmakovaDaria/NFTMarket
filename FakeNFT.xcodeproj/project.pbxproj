@@ -37,7 +37,9 @@
 		C4D08E3F2A7A4C39000B67FB /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */; };
 		C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */; };
 		C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */; };
-		E248DE782A7BD25600BB3048 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE772A7BD25600BB3048 /* ProfileModel.swift */; };
+		E248DE782A7BD25600BB3048 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE772A7BD25600BB3048 /* UserModel.swift */; };
+		E248DE7C2A7BEBF100BB3048 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */; };
+		E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
 		E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */; };
 		E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */; };
@@ -100,7 +102,9 @@
 		C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
-		E248DE772A7BD25600BB3048 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		E248DE772A7BD25600BB3048 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -314,10 +318,9 @@
 		C452BA1C2A78265D00862092 /* StatisticsFlow */ = {
 			isa = PBXGroup;
 			children = (
-				E29A5BDF2A76BB9600A76D9C /* StatisticViewController.swift */,
-				E29A5BE12A76BBC300A76D9C /* StatisticCell.swift */,
-				C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */,
-				E248DE772A7BD25600BB3048 /* ProfileModel.swift */,
+				E248DE7A2A7BEB9100BB3048 /* User Screen */,
+				E248DE792A7BEB7000BB3048 /* Statistics Sreen  */,
+				E248DE772A7BD25600BB3048 /* UserModel.swift */,
 			);
 			path = StatisticsFlow;
 			sourceTree = "<group>";
@@ -369,6 +372,25 @@
 				C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E248DE792A7BEB7000BB3048 /* Statistics Sreen  */ = {
+			isa = PBXGroup;
+			children = (
+				E29A5BDF2A76BB9600A76D9C /* StatisticViewController.swift */,
+				E29A5BE12A76BBC300A76D9C /* StatisticCell.swift */,
+				C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */,
+			);
+			path = "Statistics Sreen ";
+			sourceTree = "<group>";
+		};
+		E248DE7A2A7BEB9100BB3048 /* User Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */,
+				E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */,
+			);
+			path = "User Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -542,7 +564,7 @@
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				E29A5BE22A76BBC300A76D9C /* StatisticCell.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
-				E248DE782A7BD25600BB3048 /* ProfileModel.swift in Sources */,
+				E248DE782A7BD25600BB3048 /* UserModel.swift in Sources */,
 				C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */,
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
@@ -554,9 +576,11 @@
 				6108DCD02A78519900AAEB34 /* String+extensions.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
+				E248DE7C2A7BEBF100BB3048 /* UserViewController.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
+				E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */,
 				E29A5BE02A76BB9600A76D9C /* StatisticViewController.swift in Sources */,
 				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
 				C452BA182A7825BE00862092 /* Observable.swift in Sources */,
