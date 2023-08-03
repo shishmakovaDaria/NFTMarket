@@ -35,6 +35,8 @@
 		6108DCE92A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */; };
 		6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */; };
 		6108DCED2A7AF53A00AAEB34 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */; };
+		6108DCF02A7C153D00AAEB34 /* ProfileEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */; };
+		6108DCF22A7C1F6400AAEB34 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */; };
 		C452BA182A7825BE00862092 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C452BA172A7825BE00862092 /* Observable.swift */; };
 		C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extension.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
@@ -102,6 +104,8 @@
 		6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNFTsViewController.swift; sourceTree = "<group>"; };
 		6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWebsiteViewController.swift; sourceTree = "<group>"; };
 		6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewModel.swift; sourceTree = "<group>"; };
+		6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C452BA172A7825BE00862092 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
+				6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */,
+				6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */,
 			);
 			path = ProfileEditing;
 			sourceTree = "<group>";
@@ -590,6 +596,8 @@
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
 				6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */,
+				6108DCF22A7C1F6400AAEB34 /* CustomTextField.swift in Sources */,
+				6108DCF02A7C153D00AAEB34 /* ProfileEditingViewModel.swift in Sources */,
 				C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
 				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,

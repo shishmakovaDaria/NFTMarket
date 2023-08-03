@@ -10,25 +10,17 @@ import Foundation
 final class ProfileViewModel {
     
     @Observable
-    private(set) var profileName = ""
-    
-    @Observable
-    private(set) var profileDescription = ""
-    
-    @Observable
-    private(set) var profileWebsite = ""
-    
-    @Observable
-    private(set) var profileAvatarURL = URL(string: "")
-    
-    @Observable
-    private(set) var nftCount = 0
-    
-    @Observable
-    private(set) var favoriteNftCount = 0
+    private(set) var profile = ProfileModel(
+        name: "",
+        avatar: "",
+        description: "",
+        website: "",
+        nfts: [],
+        likes: [],
+        id: ""
+    )
     
     private let dataProvider: DataProvider
-    private var profile: ProfileModel?
     
     convenience init() {
         self.init(dataProvider: DataProvider())
@@ -41,32 +33,24 @@ final class ProfileViewModel {
     
     func updateProfile() {
         profile = dataProvider.getUserInfo()
-        updateObservable()
-    }
-    
-    private func updateObservable() {
-        profileName = profile?.name ?? ""
-        profileDescription = profile?.description ?? ""
-        profileWebsite = profile?.website ?? ""
-        guard let avatarURL = profile?.avatar,
-              let url = URL(string: avatarURL)
-        else { return }
-        profileAvatarURL = url
-        nftCount = profile?.nfts.count ?? 0
-        favoriteNftCount = profile?.likes.count ?? 0
     }
     
     func provideTableHeaders() -> [String] {
         let tableHeaders: [String] = [
-            "\("My NFTs".localized()) (\(nftCount))",
-            "\("Favorite NFTs".localized()) (\(favoriteNftCount))",
+            "\("My NFTs".localized()) (\(profile.nfts.count))",
+            "\("Favorite NFTs".localized()) (\(profile.likes.count))",
             "About the developer".localized()
         ]
         return tableHeaders
     }
     
+    func provideAvatarURL() -> URL? {
+        let url = URL(string: profile.avatar)
+        return url
+    }
+    
     func provideWebsiteURL() -> URL? {
-        let url = URL(string: profile?.website ?? "")
+        let url = URL(string: profile.website)
         return url
     }
 }

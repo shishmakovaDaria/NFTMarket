@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel?.profileName
+        nameLabel.text = viewModel?.profile.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .boldSystemFont(ofSize: 22)
         nameLabel.minimumScaleFactor = 15
@@ -47,7 +47,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = viewModel?.profileDescription
+        descriptionLabel.text = viewModel?.profile.description
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -56,7 +56,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileWebsite: UILabel = {
         let profileWebsite = UILabel()
-        profileWebsite.text = viewModel?.profileWebsite
+        profileWebsite.text = viewModel?.profile.website
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .systemFont(ofSize: 15, weight: .regular)
         return profileWebsite
@@ -74,8 +74,7 @@ final class ProfileViewController: UIViewController {
         setupUI()
         setupConstraints()
         bind()
-        guard let url = viewModel?.profileAvatarURL else { return }
-        updateAvatar(url: url)
+        updateAvatar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,12 +83,18 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func editButtonDidTap(_ sender: Any?) {
-        present(ProfileEditingViewController() , animated: true)
+        let profileEditingViewModel = ProfileEditingViewModel()
+        guard let viewModel = viewModel else { return }
+        profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
+        let vc = ProfileEditingViewController(viewModel: profileEditingViewModel)
+        vc.setProfilePhoto(imageToSet: profilePhoto.image ?? UIImage())
+        present(vc, animated: true)
     }
     
-    private func updateAvatar(url: URL) {
+    private func updateAvatar() {
+        guard let url = viewModel?.provideAvatarURL() else { return }
         let cache = ImageCache.default
-        cache.diskStorage.config.expiration = .seconds(1)
+        cache.diskStorage.config.expiration = .days(1)
         
         let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
         profilePhoto.kf.indicatorType = .activity
@@ -100,29 +105,12 @@ final class ProfileViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel?.$profileName.bind { [weak self] _ in
-            self?.nameLabel.text = self?.viewModel?.profileName
-        }
-        
-        viewModel?.$profileDescription.bind { [weak self] _ in
-            self?.descriptionLabel.text = self?.viewModel?.profileDescription
-        }
-        
-        viewModel?.$profileWebsite.bind { [weak self] _ in
-            self?.profileWebsite.text = self?.viewModel?.profileWebsite
-        }
-        
-        viewModel?.$profileAvatarURL.bind { [weak self] _ in
-            guard let url = self?.viewModel?.profileAvatarURL else { return }
-            self?.updateAvatar(url: url)
-        }
-        
-        viewModel?.$nftCount.bind { [weak self] _ in
-            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        }
-        
-        viewModel?.$favoriteNftCount.bind { [weak self] _ in
-            self?.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+        viewModel?.$profile.bind { [weak self] _ in
+            self?.nameLabel.text = self?.viewModel?.profile.name
+            self?.descriptionLabel.text = self?.viewModel?.profile.description
+            self?.profileWebsite.text = self?.viewModel?.profile.website
+            self?.updateAvatar()
+            self?.tableView.reloadData()
         }
     }
     
