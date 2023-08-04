@@ -51,7 +51,7 @@ let mockUsers: [UserModel] = [
                avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/879.jpg",
                description: "Building a diverse NFT collection from all corners of the globe 🌍",
                website: "https://practicum.yandex.ru/java-developer/",
-               nfts: [],
+               nfts: ["1"],
                rating: "67",
                id: "11"),
     UserModel( name: "Nicholas Flores",

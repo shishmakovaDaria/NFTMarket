@@ -81,6 +81,8 @@ final class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let indexPath else { return }
+        viewModel?.startObserve(indexPath: indexPath)
         bind()
         setupUI()
         setupLayout()
@@ -109,6 +111,7 @@ final class UserViewController: UIViewController {
             guard let urlString = user?.avatar else { return }
             guard let url = URL(string: urlString) else { return }
             self?.updateAvatar(url: url)
+            print(user?.nfts.count)
         }
     }
     
@@ -170,10 +173,11 @@ extension UserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\("My NFTs".localized())"
+        guard let user = viewModel?.user else { return cell}
+        cell.textLabel?.text = "\("My NFTs".localized()) (\(user.nfts.count))"
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .boldSystemFont(ofSize: 17)
         cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
