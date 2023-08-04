@@ -189,7 +189,7 @@ extension UserViewController: UITableViewDataSource {
         cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
         cell.accessoryView?.tintColor = .blackDay
         cell.backgroundColor = .whiteDay
-        
+        cell.selectionStyle = .none
         return cell
     }
     
