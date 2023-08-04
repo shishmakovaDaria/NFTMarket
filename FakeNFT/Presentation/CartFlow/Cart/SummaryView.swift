@@ -41,10 +41,12 @@ final class SummaryView: UIView {
         button.setTitleColor(.whiteDay, for: .normal)
         button.setTitle("To pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
-        button.addTarget(SummaryView.self, action: #selector(didTapToPayButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapToPayButton), for: .touchUpInside)
         return button
     }()
     
+    
+    // MARK: - LifeCircle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
@@ -56,35 +58,33 @@ final class SummaryView: UIView {
     
     //MARK: - Properties
     
-    var delegate: SummaryViewDelegate?
+    weak var delegate: SummaryViewDelegate?
     
     // MARK: - Actions
-
     @objc
     private func didTapToPayButton() {
         delegate?.didTapToPayButton()
     }
     
-    //MARK: - methods
+    //MARK: - Methods
     func configureSummary(with summaryInfo: SummaryInfo) {
         nftCountLabel.text = "\(summaryInfo.countNFT) NFT"
         priceLabel.text = "\(summaryInfo.price) ETH"
     }
     
-    //MARK: - Layout methods
     private func setView() {
         backgroundColor = .lightGrayDay
-        layer.cornerRadius = 16
+        layer.cornerRadius = 12
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-
-        [toPayButton, labelsStack]
-            .forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-
-        addSubview(toPayButton)
-        addSubview(labelsStack)
+        
+        [toPayButton, labelsStack].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        }
+        
         labelsStack.addArrangedSubview(nftCountLabel)
         labelsStack.addArrangedSubview(priceLabel)
-
+        
         setConstraints()
     }
 

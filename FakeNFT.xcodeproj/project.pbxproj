@@ -31,6 +31,10 @@
 		C40F17222A7BDA32004E0E7E /* SummaryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F17212A7BDA32004E0E7E /* SummaryViewDelegate.swift */; };
 		C40F17252A7BDA69004E0E7E /* CartNFTCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F17242A7BDA69004E0E7E /* CartNFTCellDelegate.swift */; };
 		C40F17272A7BDCCD004E0E7E /* DeleteFromCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F17262A7BDCCD004E0E7E /* DeleteFromCartViewController.swift */; };
+		C40F172A2A7CE553004E0E7E /* CheckPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F17292A7CE553004E0E7E /* CheckPayViewController.swift */; };
+		C40F172C2A7CE577004E0E7E /* CheckPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F172B2A7CE577004E0E7E /* CheckPayViewModel.swift */; };
+		C40F172E2A7CE5B4004E0E7E /* СurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F172D2A7CE5B4004E0E7E /* СurrencyCell.swift */; };
+		C40F17302A7D0E52004E0E7E /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F172F2A7D0E52004E0E7E /* PayView.swift */; };
 		C447CB7F2A78EF7E0032D6F7 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447CB7E2A78EF7E0032D6F7 /* SummaryView.swift */; };
 		C447CB812A78EF9C0032D6F7 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447CB802A78EF9C0032D6F7 /* CartViewModel.swift */; };
 		C447CB832A78EFB40032D6F7 /* CartNFTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447CB822A78EFB40032D6F7 /* CartNFTCell.swift */; };
@@ -97,6 +101,10 @@
 		C40F17212A7BDA32004E0E7E /* SummaryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewDelegate.swift; sourceTree = "<group>"; };
 		C40F17242A7BDA69004E0E7E /* CartNFTCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNFTCellDelegate.swift; sourceTree = "<group>"; };
 		C40F17262A7BDCCD004E0E7E /* DeleteFromCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFromCartViewController.swift; sourceTree = "<group>"; };
+		C40F17292A7CE553004E0E7E /* CheckPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPayViewController.swift; sourceTree = "<group>"; };
+		C40F172B2A7CE577004E0E7E /* CheckPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPayViewModel.swift; sourceTree = "<group>"; };
+		C40F172D2A7CE5B4004E0E7E /* СurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СurrencyCell.swift"; sourceTree = "<group>"; };
+		C40F172F2A7D0E52004E0E7E /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		C447CB7E2A78EF7E0032D6F7 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		C447CB802A78EF9C0032D6F7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		C447CB822A78EFB40032D6F7 /* CartNFTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNFTCell.swift; sourceTree = "<group>"; };
@@ -289,6 +297,17 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		C40F17282A7CE51C004E0E7E /* CheckPay */ = {
+			isa = PBXGroup;
+			children = (
+				C40F17292A7CE553004E0E7E /* CheckPayViewController.swift */,
+				C40F172B2A7CE577004E0E7E /* CheckPayViewModel.swift */,
+				C40F172D2A7CE5B4004E0E7E /* СurrencyCell.swift */,
+				C40F172F2A7D0E52004E0E7E /* PayView.swift */,
+			);
+			path = CheckPay;
+			sourceTree = "<group>";
+		};
 		C452BA162A78259F00862092 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				C452BA1F2A78275C00862092 /* Cart */,
+				C40F17282A7CE51C004E0E7E /* CheckPay */,
 			);
 			path = CartFlow;
 			sourceTree = "<group>";
@@ -555,6 +575,7 @@
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
+				C40F17302A7D0E52004E0E7E /* PayView.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
 				E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */,
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
@@ -568,11 +589,14 @@
 				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
 				C447CB812A78EF9C0032D6F7 /* CartViewModel.swift in Sources */,
 				C452BA182A7825BE00862092 /* Observable.swift in Sources */,
+				C40F172E2A7CE5B4004E0E7E /* СurrencyCell.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				C447CB832A78EFB40032D6F7 /* CartNFTCell.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */,
+				C40F172C2A7CE577004E0E7E /* CheckPayViewModel.swift in Sources */,
+				C40F172A2A7CE553004E0E7E /* CheckPayViewController.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				C447CB7F2A78EF7E0032D6F7 /* SummaryView.swift in Sources */,

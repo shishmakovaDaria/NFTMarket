@@ -155,17 +155,20 @@ final class CartViewController: UIViewController {
 // MARK: - SummaryViewDelegate
 extension CartViewController: SummaryViewDelegate {
     func didTapToPayButton() {
+        let model = CheckPayViewModel()
+        let checkPayVC = CheckPayViewController(viewModel: model)
         
+        checkPayVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(checkPayVC, animated: true)
     }
 }
-
 
 // MARK: - CartNFTCellDelegate
 extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
-       
-        deleteFromCartVC.modalPresentationStyle = .overCurrentContext
+        deleteFromCartVC.NFTforDelete = nft
+        deleteFromCartVC.modalPresentationStyle = .overFullScreen
         deleteFromCartVC.modalTransitionStyle = .crossDissolve
         present(deleteFromCartVC, animated: true)
     }

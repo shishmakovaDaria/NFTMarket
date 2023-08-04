@@ -71,11 +71,16 @@ final class DeleteFromCartViewController: UIViewController {
     }()
 
     
+    // MARK: - Properties
+     var NFTforDelete: NFTModel?
+    
+    
     //MARK: - LifeCircle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setView()
+        nftImageView.image = NFTforDelete?.images
     }
     
     // MARK: - Actions
