@@ -98,7 +98,12 @@ final class UserViewController: UIViewController {
     
     @objc
     private func siteButtonTapped() {
-        print("tapped")
+        guard let viewModel else { return }
+        guard let urlString = viewModel.user?.website else { return }
+        guard let url = URL(string: urlString) else { return }
+        let webViewController = WebViewViewController(url: url)
+        navigationController?.pushViewController(webViewController, animated: true)
+        
     }
     
     //MARK: - Methods
@@ -111,7 +116,6 @@ final class UserViewController: UIViewController {
             guard let urlString = user?.avatar else { return }
             guard let url = URL(string: urlString) else { return }
             self?.updateAvatar(url: url)
-            print(user?.nfts.count)
         }
     }
     
@@ -130,6 +134,8 @@ final class UserViewController: UIViewController {
     private func setupUI() {
         tableView.delegate = self
         tableView.dataSource = self
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = .blackDay
         view.backgroundColor = .whiteDay
         view.addSubview(profilePhoto)
         view.addSubview(nameLabel)
