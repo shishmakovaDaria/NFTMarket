@@ -1,18 +1,18 @@
 //
-//  ProfileModel.swift
+//  UserModel.swift
 //  FakeNFT
 //
-//  Created by Дарья Шишмакова on 01.08.2023.
+//  Created by Дарья Шишмакова on 05.08.2023.
 //
 
 import Foundation
 
-struct ProfileModel {
+struct UserModel {
     let name: String
     let avatar: String
     let description: String
     let website: String
     let nfts: [String]
-    let likes: [String]
+    let rating: String
     let id: String
 }

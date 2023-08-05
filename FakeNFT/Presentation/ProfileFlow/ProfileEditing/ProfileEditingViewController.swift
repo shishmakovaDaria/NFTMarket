@@ -43,7 +43,7 @@ final class ProfileEditingViewController: UIViewController {
         let changeAvatarButton = UIButton(type: .system)
         changeAvatarButton.backgroundColor = .blackDay?.withAlphaComponent(0.6)
         changeAvatarButton.layer.cornerRadius = 35
-        changeAvatarButton.setTitle("Сменить фото", for: .normal)
+        changeAvatarButton.setTitle("Change photo".localized(), for: .normal)
         changeAvatarButton.titleLabel?.numberOfLines = 2
         changeAvatarButton.titleLabel?.textAlignment = .center
         changeAvatarButton.tintColor = .ypWhite
