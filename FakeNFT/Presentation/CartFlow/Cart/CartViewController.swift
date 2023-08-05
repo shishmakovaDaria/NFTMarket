@@ -135,7 +135,6 @@ final class CartViewController: UIViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-         
             summaryView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             summaryView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             summaryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

@@ -32,7 +32,7 @@ final class CurrencyCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2
-        label.textColor = .green
+        label.textColor = .ypGreen
         return label
     }()
     

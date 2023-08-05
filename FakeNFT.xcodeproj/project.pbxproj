@@ -41,6 +41,8 @@
 		C452BA182A7825BE00862092 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C452BA172A7825BE00862092 /* Observable.swift */; };
 		C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C465337F2A73D4F6003AB2C1 /* UIColor+extension.swift */; };
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
+		C49BA81C2A7EAB040030F48E /* UICollectionView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BA81B2A7EAB040030F48E /* UICollectionView+extension.swift */; };
+		C49BA81E2A7EB3410030F48E /* PayViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */; };
 		C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E382A7A4B9F000B67FB /* CatalogueViewModel.swift */; };
 		C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3A2A7A4BCA000B67FB /* ProfileViewModel.swift */; };
 		C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */; };
@@ -111,6 +113,8 @@
 		C452BA172A7825BE00862092 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
+		C49BA81B2A7EAB040030F48E /* UICollectionView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+extension.swift"; sourceTree = "<group>"; };
+		C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewDelegate.swift; sourceTree = "<group>"; };
 		C4D08E382A7A4B9F000B67FB /* CatalogueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewModel.swift; sourceTree = "<group>"; };
 		C4D08E3A2A7A4BCA000B67FB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 				E29A5BDA2A76B54400A76D9C /* UICollectionViewCell + Ext.swift */,
 				E29A5BDC2A76B5FC00A76D9C /* UITableViewCell + Ext.swift */,
 				C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */,
+				C49BA81B2A7EAB040030F48E /* UICollectionView+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */,
 				C40F17212A7BDA32004E0E7E /* SummaryViewDelegate.swift */,
 				C40F17242A7BDA69004E0E7E /* CartNFTCellDelegate.swift */,
+				C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 			files = (
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
+				C49BA81E2A7EB3410030F48E /* PayViewDelegate.swift in Sources */,
 				C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
 				C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */,
@@ -581,6 +588,7 @@
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				6108DCD02A78519900AAEB34 /* String+extensions.swift in Sources */,
 				C40F17222A7BDA32004E0E7E /* SummaryViewDelegate.swift in Sources */,
+				C49BA81C2A7EAB040030F48E /* UICollectionView+extension.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */,

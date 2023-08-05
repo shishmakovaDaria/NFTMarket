@@ -16,25 +16,33 @@ final class CheckPayViewController: UIViewController {
         action: #selector(didTapBackButton)
     )
     
-//    private lazy var currenciesCollection: UICollectionView = {
-//        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-//        collection.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier)
-//        collection.backgroundColor = .clear
-//
-//        return collection
-//    }()
+    private lazy var currenciesCollection: UICollectionView = {
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collection.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier)
+        collection.backgroundColor = .clear
+
+        return collection
+    }()
     
-    private var payView: PayView = {
+    private lazy var payView: PayView = {
         let view = PayView()
-        
+        view.delegate = self
         return view
     }()
     
     
-    
     // MARK: - Properties
     var viewModel: CheckPayViewModel?
-    
+    private let collectionParams = UICollectionView.CollectionParams(
+        cellCount: 2,
+        leftInset: 16,
+        rightInset: 16,
+        topInset: 0,
+        bottomInset: 0,
+        height: 46,
+        cellSpacing: 8
+    )
+        
     
     //MARK: - LifeCircle
     init(viewModel: CheckPayViewModel) {
@@ -49,8 +57,8 @@ final class CheckPayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        currenciesCollection.dataSource = self
-//        currenciesCollection.delegate = self
+        currenciesCollection.dataSource = self
+        currenciesCollection.delegate = self
         
         bind()
         setLayout()
@@ -72,17 +80,15 @@ final class CheckPayViewController: UIViewController {
     //MARK: - Methods
     private func bind() {
         viewModel?.$currencies.bind { [weak self] _ in
-//            self?.currenciesCollection.reloadData()
+            self?.currenciesCollection.reloadData()
         }
         
     }
     
-    
-    
     private func setLayout() {
         view.backgroundColor = .whiteDay
         
-        [/*currenciesCollection,*/ payView].forEach {
+        [currenciesCollection, payView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -92,7 +98,7 @@ final class CheckPayViewController: UIViewController {
     }
     
     private func setNavBar() {
-        title = "Выберите способ оплаты"
+//      title = "Выберите способ оплаты"
         navigationItem.leftBarButtonItem = backButton
        
         navigationController?.navigationBar.tintColor = .blackDay
@@ -103,37 +109,92 @@ final class CheckPayViewController: UIViewController {
         NSLayoutConstraint.activate([
             payView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             payView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            payView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            payView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-//            currenciesCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            currenciesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-//            currenciesCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//            currenciesCollection.bottomAnchor.constraint(equalTo: payView.topAnchor)
+            currenciesCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            currenciesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            currenciesCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            currenciesCollection.bottomAnchor.constraint(equalTo: payView.topAnchor)
             
         ])
     }
 }
-//
-////MARK: - UICollectionViewDataSource
-//extension CheckPayViewController: UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        viewModel?.currencies.count ?? 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell: CurrencyCell = collectionView.dequeueReusableCell(indexPath: indexPath)
-//
-//        return cell
-//    }
-//
-//}
-//
-//
-////MARK: - UICollectionViewDataSource
-//extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
-//
-//}
+
+//MARK: - UICollectionViewDataSource
+extension CheckPayViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel?.currencies.count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: CurrencyCell = collectionView.dequeueReusableCell(indexPath: indexPath)
+        if let model = viewModel?.currencies[indexPath.row] {
+            cell.configure(with: model)
+        }
+        return cell
+    }
+
+}
+
+
+//MARK: - UICollectionViewDelegateFlowLayout
+extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
+    
+    // selecting methods
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
+        
+        cell.select()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
+        
+        cell.deselect()
+    }
+    
+    // params methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let availableSpace = collectionView.frame.width - collectionParams.paddingWidth
+        let cellWidth = availableSpace / collectionParams.cellCount
+        return CGSize(width: cellWidth, height: collectionParams.height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(
+            top: collectionParams.topInset,
+            left: collectionParams.leftInset,
+            bottom: collectionParams.bottomInset,
+            right: collectionParams.rightInset
+        )
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        collectionParams.cellSpacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        collectionParams.cellSpacing
+    }
+}
+
+
+// MARK: - PayViewDelegate
+extension CheckPayViewController: PayViewDelegate {
+    func didTapPayButton() {
+        
+    }
+
+    func didTapUserAgreementLink() {
+        
+    }
+}
 
 
 

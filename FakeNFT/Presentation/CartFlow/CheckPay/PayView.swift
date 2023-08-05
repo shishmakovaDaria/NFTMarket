@@ -10,23 +10,22 @@ import UIKit
 final class PayView: UIView {
     //MARK: - Layout properties
     
-    private lazy var userAgreementText: UITextView = {
-        let view = UITextView()
-        view.font = .caption2
-        view.textColor = .blackDay
+    private lazy var userAgreementLabel: UILabel = {
+        let label = UILabel()
+        label.font = .caption2
+        label.numberOfLines = 2
         let fullText = "Совершая покупку, вы соглашаетесь с условиями Пользовательского соглашения"
         let attributedText = NSMutableAttributedString(string: fullText)
         
-        //  диапазон текста, который должен быть другого цвета
-        let agreementRange = (fullText as NSString).range(of: "Пользовательского соглашения")
-        attributedText.addAttribute(.foregroundColor, value: UIColor.ypBlue as Any, range: agreementRange)
-        view.text = fullText
-        view.attributedText = attributedText
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUserAgreementLink)))
-        return view
+        // Определите диапазон текста, который должен быть другого цвета
+        let colorRange = (fullText as NSString).range(of: "Пользовательским соглашением")
+        attributedText.addAttribute(.foregroundColor, value: UIColor.ypBlue!, range: colorRange)
+        
+        label.attributedText = attributedText
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUserAgreementLink)))
+        return label
     }()
-    
     
     private lazy var payButton: UIButton = {
         let button = UIButton()
@@ -40,6 +39,9 @@ final class PayView: UIView {
         return button
     }()
     
+    // MARK: - Properties
+
+    weak var delegate: PayViewDelegate?
     
     // MARK: - LifeCircle
     override init(frame: CGRect) {
@@ -74,7 +76,7 @@ final class PayView: UIView {
         layer.cornerRadius = 12
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        [payButton, userAgreementText].forEach {
+        [payButton, userAgreementLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
@@ -85,15 +87,15 @@ final class PayView: UIView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            userAgreementText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            userAgreementText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16),
-            userAgreementText.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            
             payButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             payButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            payButton.topAnchor.constraint(equalTo: userAgreementText.bottomAnchor, constant: 16),
+            payButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             payButton.heightAnchor.constraint(equalToConstant: 60),
-           
+        
+            userAgreementLabel.leadingAnchor.constraint(equalTo: payButton.leadingAnchor),
+            userAgreementLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            userAgreementLabel.trailingAnchor.constraint(equalTo: payButton.trailingAnchor),
+            userAgreementLabel.bottomAnchor.constraint(equalTo: payButton.topAnchor, constant: -16)
         ])
     }
 }
