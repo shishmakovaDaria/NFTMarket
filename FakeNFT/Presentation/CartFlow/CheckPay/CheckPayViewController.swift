@@ -9,6 +9,15 @@ import UIKit
 
 final class CheckPayViewController: UIViewController {
     //MARK: - Layout properties
+    private lazy var navBarTitle: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.text = "Выберите способ оплаты"
+        titleLabel.textColor = .blackDay
+        titleLabel.font = .bodyBold
+        titleLabel.sizeToFit()
+        return titleLabel
+    }()
+    
     private lazy var backButton = UIBarButtonItem(
         image: UIImage.Icons.backward,
         style: .plain,
@@ -87,7 +96,7 @@ final class CheckPayViewController: UIViewController {
     
     private func setLayout() {
         view.backgroundColor = .whiteDay
-        
+       
         [currenciesCollection, payView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -98,9 +107,8 @@ final class CheckPayViewController: UIViewController {
     }
     
     private func setNavBar() {
-//      title = "Выберите способ оплаты"
+        navigationItem.titleView = navBarTitle
         navigationItem.leftBarButtonItem = backButton
-       
         navigationController?.navigationBar.tintColor = .blackDay
         navigationController?.navigationBar.backgroundColor = .whiteDay
     }
@@ -112,7 +120,7 @@ final class CheckPayViewController: UIViewController {
             payView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             currenciesCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            currenciesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            currenciesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             currenciesCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             currenciesCollection.bottomAnchor.constraint(equalTo: payView.topAnchor)
             

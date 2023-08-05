@@ -23,13 +23,13 @@ final class CurrencyCell: UICollectionViewCell {
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2
         return label
     }()
     
-    private let nameLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2
         label.textColor = .ypGreen
@@ -83,8 +83,8 @@ final class CurrencyCell: UICollectionViewCell {
             contentView.addSubview($0)
         }
         
-        labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(nameLabel)
+        labelsStackView.addArrangedSubview(titleLabel)
         
         setupConstraints()
     }
