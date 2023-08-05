@@ -18,6 +18,7 @@
 "By price" = "По цене";
 "By rating" = "По рейтингу";
 "By name" = "По имени";
+"By NFT name" = "По названию";
 "By NFT count" = "По количеству NFT";
 "Close" = "Закрыть";
 "Back to catalog" = "Вернуться в каталог";
@@ -34,3 +35,7 @@
 "You don't have NFT yet" = "У Вас ещё нет NFT";
 "You don't have any favorite NFTs yet" = "У Вас ещё нет избранных NFT";
 "NFT Collection" = "Коллекция NFT";
+"NFT Delete" = "Вы уверены, что хотите удалить объект из корзины?";
+"Go to user site" = "Перейти на сайт пользователя";
+"Agree purchase" = "Совершая покупку, вы соглашаетесь с условиями";
+"User Agreement" = "Пользовательского соглашения";

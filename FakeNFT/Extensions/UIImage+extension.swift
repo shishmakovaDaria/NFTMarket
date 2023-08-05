@@ -41,5 +41,6 @@ extension UIImage {
         static let deleteFromCart = UIImage(named: "deleteFromCart")
         static let backward = UIImage(systemName: "chevron.backward")
         static let forward = UIImage(systemName: "chevron.forward")
+        static let heartFill = UIImage(systemName: "suit.heart.fill")
     }
 }
