@@ -28,7 +28,7 @@ final class ProfileViewModel {
 
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
-        updateProfile()
+        //updateProfile()
     }
     
     func updateProfile() {
@@ -53,4 +53,9 @@ final class ProfileViewModel {
         let url = URL(string: profile.website)
         return url
     }
+}
+
+
+extension ProfileViewModel: ProfileEditingDelegate {
+    // доделать
 }

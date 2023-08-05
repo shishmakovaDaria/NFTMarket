@@ -20,6 +20,10 @@ final class ProfileEditingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        viewModel?.viewDismiss()
+    }
+    
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton(type: .system)
         closeButton.setBackgroundImage(UIImage.Icons.close, for: .normal)
@@ -65,7 +69,7 @@ final class ProfileEditingViewController: UIViewController {
         nameTextField.layer.cornerRadius = 12
         nameTextField.clearButtonMode = .whileEditing
         nameTextField.returnKeyType = .default
-        //categoryName.delegate = self
+        nameTextField.delegate = self
         return nameTextField
     }()
     
@@ -109,7 +113,7 @@ final class ProfileEditingViewController: UIViewController {
         websiteTextField.layer.cornerRadius = 12
         websiteTextField.clearButtonMode = .whileEditing
         websiteTextField.returnKeyType = .default
-        //categoryName.delegate = self
+        websiteTextField.delegate = self
         return websiteTextField
     }()
     
@@ -193,5 +197,18 @@ final class ProfileEditingViewController: UIViewController {
             websiteTextField.topAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 8),
             websiteTextField.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension ProfileEditingViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if let text = nameTextField.text {
+            viewModel?.changeProfileName(nameToSet: text)
+        }
+        
+        return true
     }
 }

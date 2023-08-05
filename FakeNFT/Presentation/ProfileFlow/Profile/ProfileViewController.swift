@@ -87,6 +87,7 @@ final class ProfileViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
         let vc = ProfileEditingViewController(viewModel: profileEditingViewModel)
+        profileEditingViewModel.delegate = viewModel
         vc.setProfilePhoto(imageToSet: profilePhoto.image ?? UIImage())
         present(vc, animated: true)
     }

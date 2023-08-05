@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol ProfileEditingDelegate: AnyObject {
+    func updateProfile()
+}
+
 final class ProfileEditingViewModel {
     
     @Observable
@@ -21,6 +25,7 @@ final class ProfileEditingViewModel {
     )
     
     private let dataProvider: DataProvider
+    var delegate: ProfileEditingDelegate?
     
     convenience init() {
         self.init(dataProvider: DataProvider())
@@ -32,5 +37,13 @@ final class ProfileEditingViewModel {
     
     func updateProfile(profileToSet: ProfileModel) {
         profile = profileToSet
+    }
+    
+    func changeProfileName(nameToSet: String) {
+        dataProvider.changeProfileName(nameToSet: nameToSet)
+    }
+    
+    func viewDismiss() {
+        delegate?.updateProfile()
     }
 }
