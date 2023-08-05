@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct PaymentCurrencyModel {
+struct PaymentCurrencyModel: Codable {
     let success: Bool
     let orderId: String
     let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case success
+        case orderId
+        case id
+    }
 }

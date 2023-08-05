@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProfileModel {
+struct ProfileModel: Codable {
     let name: String
     let avatar: String
     let description: String
@@ -15,4 +15,14 @@ struct ProfileModel {
     let nfts: [String]
     let likes: [String]
     let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case avatar
+        case description
+        case website
+        case nfts
+        case likes
+        case id
+    }
 }
