@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NFTModel {
+struct NFTModel: Codable {
     let createdAt: String
     let name: String
     let images: [String]
@@ -16,4 +16,15 @@ struct NFTModel {
     let price: Float
     let author: String
     let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case createdAt
+        case name
+        case images
+        case rating
+        case description
+        case price
+        case author
+        case id
+    }
 }

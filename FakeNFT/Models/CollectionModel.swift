@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CollectionModel {
+struct CollectionModel: Codable {
     let createdAt: String
     let name: String
     let cover: String
@@ -15,4 +15,14 @@ struct CollectionModel {
     let description: String
     let author: String
     let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case createdAt
+        case name
+        case cover
+        case nfts
+        case description
+        case author
+        case id
+    }
 }
