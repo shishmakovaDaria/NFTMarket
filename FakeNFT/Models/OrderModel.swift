@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct OrderModel {
+struct OrderModel: Codable {
     let nfts: [String]
     let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case nfts
+        case id
+    }
 }
