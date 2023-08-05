@@ -35,7 +35,7 @@ final class CartViewController: UIViewController {
     
     private lazy var summaryView: SummaryView = {
         let view = SummaryView()
-        
+        view.delegate = self
         return view
     }()
     
