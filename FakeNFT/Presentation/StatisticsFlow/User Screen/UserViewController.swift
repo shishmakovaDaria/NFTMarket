@@ -172,7 +172,10 @@ final class UserViewController: UIViewController {
 }
 
 extension UserViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let collectionViewController = CollectionViewController()
+        navigationController?.pushViewController(collectionViewController, animated: true)
+    }
 }
 
 extension UserViewController: UITableViewDataSource {

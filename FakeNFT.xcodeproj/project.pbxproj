@@ -41,6 +41,8 @@
 		E248DE7C2A7BEBF100BB3048 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */; };
 		E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */; };
 		E24D24CB2A7D3381005D75CA /* WebViewVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */; };
+		E24D24CE2A7D50B9005D75CA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */; };
+		E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
 		E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */; };
 		E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */; };
@@ -107,6 +109,8 @@
 		E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVIewController.swift; sourceTree = "<group>"; };
+		E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCell.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 		C452BA1C2A78265D00862092 /* StatisticsFlow */ = {
 			isa = PBXGroup;
 			children = (
+				E24D24CC2A7D5096005D75CA /* Colletion Screen */,
 				E248DE7A2A7BEB9100BB3048 /* User Screen */,
 				E248DE792A7BEB7000BB3048 /* Statistics Sreen  */,
 				E248DE772A7BD25600BB3048 /* UserModel.swift */,
@@ -394,6 +399,15 @@
 				E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */,
 			);
 			path = "User Screen";
+			sourceTree = "<group>";
+		};
+		E24D24CC2A7D5096005D75CA /* Colletion Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */,
+				E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */,
+			);
+			path = "Colletion Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +574,7 @@
 			files = (
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
+				E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */,
 				C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
 				C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */,
@@ -570,6 +585,7 @@
 				E248DE782A7BD25600BB3048 /* UserModel.swift in Sources */,
 				C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */,
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
+				E24D24CE2A7D50B9005D75CA /* CollectionViewController.swift in Sources */,
 				3F478ECF29DB474E00F6D39E /* Colors.swift in Sources */,
 				3F478ED129DB476500F6D39E /* Fonts.swift in Sources */,
 				3FC8C39329D246BA0081F015 /* DateFormatters+Presets.swift in Sources */,
