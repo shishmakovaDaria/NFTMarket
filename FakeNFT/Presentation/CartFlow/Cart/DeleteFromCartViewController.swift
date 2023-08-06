@@ -32,7 +32,7 @@ final class DeleteFromCartViewController: UIViewController {
         label.textColor = .blackDay
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = "Вы уверены, что хотите удалить объект из корзины?"
+        label.text = "NFT Delete".localized()
         return label
     }()
     
@@ -72,7 +72,7 @@ final class DeleteFromCartViewController: UIViewController {
 
     
     // MARK: - Properties
-     var NFTforDelete: NFTModel?
+     var NFTforDelete: mockNFTModel?
     
     
     //MARK: - LifeCircle

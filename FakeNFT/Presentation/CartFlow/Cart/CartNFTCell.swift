@@ -51,7 +51,7 @@ final class CartNFTCell: UITableViewCell {
     //MARK: - Properties
     
     weak var delegate: CartNFTCellDelegate?
-    private var model: NFTModel?
+    private var model: mockNFTModel?
     
     //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -72,7 +72,7 @@ final class CartNFTCell: UITableViewCell {
     }
     
     //MARK: - Methods
-    func configureCell(with model: NFTModel) {
+    func configureCell(with model: mockNFTModel) {
         self.model = model
         nftImageView.image = model.images  // TO DO via Kingfisher
         nftLabel.text = model.name

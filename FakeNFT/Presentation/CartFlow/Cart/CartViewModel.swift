@@ -22,7 +22,7 @@ struct SummaryInfo {
 final class CartViewModel {
     // MARK: - Observables
     @Observable
-    private (set) var nfts: [NFTModel] = []
+    private (set) var nfts: [mockNFTModel] = []
     
     @Observable
     private (set) var summaryInfo: SummaryInfo = SummaryInfo(countNFT: 0, price: 0)
@@ -72,7 +72,7 @@ extension CartViewModel: ViewModelProtocol {
 
 
 // for mock data
-struct NFTModel {
+struct mockNFTModel {
     let createdAt: String
     let name: String
     let images: UIImage
@@ -84,8 +84,8 @@ struct NFTModel {
 }
 
 
-let mockNFT: [NFTModel] = [
-      NFTModel(createdAt: "",
+let mockNFT: [mockNFTModel] = [
+    mockNFTModel(createdAt: "",
                name: "one nft",
                images: UIImage.Icons.bitcoin!,
                rating: 4,
@@ -94,7 +94,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "1"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "two nft",
                images: UIImage.Icons.cardano!,
                rating: 1,
@@ -103,7 +103,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "2"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "three nft",
                images: UIImage.Icons.shibaInu!,
                rating: 0,
@@ -112,7 +112,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "3"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "four nft",
                images: UIImage.Icons.ethereum!,
                rating: 4,
@@ -121,7 +121,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "4"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "five nft",
                images: UIImage.Icons.dogecoin!,
                rating: 5,
@@ -130,7 +130,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "5"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "six nft",
                images: UIImage.Icons.tether!,
                rating: 2,
@@ -139,7 +139,7 @@ let mockNFT: [NFTModel] = [
                author: "Geralt",
                id: "6"
               ),
-      NFTModel(createdAt: "",
+    mockNFTModel(createdAt: "",
                name: "seven nft",
                images: UIImage.Icons.solana!,
                rating: 4,

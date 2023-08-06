@@ -14,7 +14,8 @@ final class PayView: UIView {
         let label = UILabel()
         label.font = .caption2
         label.numberOfLines = 2
-        let fullText = "Совершая покупку, вы соглашаетесь с условиями Пользовательского соглашения"
+        let fullText = "Agree purchase".localized() + " " + "User Agreement".localized()
+//        let fullText = "Совершая покупку, вы соглашаетесь с условиями Пользовательского соглашения"
         let attributedText = NSMutableAttributedString(string: fullText)
         
         // Определите диапазон текста, который должен быть другого цвета

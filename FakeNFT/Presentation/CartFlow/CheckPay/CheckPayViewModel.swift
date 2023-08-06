@@ -12,7 +12,7 @@ final class CheckPayViewModel {
     // MARK: - Observables
     
     @Observable
-    private (set) var currencies: [CurrencyModel] = []
+    private (set) var currencies: [MockCurrencyModel] = []
     
     
     //   MARK: - Methods
@@ -30,21 +30,21 @@ final class CheckPayViewModel {
 
 // mock Сurrencies
 
-struct CurrencyModel {
+struct MockCurrencyModel {
     let logo: UIImage
     let title: String
     let name: String
     let id: Int
 }
 
-let mockCurrencies: [CurrencyModel] = [
-    CurrencyModel(logo: UIImage.Icons.bitcoin!, title: "BTC", name: "Bitcoin", id: 1),
-    CurrencyModel(logo: UIImage.Icons.ethereum!, title: "ETH", name: "Ethereum", id: 2),
-    CurrencyModel(logo: UIImage.Icons.solana!, title: "SOL", name: "Solana", id: 3),
-    CurrencyModel(logo: UIImage.Icons.apeCoin!, title: "APE", name: "ApeCoin", id: 4),
-    CurrencyModel(logo: UIImage.Icons.dogecoin!, title: "DOGE", name: "Dogecoin", id: 5),
-    CurrencyModel(logo: UIImage.Icons.shibaInu!, title: "SHIB", name: "ShibaInu", id: 6),
-    CurrencyModel(logo: UIImage.Icons.tether!, title: "USDT", name: "Tether", id: 7),
-    CurrencyModel(logo: UIImage.Icons.cardano!, title: "ADA", name: "Cardano", id: 8),
+let mockCurrencies: [MockCurrencyModel] = [
+    MockCurrencyModel(logo: UIImage.Icons.bitcoin!, title: "BTC", name: "Bitcoin", id: 1),
+    MockCurrencyModel(logo: UIImage.Icons.ethereum!, title: "ETH", name: "Ethereum", id: 2),
+    MockCurrencyModel(logo: UIImage.Icons.solana!, title: "SOL", name: "Solana", id: 3),
+    MockCurrencyModel(logo: UIImage.Icons.apeCoin!, title: "APE", name: "ApeCoin", id: 4),
+    MockCurrencyModel(logo: UIImage.Icons.dogecoin!, title: "DOGE", name: "Dogecoin", id: 5),
+    MockCurrencyModel(logo: UIImage.Icons.shibaInu!, title: "SHIB", name: "ShibaInu", id: 6),
+    MockCurrencyModel(logo: UIImage.Icons.tether!, title: "USDT", name: "Tether", id: 7),
+    MockCurrencyModel(logo: UIImage.Icons.cardano!, title: "ADA", name: "Cardano", id: 8),
 ]
 

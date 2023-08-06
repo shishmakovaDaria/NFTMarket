@@ -55,7 +55,7 @@ final class CurrencyCell: UICollectionViewCell {
     
     
     // MARK: - Public methods
-    func configure(with model: CurrencyModel) {
+    func configure(with model: MockCurrencyModel) {
         imageView.image = model.logo
         titleLabel.text = model.title
         nameLabel.text = model.name

@@ -11,7 +11,7 @@ final class CheckPayViewController: UIViewController {
     //MARK: - Layout properties
     private lazy var navBarTitle: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = "Выберите способ оплаты"
+        titleLabel.text = "Select a Payment Method".localized()
         titleLabel.textColor = .blackDay
         titleLabel.font = .bodyBold
         titleLabel.sizeToFit()
