@@ -24,6 +24,9 @@ final class WebViewViewController: UIViewController {
     init(url: URL) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
+        setupUI()
+        setupLayout()
+        startLoadPage()
     }
     
     required init?(coder: NSCoder) {
@@ -32,9 +35,6 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupLayout()
-        startLoadPage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

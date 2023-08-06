@@ -50,6 +50,7 @@
 		E24D24CE2A7D50B9005D75CA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */; };
 		E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */; };
 		E24D24D22A7E9B11005D75CA /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24D12A7E9B11005D75CA /* DataProvider.swift */; };
+		E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43B92A7F503D0044EAD6 /* UsersService.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
 		E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */; };
 		E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */; };
@@ -125,6 +126,7 @@
 		E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCell.swift; sourceTree = "<group>"; };
 		E24D24D12A7E9B11005D75CA /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		E27B43B92A7F503D0044EAD6 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC8C38F29D245250081F015 /* Requests */,
+				E27B43B92A7F503D0044EAD6 /* UsersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				61DF57DE2A7EA59E006C1211 /* NFTModel.swift in Sources */,
 				C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */,
 				61DF57E82A7EA948006C1211 /* PaymentCurrencyModel.swift in Sources */,
+				E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,

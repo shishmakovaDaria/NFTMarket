@@ -73,6 +73,10 @@ final class UserViewController: UIViewController {
         self.viewModel = viewModel
         self.indexPath = indexPath
         super.init(nibName: nil, bundle: nil)
+        viewModel.startObserve(indexPath: indexPath)
+        bind()
+        setupUI()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -82,10 +86,6 @@ final class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let indexPath else { return }
-        viewModel?.startObserve(indexPath: indexPath)
-        bind()
-        setupUI()
-        setupLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -171,6 +171,8 @@ final class UserViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate & UITableViewDataSource
+
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let collectionViewController = CollectionViewController()
@@ -195,6 +197,4 @@ extension UserViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
-    
 }

@@ -12,26 +12,40 @@ final class StatisticViewModel {
     @Observable
     private (set) var users: [UserModel] = []
     
+    //MARK: - Servicies
+    let usersService = UsersService()
+    
     // MARK: - Methods
     func startObserve() {
-        getStats()
+        getUsers()
     }
     
     private func getStats() {
         users = mockUsers
     }
+    
+    private func getUsers() {
+        usersService.getUsers {result in
+            switch result {
+            case let .success(users):
+                self.users = users
+                
+            case let .failure(error):
+                print("Ошибка получения списка рейтинга юзеров: \(error)")
+                
+            }
+        }
+    }
 }
 
 extension StatisticViewModel: ViewModelProtocol {
     func sort(param: Sort) {
-        if param == .NFTCount {
+        if param == .rating {
             users.sort { $0.rating < $1.rating}
         } else if param == .name {
             users.sort { $0.name < $1.name }
         }
     }
-    
-    
 }
 
 //let mockStatsCells: [StatisticCellModel] = [

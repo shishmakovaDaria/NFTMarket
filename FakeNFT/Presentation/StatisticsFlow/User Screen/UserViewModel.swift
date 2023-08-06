@@ -20,5 +20,4 @@ final class UserViewModel {
     private func getUser(_ indexPath: IndexPath) {
         user = mockUsers[indexPath.row]
     }
-    
 }
