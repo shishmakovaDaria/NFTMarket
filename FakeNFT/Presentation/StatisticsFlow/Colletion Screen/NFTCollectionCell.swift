@@ -41,7 +41,7 @@ final class NFTCollectionCell: UICollectionViewCell {
     }()
     
     private lazy var cartButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(.Icons.addToCart, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -49,7 +49,7 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        let heartImage = UIImage(systemName: "suit.heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let heartImage = UIImage.Icons.heartFill?.withTintColor(.red, renderingMode: .alwaysOriginal)
         button.setImage(heartImage, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

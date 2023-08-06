@@ -46,7 +46,7 @@ final class UserViewController: UIViewController {
     
     private lazy var siteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Перейти на сайт пользователя", for: .normal)
+        button.setTitle("Go to user site".localized(), for: .normal)
         button.backgroundColor = .systemBackground
         button.setTitleColor(.blackDay, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)

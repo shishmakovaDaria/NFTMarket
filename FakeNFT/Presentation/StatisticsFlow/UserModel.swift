@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserModel {
+struct UserModel: Codable {
     let name: String
     let avatar: String
     let description: String
@@ -15,4 +15,8 @@ struct UserModel {
     let nfts: [String]
     let rating: String
     let id: String
+}
+
+struct UsersModel: Codable {
+    let user: [UserModel]
 }
