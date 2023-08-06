@@ -12,12 +12,11 @@ final class UserViewModel {
     @Observable
     private (set) var user: UserModel?
     
-    // MARK: - Methods
-    func startObserve(indexPath: IndexPath) {
-        getUser(indexPath)
+    //MARK: - LifeCycle
+    
+    init(user: UserModel) {
+        self.user = user
     }
     
-    private func getUser(_ indexPath: IndexPath) {
-        user = mockUsers[indexPath.row]
-    }
+    // MARK: - Methods
 }

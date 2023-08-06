@@ -97,9 +97,10 @@ final class StatisticViewController: UIViewController {
 
 extension StatisticViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = UserViewModel()
-        let indexPath = indexPath
-        let userViewController = UserViewController(viewModel: viewModel, indexPath: indexPath)
+        guard let viewModel else { return }
+        let userModel = viewModel.users[indexPath.row]
+        let userViewModel = UserViewModel(user: userModel)
+        let userViewController = UserViewController(viewModel: userViewModel)
         navigationController?.pushViewController(userViewController, animated: true)
     }
 }

@@ -11,7 +11,6 @@ import Kingfisher
 final class UserViewController: UIViewController {
     
     private var viewModel: UserViewModel?
-    private var indexPath: IndexPath?
     
     //MARK: - Layout properties
     
@@ -69,14 +68,13 @@ final class UserViewController: UIViewController {
     
     //MARK: - LifeCycle
     
-    init(viewModel: UserViewModel, indexPath: IndexPath) {
+    init(viewModel: UserViewModel) {
         self.viewModel = viewModel
-        self.indexPath = indexPath
         super.init(nibName: nil, bundle: nil)
-        viewModel.startObserve(indexPath: indexPath)
         bind()
         setupUI()
         setupLayout()
+        updateAvatar()
     }
     
     required init?(coder: NSCoder) {
@@ -85,13 +83,10 @@ final class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let indexPath else { return }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let indexPath else { return }
-        viewModel?.startObserve(indexPath: indexPath)
     }
     
     //MARK: - Actions
@@ -113,13 +108,14 @@ final class UserViewController: UIViewController {
         viewModel.$user.bind {[weak self] user in
             self?.nameLabel.text = user?.name
             self?.descriptionLabel.text = user?.description
-            guard let urlString = user?.avatar else { return }
-            guard let url = URL(string: urlString) else { return }
-            self?.updateAvatar(url: url)
+            self?.updateAvatar()
         }
     }
     
-    private func updateAvatar(url: URL) {
+    private func updateAvatar() {
+        guard let viewModel else { return }
+        guard let urlString = viewModel.user?.avatar else { return }
+        guard let url = URL(string: urlString) else { return }
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .seconds(1)
         
