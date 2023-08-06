@@ -44,7 +44,6 @@
 		C4D08E3F2A7A4C39000B67FB /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */; };
 		C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */; };
 		C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */; };
-		E248DE782A7BD25600BB3048 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE772A7BD25600BB3048 /* UserModel.swift */; };
 		E248DE7C2A7BEBF100BB3048 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */; };
 		E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */; };
 		E24D24CB2A7D3381005D75CA /* WebViewVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */; };
@@ -120,7 +119,6 @@
 		C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
-		E248DE772A7BD25600BB3048 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVIewController.swift; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 				E24D24CC2A7D5096005D75CA /* Colletion Screen */,
 				E248DE7A2A7BEB9100BB3048 /* User Screen */,
 				E248DE792A7BEB7000BB3048 /* Statistics Sreen  */,
-				E248DE772A7BD25600BB3048 /* UserModel.swift */,
 			);
 			path = StatisticsFlow;
 			sourceTree = "<group>";
@@ -608,11 +605,7 @@
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				E29A5BE22A76BBC300A76D9C /* StatisticCell.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
-
-				E248DE782A7BD25600BB3048 /* UserModel.swift in Sources */,
-
 				61DF57E02A7EA6AB006C1211 /* UserModel.swift in Sources */,
-
 				C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */,
 				E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */,
 				E24D24CE2A7D50B9005D75CA /* CollectionViewController.swift in Sources */,
