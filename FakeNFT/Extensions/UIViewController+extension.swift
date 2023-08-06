@@ -63,7 +63,7 @@ extension UIViewController {
             alert.addAction(sortByNameAction)
         case .statistic:
             alert.addAction(sortByNameAction)
-            alert.addAction(sortByNFTCountAction)
+            alert.addAction(sortByRatingAction)
         }
        
         alert.addAction(closeAction)
