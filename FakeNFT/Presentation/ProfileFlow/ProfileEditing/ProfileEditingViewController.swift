@@ -20,10 +20,6 @@ final class ProfileEditingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        viewModel?.viewDismiss()
-    }
-    
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton(type: .system)
         closeButton.setBackgroundImage(UIImage.Icons.close, for: .normal)
@@ -83,17 +79,17 @@ final class ProfileEditingViewController: UIViewController {
     }()
     
     private lazy var descriptionTextField: UITextView = {
-        //настроить отступы текста, измнение высоты в зависимости от текста
         let descriptionTextField = UITextView()
         descriptionTextField.text = viewModel?.profile.description
         descriptionTextField.textColor = .blackDay
         descriptionTextField.font = .systemFont(ofSize: 17, weight: .regular)
         descriptionTextField.backgroundColor = .lightGrayDay
         descriptionTextField.layer.cornerRadius = 12
-        descriptionTextField.isScrollEnabled = true
-        //descriptionTextField.clearButtonMode = .whileEditing
+        descriptionTextField.sizeToFit()
+        descriptionTextField.isScrollEnabled = false
+        descriptionTextField.textContainerInset = UIEdgeInsets(top: 11, left: 16, bottom: 11, right: 16)
         descriptionTextField.returnKeyType = .default
-        //categoryName.delegate = self
+        descriptionTextField.delegate = self
         return descriptionTextField
     }()
     
@@ -188,7 +184,6 @@ final class ProfileEditingViewController: UIViewController {
             descriptionTextField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
             descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             descriptionTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 132),
             
             websiteLabel.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
             websiteLabel.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 24),
@@ -210,6 +205,22 @@ extension ProfileEditingViewController: UITextFieldDelegate {
             viewModel?.changeProfileName(nameToSet: text)
         }
         
+        if let text = websiteTextField.text {
+            viewModel?.changeProfileWebsite(websiteToSet: text)
+        }
+        
+        return true
+    }
+}
+
+//MARK: - UITextViewDelegate
+extension ProfileEditingViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            viewModel?.changeProfileDescription(descriptionToSet: descriptionTextField.text)
+            return false
+        }
         return true
     }
 }

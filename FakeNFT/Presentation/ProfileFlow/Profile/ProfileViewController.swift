@@ -81,6 +81,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        ProgressHUD.show()
         viewModel?.updateProfile()
     }
     
@@ -89,7 +90,7 @@ final class ProfileViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
         let vc = ProfileEditingViewController(viewModel: profileEditingViewModel)
-        profileEditingViewModel.delegate = viewModel
+        profileEditingViewModel.delegate = self
         vc.setProfilePhoto(imageToSet: profilePhoto.image ?? UIImage())
         present(vc, animated: true)
     }
@@ -108,7 +109,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func bind() {
-        ProgressHUD.show()
         viewModel?.$profile.bind { [weak self] _ in
             self?.nameLabel.text = self?.viewModel?.profile.name
             self?.descriptionLabel.text = self?.viewModel?.profile.description
@@ -203,5 +203,12 @@ extension ProfileViewController: UITableViewDelegate {
             let vc = ProfileWebsiteViewController(url: url)
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+}
+
+//MARK: - ProfileEditingDelegate
+extension ProfileViewController: ProfileEditingDelegate {
+    func updateProfile() {
+        viewModel?.updateProfile()
     }
 }

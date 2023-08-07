@@ -53,8 +53,3 @@ final class ProfileViewModel {
         return url
     }
 }
-
-
-extension ProfileViewModel: ProfileEditingDelegate {
-    // доделать
-}

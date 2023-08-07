@@ -24,26 +24,46 @@ final class ProfileEditingViewModel {
         id: ""
     )
     
-    private let dataProvider: DataProvider
+    private let profileService = ProfileService()
     var delegate: ProfileEditingDelegate?
-    
-    convenience init() {
-        self.init(dataProvider: DataProvider())
-    }
-
-    init(dataProvider: DataProvider) {
-        self.dataProvider = dataProvider
-    }
     
     func updateProfile(profileToSet: ProfileModel) {
         profile = profileToSet
     }
     
     func changeProfileName(nameToSet: String) {
-        dataProvider.changeProfileName(nameToSet: nameToSet)
+        profileService.changeProfileName(nameToSet: nameToSet) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                delegate?.updateProfile()
+            case .failure(let error):
+                print("Ошибка изменения имени профиля: \(error)")
+            }
+        }
     }
     
-    func viewDismiss() {
-        delegate?.updateProfile()
+    func changeProfileDescription(descriptionToSet: String) {
+        profileService.changeProfileDescription(descriptionToSet: descriptionToSet) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                delegate?.updateProfile()
+            case .failure(let error):
+                print("Ошибка изменения описания профиля: \(error)")
+            }
+        }
+    }
+    
+    func changeProfileWebsite(websiteToSet: String) {
+        profileService.changeProfileWebsite(websiteToSet: websiteToSet) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                delegate?.updateProfile()
+            case .failure(let error):
+                print("Ошибка изменения сайта профиля: \(error)")
+            }
+        }
     }
 }

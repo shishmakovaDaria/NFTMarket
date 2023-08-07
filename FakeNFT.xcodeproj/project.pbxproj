@@ -33,9 +33,8 @@
 		6108DCE52A7AE4F200AAEB34 /* MyNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */; };
 		6108DCE92A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */; };
 		6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */; };
-		6108DCED2A7AF53A00AAEB34 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */; };
 		6108DCF02A7C153D00AAEB34 /* ProfileEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */; };
-		6108DCF22A7C1F6400AAEB34 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */; };
+		6108DCF22A7C1F6400AAEB34 /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108DCF12A7C1F6400AAEB34 /* ProfileTextField.swift */; };
 		61DF57DC2A7EA546006C1211 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF57DB2A7EA546006C1211 /* ProfileModel.swift */; };
 		61DF57DE2A7EA59E006C1211 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF57DD2A7EA59E006C1211 /* NFTModel.swift */; };
 		61DF57E02A7EA6AB006C1211 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF57DF2A7EA6AB006C1211 /* UserModel.swift */; };
@@ -109,9 +108,8 @@
 		6108DCE42A7AE4F200AAEB34 /* MyNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTsViewController.swift; sourceTree = "<group>"; };
 		6108DCE82A7AE60D00AAEB34 /* FavoriteNFTsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNFTsViewController.swift; sourceTree = "<group>"; };
 		6108DCEA2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWebsiteViewController.swift; sourceTree = "<group>"; };
-		6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewModel.swift; sourceTree = "<group>"; };
-		6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		6108DCF12A7C1F6400AAEB34 /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		61DF57DB2A7EA546006C1211 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		61DF57DD2A7EA59E006C1211 /* NFTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModel.swift; sourceTree = "<group>"; };
 		61DF57DF2A7EA6AB006C1211 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -357,7 +355,7 @@
 			children = (
 				6108DCD82A798B6300AAEB34 /* ProfileEditingViewController.swift */,
 				6108DCEF2A7C153D00AAEB34 /* ProfileEditingViewModel.swift */,
-				6108DCF12A7C1F6400AAEB34 /* CustomTextField.swift */,
+				6108DCF12A7C1F6400AAEB34 /* ProfileTextField.swift */,
 			);
 			path = ProfileEditing;
 			sourceTree = "<group>";
@@ -402,7 +400,6 @@
 		C452BA1D2A78266B00862092 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
-				6108DCEC2A7AF53A00AAEB34 /* DataProvider.swift */,
 				61DF57E92A80F31B006C1211 /* ProfileService.swift */,
 				6108DCE72A7AE5F200AAEB34 /* Profile */,
 				6108DCEE2A7C0C2C00AAEB34 /* ProfileEditing */,
@@ -617,7 +614,7 @@
 				C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */,
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
 				6108DCEB2A7AE9F500AAEB34 /* ProfileWebsiteViewController.swift in Sources */,
-				6108DCF22A7C1F6400AAEB34 /* CustomTextField.swift in Sources */,
+				6108DCF22A7C1F6400AAEB34 /* ProfileTextField.swift in Sources */,
 				6108DCF02A7C153D00AAEB34 /* ProfileEditingViewModel.swift in Sources */,
 				C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
@@ -638,7 +635,6 @@
 				3F68069B29CBBAF100B4F915 /* ProductDetailsTableViewController.swift in Sources */,
 				61DF57E22A7EA715006C1211 /* OrderModel.swift in Sources */,
 				6108DCD02A78519900AAEB34 /* String+extensions.swift in Sources */,
-				6108DCED2A7AF53A00AAEB34 /* DataProvider.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */,
