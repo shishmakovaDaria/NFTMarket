@@ -200,7 +200,8 @@ extension CheckPayViewController: PayViewDelegate {
     }
 
     func didTapUserAgreementLink() {
-        
+        let userAgreementViewController = UserAgreementViewController()
+        navigationController?.pushViewController(userAgreementViewController, animated: true)
     }
 }
 

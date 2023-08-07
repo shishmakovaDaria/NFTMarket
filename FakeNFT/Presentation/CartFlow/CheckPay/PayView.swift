@@ -73,8 +73,7 @@ final class PayView: UIView, UITextViewDelegate {
     
     @objc
     private func didTapUserAgreementLink(sender: UIGestureRecognizer) {
-       
-        
+        delegate?.didTapUserAgreementLink()
     }
     
     
