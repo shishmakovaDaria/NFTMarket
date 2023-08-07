@@ -70,6 +70,10 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     //MARK: - Methods
     
+    func configure(model: NFTModel) {
+        
+    }
+    
     private func setupUI() {
         contentView.addSubview(nftImageView)
         contentView.addSubview(starsImageView)
