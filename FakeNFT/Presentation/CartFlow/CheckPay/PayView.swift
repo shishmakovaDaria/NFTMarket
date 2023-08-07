@@ -7,25 +7,34 @@
 
 import UIKit
 
-final class PayView: UIView {
+final class PayView: UIView, UITextViewDelegate {
     //MARK: - Layout properties
-    
-    private lazy var userAgreementLabel: UILabel = {
-        let label = UILabel()
-        label.font = .caption2
-        label.numberOfLines = 2
+    private lazy var userAgreementTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = .caption2
+        textView.textColor = .blackDay
+        textView.backgroundColor = .clear
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        
         let fullText = "Agree purchase".localized() + " " + "User Agreement".localized()
-//        let fullText = "Совершая покупку, вы соглашаетесь с условиями Пользовательского соглашения"
-        let attributedText = NSMutableAttributedString(string: fullText)
+        let attributedString = NSMutableAttributedString(string: fullText)
         
-        // Определите диапазон текста, который должен быть другого цвета
-        let colorRange = (fullText as NSString).range(of: "Пользовательским соглашением")
-        attributedText.addAttribute(.foregroundColor, value: UIColor.ypBlue!, range: colorRange)
+        // диапазон текста, который должен быть гиперссылкой
+        let agreementRange = (fullText as NSString).range(of: "User Agreement".localized())
         
-        label.attributedText = attributedText
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUserAgreementLink)))
-        return label
+        // атрибуты для гиперссылки
+        attributedString.addAttribute(.foregroundColor, value: UIColor.ypBlue!, range: agreementRange)
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUserAgreementLink)))
+        
+        textView.attributedText = attributedString
+        textView.isUserInteractionEnabled = true
+        textView.delegate = self
+        
+        return textView
     }()
     
     private lazy var payButton: UIButton = {
@@ -64,6 +73,7 @@ final class PayView: UIView {
     
     @objc
     private func didTapUserAgreementLink(sender: UIGestureRecognizer) {
+       
         
     }
     
@@ -77,7 +87,7 @@ final class PayView: UIView {
         layer.cornerRadius = 12
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        [payButton, userAgreementLabel].forEach {
+        [payButton, userAgreementTextView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
@@ -93,10 +103,10 @@ final class PayView: UIView {
             payButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             payButton.heightAnchor.constraint(equalToConstant: 60),
         
-            userAgreementLabel.leadingAnchor.constraint(equalTo: payButton.leadingAnchor),
-            userAgreementLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            userAgreementLabel.trailingAnchor.constraint(equalTo: payButton.trailingAnchor),
-            userAgreementLabel.bottomAnchor.constraint(equalTo: payButton.topAnchor, constant: -16)
+            userAgreementTextView.leadingAnchor.constraint(equalTo: payButton.leadingAnchor),
+            userAgreementTextView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            userAgreementTextView.trailingAnchor.constraint(equalTo: payButton.trailingAnchor),
+            userAgreementTextView.bottomAnchor.constraint(equalTo: payButton.topAnchor, constant: -16)
         ])
     }
 }
