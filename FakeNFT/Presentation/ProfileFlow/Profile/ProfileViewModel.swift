@@ -20,19 +20,18 @@ final class ProfileViewModel {
         id: ""
     )
     
-    private let dataProvider: DataProvider
-    
-    convenience init() {
-        self.init(dataProvider: DataProvider())
-    }
-
-    init(dataProvider: DataProvider) {
-        self.dataProvider = dataProvider
-        //updateProfile()
-    }
+    private let profileService = ProfileService()
     
     func updateProfile() {
-        profile = dataProvider.getUserInfo()
+        profileService.getProfile { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let body):
+                self.profile = body
+            case .failure(let error):
+                print("Ошибка получения профиля: \(error)")
+            }
+        }
     }
     
     func provideTableHeaders() -> [String] {

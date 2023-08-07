@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import ProgressHUD
 
 final class ProfileViewController: UIViewController {
     
@@ -107,12 +108,14 @@ final class ProfileViewController: UIViewController {
     }
     
     private func bind() {
+        ProgressHUD.show()
         viewModel?.$profile.bind { [weak self] _ in
             self?.nameLabel.text = self?.viewModel?.profile.name
             self?.descriptionLabel.text = self?.viewModel?.profile.description
             self?.profileWebsite.text = self?.viewModel?.profile.website
             self?.updateAvatar()
             self?.tableView.reloadData()
+            ProgressHUD.dismiss()
         }
     }
     
