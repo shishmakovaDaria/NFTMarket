@@ -28,21 +28,16 @@ final class UserAgreementViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @objc
     private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - Private
-    
+    // MARK: - Methods
     private func loadPage() {
         let request = URLRequest(url: Constants.userAgreementUrl)
         webView.load(request)
     }
-    
-    
-    // MARK: - Layout methods
     
     func setView() {
         view.backgroundColor = .whiteDay

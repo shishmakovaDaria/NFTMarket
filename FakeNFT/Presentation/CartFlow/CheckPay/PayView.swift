@@ -38,14 +38,14 @@ final class PayView: UIView, UITextViewDelegate {
     }()
     
     private lazy var payButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
         button.backgroundColor = .blackDay
         button.setTitleColor(.whiteDay, for: .normal)
         button.setTitle("Pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
-        button.addTarget(PayView.self, action: #selector(didTapPayButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapPayButton), for: .touchUpInside)
         return button
     }()
     

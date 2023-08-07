@@ -34,7 +34,7 @@ final class SummaryView: UIView {
     }()
     
     private var toPayButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
         button.backgroundColor = .blackDay
@@ -90,7 +90,6 @@ final class SummaryView: UIView {
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-        
             labelsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             labelsStack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             labelsStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
