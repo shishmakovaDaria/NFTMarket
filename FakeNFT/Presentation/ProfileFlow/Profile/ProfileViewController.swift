@@ -31,6 +31,7 @@ final class ProfileViewController: UIViewController {
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView()
         profilePhoto.layer.cornerRadius = 35
+        profilePhoto.contentMode = .scaleAspectFill
         profilePhoto.backgroundColor = .blackDay
         profilePhoto.clipsToBounds = true
         return profilePhoto
