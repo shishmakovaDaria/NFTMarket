@@ -66,4 +66,22 @@ final class ProfileEditingViewModel {
             }
         }
     }
+    
+    func changeProfileAvatar() {
+        let newProfile = ProfileModel(
+            name: profile.name,
+            avatar: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ryan_Gosling_by_Gage_Skidmore.jpg",
+            description: profile.description,
+            website: profile.website,
+            nfts: profile.nfts,
+            likes: profile.likes,
+            id: profile.id
+        )
+        profile = newProfile
+    }
+    
+    func provideAvatarURL() -> URL? {
+        let url = URL(string: profile.avatar)
+        return url
+    }
 }

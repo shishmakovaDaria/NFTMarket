@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileEditingViewController: UIViewController {
     
@@ -47,6 +48,18 @@ final class ProfileEditingViewController: UIViewController {
         changeAvatarButton.titleLabel?.font = .systemFont(ofSize: 10, weight: .medium)
         changeAvatarButton.addTarget(self, action: #selector(changeAvatarButtonDidTap(_:)), for: .touchUpInside)
         return changeAvatarButton
+    }()
+    
+    private lazy var uploadAvatarButton: UIButton = {
+        let uploadAvatarButton = UIButton(type: .system)
+        uploadAvatarButton.backgroundColor = .ypWhite
+        uploadAvatarButton.setTitle("Загрузить изображение", for: .normal)
+        uploadAvatarButton.titleLabel?.textAlignment = .center
+        uploadAvatarButton.tintColor = .ypBlack
+        uploadAvatarButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        uploadAvatarButton.isHidden = true
+        uploadAvatarButton.addTarget(self, action: #selector(uploadAvatarButtonDidTap(_:)), for: .touchUpInside)
+        return uploadAvatarButton
     }()
     
     private lazy var nameLabel: UILabel = {
@@ -119,6 +132,7 @@ final class ProfileEditingViewController: UIViewController {
         view.backgroundColor = .whiteDay
         setupUI()
         setupConstraints()
+        bind()
     }
     
     func setProfilePhoto(imageToSet: UIImage) {
@@ -130,13 +144,36 @@ final class ProfileEditingViewController: UIViewController {
     }
     
     @objc private func changeAvatarButtonDidTap(_ sender: Any?) {
-        // to do
+        uploadAvatarButton.isHidden = false
+    }
+    
+    @objc private func uploadAvatarButtonDidTap(_ sender: Any?) {
+        uploadAvatarButton.isHidden = true
+        viewModel?.changeProfileAvatar()
+    }
+    
+    private func bind() {
+        viewModel?.$profile.bind { [weak self] _ in
+            guard let url = self?.viewModel?.provideAvatarURL() else { return }
+            
+            let cache = ImageCache.default
+            cache.diskStorage.config.expiration = .days(1)
+            
+            
+            let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
+            self?.profilePhoto.kf.indicatorType = .activity
+            self?.profilePhoto.kf.setImage(with: url,
+                                     placeholder: nil,
+                                     options: [.processor(processor),
+                                               .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+        }
     }
     
     private func setupUI() {
         view.addSubview(closeButton)
         view.addSubview(profilePhoto)
         view.addSubview(changeAvatarButton)
+        view.addSubview(uploadAvatarButton)
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
         view.addSubview(descriptionLabel)
@@ -147,6 +184,7 @@ final class ProfileEditingViewController: UIViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         profilePhoto.translatesAutoresizingMaskIntoConstraints = false
         changeAvatarButton.translatesAutoresizingMaskIntoConstraints = false
+        uploadAvatarButton.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -169,6 +207,9 @@ final class ProfileEditingViewController: UIViewController {
             changeAvatarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             changeAvatarButton.heightAnchor.constraint(equalToConstant: 70),
             changeAvatarButton.widthAnchor.constraint(equalToConstant: 70),
+            
+            uploadAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            uploadAvatarButton.topAnchor.constraint(equalTo: changeAvatarButton.bottomAnchor, constant: 5),
             
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 174),
