@@ -44,7 +44,7 @@ extension UIImage {
         static let tether = UIImage(named: "tether")
     }
     
-    enum Image {
+    enum Images {
         static let failurePayImage = UIImage(named: "failurePayImage")
         static let successPayImage = UIImage(named: "successPayImage")
     }
