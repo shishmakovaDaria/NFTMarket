@@ -68,7 +68,7 @@ final class PayView: UIView, UITextViewDelegate {
     
     @objc
     private func didTapPayButton() {
-        
+        delegate?.didTapPayButton()
     }
     
     @objc
