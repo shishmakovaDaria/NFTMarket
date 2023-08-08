@@ -2,7 +2,7 @@
 //  UICollectionView+extension.swift
 //  FakeNFT
 //
-//  Created by Vitaly Anpilov on 05.08.2023.
+//  Created by Vitaly Anpilov on 08.08.2023.
 //
 
 import UIKit
