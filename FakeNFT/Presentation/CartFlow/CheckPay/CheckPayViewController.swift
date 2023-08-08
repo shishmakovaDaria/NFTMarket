@@ -152,7 +152,9 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     // selecting methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
-        
+
+        guard let currencyID = cell.currencyModel?.id else { return }
+        viewModel?.selectCurrency(with: currencyID)
         cell.select()
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class CurrencyCell: UICollectionViewCell {
     
@@ -26,13 +27,13 @@ final class CurrencyCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2
+        label.textColor = .ypGreen
         return label
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .caption2
-        label.textColor = .ypGreen
         return label
     }()
     
@@ -41,6 +42,9 @@ final class CurrencyCell: UICollectionViewCell {
         stack.axis = .vertical
         return stack
     }()
+    
+    // MARK: - Properties
+    var currencyModel: CurrencyModel?
     
     
     // MARK: - Lifecircle
@@ -54,9 +58,12 @@ final class CurrencyCell: UICollectionViewCell {
     }
     
     
-    // MARK: - Public methods
-    func configure(with model: MockCurrencyModel) {
-        imageView.image = model.logo
+    // MARK: - Methods
+    func configure(with model: CurrencyModel) {
+        currencyModel = model
+        
+        let urlImage = URL(string: model.image)
+        imageView.kf.setImage(with: urlImage)
         titleLabel.text = model.title
         nameLabel.text = model.name
     }
@@ -83,13 +90,13 @@ final class CurrencyCell: UICollectionViewCell {
             contentView.addSubview($0)
         }
         
-        labelsStackView.addArrangedSubview(nameLabel)
         labelsStackView.addArrangedSubview(titleLabel)
+        labelsStackView.addArrangedSubview(nameLabel)
         
-        setupConstraints()
+        setConstraints()
     }
     
-    func setupConstraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             imageBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             imageBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),

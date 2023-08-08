@@ -12,8 +12,15 @@ final class CheckPayViewModel {
     // MARK: - Observables
     
     @Observable
-    private (set) var currencies: [MockCurrencyModel] = []
+    private (set) var currencies: [CurrencyModel] = []
     
+    @Observable
+    private (set) var selectedCurrency: CurrencyModel?
+    
+    
+    // MARK: - Properties
+    
+    private let currencyService = CurrencyService()
     
     //   MARK: - Methods
     func startObserve() {
@@ -22,29 +29,22 @@ final class CheckPayViewModel {
     }
     
     private func observeCurrencises() {
-        currencies = mockCurrencies
+        currencyService.getCurrencies { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let currencies):
+                    self.currencies = currencies
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func selectCurrency(with id: String) {
+        self.selectedCurrency = currencies.first(where: { $0.id == id } )
+        print("\(String(describing: selectedCurrency?.name)) was selected")
     }
 }
-
-
-
-// mock Сurrencies
-
-struct MockCurrencyModel {
-    let logo: UIImage
-    let title: String
-    let name: String
-    let id: Int
-}
-
-let mockCurrencies: [MockCurrencyModel] = [
-    MockCurrencyModel(logo: UIImage.Icons.bitcoin!, title: "BTC", name: "Bitcoin", id: 1),
-    MockCurrencyModel(logo: UIImage.Icons.ethereum!, title: "ETH", name: "Ethereum", id: 2),
-    MockCurrencyModel(logo: UIImage.Icons.solana!, title: "SOL", name: "Solana", id: 3),
-    MockCurrencyModel(logo: UIImage.Icons.apeCoin!, title: "APE", name: "ApeCoin", id: 4),
-    MockCurrencyModel(logo: UIImage.Icons.dogecoin!, title: "DOGE", name: "Dogecoin", id: 5),
-    MockCurrencyModel(logo: UIImage.Icons.shibaInu!, title: "SHIB", name: "ShibaInu", id: 6),
-    MockCurrencyModel(logo: UIImage.Icons.tether!, title: "USDT", name: "Tether", id: 7),
-    MockCurrencyModel(logo: UIImage.Icons.cardano!, title: "ADA", name: "Cardano", id: 8),
-]
 
