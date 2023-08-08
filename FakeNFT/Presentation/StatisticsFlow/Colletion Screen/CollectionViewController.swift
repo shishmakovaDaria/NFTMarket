@@ -29,9 +29,14 @@ final class CollectionViewController: UIViewController {
         return collectionView
     }()
     
+    //MARK: - Properties
+    
+    private var viewModel: CollectionViewModel?
+    
     // MARK: - LifeCycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init(viewModel: CollectionViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupUI()
         setupLayout()
@@ -40,13 +45,12 @@ final class CollectionViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupLayout()
+        bind()
     }
     
     // MARK: - Methods
@@ -66,6 +70,13 @@ final class CollectionViewController: UIViewController {
             nftCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
+    
+    private func bind() {
+        guard let viewModel  else { return }
+        viewModel.$nfts.bind { [weak self] _ in
+            self?.nftCollectionView.reloadData()
+        }
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout & UICollectionViewDataSource
@@ -73,11 +84,15 @@ final class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        15
+        guard let viewModel else { return 0}
+        return viewModel.nfts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as! NFTCollectionCell
+        guard let nftModel = viewModel?.nfts[indexPath.row] else { return cell }
+        let nftCollectionCellModel = NFTCollectionCellModel(image: nftModel.images[0], rating: nftModel.rating, name: nftModel.name, price: nftModel.price)
+        cell.configure(model: nftCollectionCellModel)
         return cell
     }
 }

@@ -51,6 +51,8 @@
 		E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */; };
 		E24D24D22A7E9B11005D75CA /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24D12A7E9B11005D75CA /* DataProvider.swift */; };
 		E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43B92A7F503D0044EAD6 /* UsersService.swift */; };
+		E27B43BC2A82717A0044EAD6 /* NFTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43BB2A82717A0044EAD6 /* NFTService.swift */; };
+		E27B43BE2A8274660044EAD6 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
 		E29A5BD32A76A87300A76D9C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */; };
 		E29A5BD52A76A8D400A76D9C /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */; };
@@ -127,6 +129,8 @@
 		E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCell.swift; sourceTree = "<group>"; };
 		E24D24D12A7E9B11005D75CA /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		E27B43B92A7F503D0044EAD6 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		E27B43BB2A82717A0044EAD6 /* NFTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTService.swift; sourceTree = "<group>"; };
+		E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E29A5BD22A76A87300A76D9C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E29A5BD42A76A8D400A76D9C /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			children = (
 				3FC8C38F29D245250081F015 /* Requests */,
 				E27B43B92A7F503D0044EAD6 /* UsersService.swift */,
+				E27B43BB2A82717A0044EAD6 /* NFTService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 			children = (
 				E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */,
 				E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */,
+				E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */,
 			);
 			path = "Colletion Screen";
 			sourceTree = "<group>";
@@ -600,10 +606,12 @@
 				E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */,
 				E24D24D22A7E9B11005D75CA /* DataProvider.swift in Sources */,
 				E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */,
+				E27B43BC2A82717A0044EAD6 /* NFTService.swift in Sources */,
 				C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */,
 				C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */,
 				C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */,
 				61DF57E42A7EA809006C1211 /* CollectionModel.swift in Sources */,
+				E27B43BE2A8274660044EAD6 /* CollectionViewModel.swift in Sources */,
 				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				E29A5BE22A76BBC300A76D9C /* StatisticCell.swift in Sources */,

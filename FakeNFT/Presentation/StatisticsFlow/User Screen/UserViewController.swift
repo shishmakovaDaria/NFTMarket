@@ -171,7 +171,9 @@ final class UserViewController: UIViewController {
 
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let collectionViewController = CollectionViewController()
+        guard let user = viewModel?.user else { return }
+        let collectionViewModel = CollectionViewModel(nfts: user.nfts)
+        let collectionViewController = CollectionViewController(viewModel: collectionViewModel)
         navigationController?.pushViewController(collectionViewController, animated: true)
     }
 }

@@ -5,13 +5,22 @@
 //  Created by Aleksandr Garipov on 05.08.2023.
 //
 
+struct NFTCollectionCellModel {
+    let image: String
+    let rating: Int
+    let name: String
+    let price: Float
+}
+
 import UIKit
+import Kingfisher
 
 final class NFTCollectionCell: UICollectionViewCell {
     //MARK: - Layout properties
     private lazy var nftImageView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 12
+        view.layer.masksToBounds = true
         view.image = .Icons.dogecoin
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -49,8 +58,9 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        let heartImage = UIImage.Icons.heartFill?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        let heartImage = UIImage.Icons.heartFill?.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)
         button.setImage(heartImage, for: .normal)
+        button.tintColor = .whiteDay
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -70,8 +80,42 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     //MARK: - Methods
     
-    func configure(model: NFTModel) {
+    func configure(model: NFTCollectionCellModel) {
+        if let NFTImageUrl = URL(string: model.image) {
+            updateNFTImage(with: NFTImageUrl) }
+        let starsImage = getStarsImage(for: model.rating)
+        self.starsImageView.image = starsImage
+        self.nftNameLabel.text = model.name
+        self.nftPriceLabel.text = "\(model.price)"
+    }
+    
+    private func updateNFTImage(with url: URL) {
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .seconds(1)
         
+        let processor = RoundCornerImageProcessor(cornerRadius: 12, backgroundColor: .clear)
+        nftImageView.kf.indicatorType = .activity
+        nftImageView.kf.setImage(with: url,
+                                 placeholder: nil,
+                                 options: [.processor(processor),
+                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+    }
+    
+    private func getStarsImage(for rating: Int) -> UIImage? {
+        switch rating {
+        case 1:
+            return UIImage.Icons.oneStarRating
+        case 2:
+            return UIImage.Icons.twoStarRating
+        case 3:
+            return UIImage.Icons.threeStarRating
+        case 4:
+            return UIImage.Icons.fourStarRating
+        case 5:
+            return UIImage.Icons.fiveStarRating
+        default:
+            return nil
+        }
     }
     
     private func setupUI() {

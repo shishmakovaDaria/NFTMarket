@@ -29,7 +29,6 @@ final class StatisticViewModel {
             switch result {
             case let .success(users):
                 self.users = users
-                
             case let .failure(error):
                 print("Ошибка получения списка рейтинга юзеров: \(error)")
                 
