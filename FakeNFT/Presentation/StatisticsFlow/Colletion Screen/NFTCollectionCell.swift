@@ -86,7 +86,7 @@ final class NFTCollectionCell: UICollectionViewCell {
         let starsImage = getStarsImage(for: model.rating)
         self.starsImageView.image = starsImage
         self.nftNameLabel.text = model.name
-        self.nftPriceLabel.text = "\(model.price)"
+        self.nftPriceLabel.text = "\(model.price) ETH"
     }
     
     private func updateNFTImage(with url: URL) {

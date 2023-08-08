@@ -104,7 +104,7 @@ final class StatisticCell: UITableViewCell {
             avatarImageView.widthAnchor.constraint(equalToConstant: 28),
             
             numberOfCell.centerYAnchor.constraint(equalTo: backgroundColorView.centerYAnchor),
-            numberOfCell.trailingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: -18),
+            numberOfCell.trailingAnchor.constraint(equalTo: backgroundColorView.leadingAnchor, constant: -12),
             
             nameLabel.centerYAnchor.constraint(equalTo: backgroundColorView.centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
