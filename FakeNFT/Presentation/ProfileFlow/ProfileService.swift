@@ -25,7 +25,7 @@ struct ChangeProfileRequest: NetworkRequest {
 
 final class ProfileService {
     
-    let networkClient = DefaultNetworkClient()
+    private let networkClient = DefaultNetworkClient()
 
     func getProfile(completion: @escaping (Result<ProfileModel, Error>) -> Void) {
         let getProfileRequest = GetProfileRequest()
@@ -61,6 +61,42 @@ final class ProfileService {
         let changeProfileWebsiteRequest = ChangeProfileRequest(dto: ["website": websiteToSet])
         
         networkClient.send(request: changeProfileWebsiteRequest, type: ProfileModel.self) { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
+    
+    func changeNFTLike(like: String, completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+        getProfile { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                var likes = profile.likes
+                if likes.contains(like) == true {
+                    if let index = likes.firstIndex(of: like) {
+                        likes.remove(at: index)
+                    }
+                    self.changeProfileLikes(likesToSet: likes) { result in
+                        completion(result)
+                    }
+                } else {
+                    likes.append(like)
+                    likes.sort { Int($0) ?? 0 < Int($1) ?? 0 }
+                    self.changeProfileLikes(likesToSet: likes) { result in
+                        completion(result)
+                    }
+                }
+            case .failure(let error):
+                print("Ошибка получения профиля: \(error)")
+            }
+        }
+    }
+    
+    private func changeProfileLikes(likesToSet: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+        let changeProfileLikesRequest = ChangeProfileRequest(dto: ["likes": likesToSet])
+        
+        networkClient.send(request: changeProfileLikesRequest, type: ProfileModel.self) { result in
             DispatchQueue.main.async {
                 completion(result)
             }
