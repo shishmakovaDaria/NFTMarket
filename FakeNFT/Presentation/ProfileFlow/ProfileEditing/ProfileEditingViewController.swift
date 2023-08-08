@@ -53,7 +53,7 @@ final class ProfileEditingViewController: UIViewController {
     private lazy var uploadAvatarButton: UIButton = {
         let uploadAvatarButton = UIButton(type: .system)
         uploadAvatarButton.backgroundColor = .ypWhite
-        uploadAvatarButton.setTitle("Загрузить изображение", for: .normal)
+        uploadAvatarButton.setTitle("Download image".localized(), for: .normal)
         uploadAvatarButton.titleLabel?.textAlignment = .center
         uploadAvatarButton.tintColor = .ypBlack
         uploadAvatarButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
