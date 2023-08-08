@@ -67,6 +67,7 @@ final class ProfileViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorColor = .whiteDay
+        tableView.backgroundColor = .whiteDay
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
@@ -193,14 +194,21 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
-            navigationController?.pushViewController(MyNFTsViewController(), animated: true)
+            let myNFTsViewModel = MyNFTsViewModel()
+            let vc = MyNFTsViewController(viewModel: myNFTsViewModel)
+            myNFTsViewModel.nftIDs = viewModel?.profile.nfts ?? []
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         }
         if indexPath.row == 1 {
-            navigationController?.pushViewController(FavoriteNFTsViewController(), animated: true)
+            let vc = FavoriteNFTsViewController()
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         }
         if indexPath.row == 2 {
             guard let url = viewModel?.provideWebsiteURL() else { return }
             let vc = ProfileWebsiteViewController(url: url)
+            vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
     }
