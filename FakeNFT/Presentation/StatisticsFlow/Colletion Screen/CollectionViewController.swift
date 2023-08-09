@@ -53,6 +53,12 @@ final class CollectionViewController: UIViewController {
         bind()
     }
     
+        //MARK: - Actions
+    func handleLikeButtonTapped(at idNFT: String) {
+        UIBlockingProgressHUD.show()
+        viewModel?.likeButtonTapped(id: idNFT)
+    }
+    
     // MARK: - Methods
     
     private func setupUI() {
@@ -76,6 +82,9 @@ final class CollectionViewController: UIViewController {
         viewModel.$nfts.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
+        viewModel.$likes.bind { [weak self] _ in
+            self?.nftCollectionView.reloadData()
+        }
     }
 }
 
@@ -90,9 +99,15 @@ extension CollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as! NFTCollectionCell
-        guard let nftModel = viewModel?.nfts[indexPath.row] else { return cell }
-        let nftCollectionCellModel = NFTCollectionCellModel(image: nftModel.images[0], rating: nftModel.rating, name: nftModel.name, price: nftModel.price)
+        guard let viewModel else { return cell }
+        let nftModel = viewModel.nfts[indexPath.row]
+        let likes = viewModel.likes
+        let isLiked = likes.contains(nftModel.id)
+        let nftCollectionCellModel = NFTCollectionCellModel(image: nftModel.images[0], rating: nftModel.rating, name: nftModel.name, price: nftModel.price, isLiked: isLiked)
         cell.configure(model: nftCollectionCellModel)
+        cell.likeButtonTappedHandler = { [weak self] in
+            self?.handleLikeButtonTapped(at: nftModel.id)
+        }
         return cell
     }
 }

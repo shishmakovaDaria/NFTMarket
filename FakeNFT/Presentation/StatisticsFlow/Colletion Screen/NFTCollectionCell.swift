@@ -10,6 +10,7 @@ struct NFTCollectionCellModel {
     let rating: Int
     let name: String
     let price: Float
+    let isLiked: Bool
 }
 
 import UIKit
@@ -61,6 +62,7 @@ final class NFTCollectionCell: UICollectionViewCell {
         let heartImage = UIImage.Icons.heartFill?.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)
         button.setImage(heartImage, for: .normal)
         button.tintColor = .whiteDay
+        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -78,6 +80,14 @@ final class NFTCollectionCell: UICollectionViewCell {
     }
     
     
+    //MARK: - Actions:
+    
+    var likeButtonTappedHandler: (() -> Void)?
+    
+    @objc private func likeButtonTapped() {
+        likeButtonTappedHandler?()
+    }
+    
     //MARK: - Methods
     
     func configure(model: NFTCollectionCellModel) {
@@ -87,7 +97,14 @@ final class NFTCollectionCell: UICollectionViewCell {
         self.starsImageView.image = starsImage
         self.nftNameLabel.text = model.name
         self.nftPriceLabel.text = "\(model.price) ETH"
+        let image: UIImage = {
+            if model.isLiked {
+            return UIImage.Icons.heartFill!.withTintColor(.red, renderingMode: .alwaysOriginal)
+        } else {return UIImage.Icons.heartFill!.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)}}()
+        self.likeButton.setImage(image, for: .normal)
     }
+    
+    
     
     private func updateNFTImage(with url: URL) {
         let cache = ImageCache.default

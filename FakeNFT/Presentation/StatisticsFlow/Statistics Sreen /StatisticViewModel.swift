@@ -37,7 +37,7 @@ final class StatisticViewModel {
 extension StatisticViewModel: ViewModelProtocol {
     func sort(param: Sort) {
         if param == .rating {
-            users.sort { Int($0.rating)! < Int($1.rating)!}
+            users.sort { Int($0.rating)! > Int($1.rating)!}
         } else if param == .name {
             users.sort { $0.name < $1.name }
         }
