@@ -82,11 +82,11 @@ final class ResultPayViewController: UIViewController {
         
         if isSuccess! {
             alertLabel.text = "Success! Payment completed, congratulations on your purchase!".localized()
-            imageView.image = UIImage.Icons.solana
+            imageView.image = UIImage.Images.successPayImage
             returnButton.setTitle("Back to catalog".localized(), for: .normal)
         } else {
             alertLabel.text = "Oops! Something went wrong :( Try again!".localized()
-            imageView.image = UIImage.Icons.shibaInu
+            imageView.image = UIImage.Images.failurePayImage
             returnButton.setTitle("Try again".localized(), for: .normal)
         }
         
