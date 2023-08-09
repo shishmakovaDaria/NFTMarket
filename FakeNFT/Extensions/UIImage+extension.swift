@@ -16,7 +16,8 @@ extension UIImage {
         static let cartTab = UIImage(named: "cartTab")
         static let statisticsTab = UIImage(systemName: "flag.2.crossed.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
         
-        // Crypto
+
+
 
         static let apeCoin = UIImage(named: "ApeCoin")
         static let bitcoin = UIImage(named: "Bitcoin")
@@ -27,6 +28,7 @@ extension UIImage {
         static let solana = UIImage(named: "Solana")
         static let tether = UIImage(named: "Tether")
         
+
         // Basic
         static let close = UIImage(named: "close")
         static let edit = UIImage(named: "edit")
@@ -42,5 +44,21 @@ extension UIImage {
         static let backward = UIImage(systemName: "chevron.backward")
         static let forward = UIImage(systemName: "chevron.forward")
         static let heartFill = UIImage(systemName: "suit.heart.fill")
+    }
+    
+    enum Crypto {
+        static let apeCoin = UIImage(named: "apeCoin")
+        static let bitcoin = UIImage(named: "bitcoin")
+        static let cardano = UIImage(named: "cardano")
+        static let dogecoin = UIImage(named: "dogecoin")
+        static let ethereum = UIImage(named: "ethereum")
+        static let shibaInu = UIImage(named: "shibaInu")
+        static let solana = UIImage(named: "solana")
+        static let tether = UIImage(named: "tether")
+    }
+    
+    enum Images {
+        static let failurePayImage = UIImage(named: "failurePayImage")
+        static let successPayImage = UIImage(named: "successPayImage")
     }
 }
