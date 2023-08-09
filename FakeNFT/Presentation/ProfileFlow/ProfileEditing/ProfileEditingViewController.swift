@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import ProgressHUD
 
 final class ProfileEditingViewController: UIViewController {
     
@@ -166,6 +167,7 @@ final class ProfileEditingViewController: UIViewController {
                                      placeholder: nil,
                                      options: [.processor(processor),
                                                .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+            UIBlockingProgressHUD.dismiss()
         }
     }
     
@@ -241,6 +243,7 @@ final class ProfileEditingViewController: UIViewController {
 extension ProfileEditingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        UIBlockingProgressHUD.show()
         
         if let text = nameTextField.text {
             viewModel?.changeProfileName(nameToSet: text)
@@ -259,6 +262,7 @@ extension ProfileEditingViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            UIBlockingProgressHUD.show()
             viewModel?.changeProfileDescription(descriptionToSet: descriptionTextField.text)
             return false
         }

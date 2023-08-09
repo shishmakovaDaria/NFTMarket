@@ -53,7 +53,7 @@ final class MyNFTsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ProgressHUD.show()
+        UIBlockingProgressHUD.show()
         viewModel?.updateNFTs()
     }
     
@@ -76,11 +76,11 @@ final class MyNFTsViewController: UIViewController {
     }
     
     private func bind() {
-        ProgressHUD.show()
+        UIBlockingProgressHUD.show()
         viewModel?.$NFTs.bind() { [weak self] _ in
             self?.tableView.reloadData()
             self?.reloadPlaceholder()
-            ProgressHUD.dismiss()
+            UIBlockingProgressHUD.dismiss()
         }
     }
     

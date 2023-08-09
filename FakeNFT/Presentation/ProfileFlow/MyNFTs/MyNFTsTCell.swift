@@ -19,11 +19,66 @@ final class MyNFTsCell: UITableViewCell {
         return imageView
     }()
     
+    private lazy var likeButton: UIButton = {
+        let likeButton = UIButton(type: .system)
+        likeButton.setBackgroundImage(UIImage.Icons.heartFill, for: .normal)
+        likeButton.tintColor = .whiteDay
+        likeButton.addTarget(self, action: #selector(likeButtonDidTap(_:)), for: .touchUpInside)
+        return likeButton
+    }()
+    
+    private lazy var nameStackView: UIStackView = {
+        let nameStackView = UIStackView()
+        nameStackView.axis = .vertical
+        nameStackView.alignment = .fill
+        nameStackView.spacing = 4
+        nameStackView.distribution = .fillEqually
+        nameStackView.contentMode = .scaleToFill
+        return nameStackView
+    }()
+    
     private lazy var nftNameLabel: UILabel = {
         let nftNameLabel = UILabel()
         nftNameLabel.font = .boldSystemFont(ofSize: 17)
         nftNameLabel.textColor = .blackDay
         return nftNameLabel
+    }()
+    
+    private lazy var starsImageView: UIImageView = {
+        let starsImageView = UIImageView()
+        return starsImageView
+    }()
+    
+    private lazy var authorLabel: UILabel = {
+        let authorLabel = UILabel()
+        authorLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        authorLabel.textColor = .blackDay
+        return authorLabel
+    }()
+    
+    private lazy var priceStackView: UIStackView = {
+        let priceStackView = UIStackView()
+        priceStackView.axis = .vertical
+        priceStackView.alignment = .fill
+        priceStackView.spacing = 2
+        priceStackView.distribution = .fillEqually
+        priceStackView.contentMode = .scaleToFill
+        return priceStackView
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let priceLabel = UILabel()
+        priceLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        priceLabel.textColor = .blackDay
+        priceLabel.text = "Цена"
+        return priceLabel
+    }()
+    
+    private lazy var currentPriceLabel: UILabel = {
+        let currentPriceLabel = UILabel()
+        currentPriceLabel.font = .boldSystemFont(ofSize: 17)
+        currentPriceLabel.textColor = .blackDay
+        return currentPriceLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,9 +87,17 @@ final class MyNFTsCell: UITableViewCell {
         setupConstraints()
     }
     
+    @objc private func likeButtonDidTap(_ sender: Any?) {
+        // to do
+    }
+    
     func configureCell(nft: NFTModel) {
         nftNameLabel.text = nft.name
         updateNFTImage(url: nft.images.first)
+        let starsImage = getStarsImage(for: nft.rating)
+        starsImageView.image = starsImage
+        authorLabel.text = "от \(nft.author)" // to do: get author name
+        currentPriceLabel.text = "\(nft.price) ETH"
     }
     
     private func updateNFTImage(url: String?) {
@@ -50,14 +113,40 @@ final class MyNFTsCell: UITableViewCell {
                                            .cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
+    private func getStarsImage(for rating: Int) -> UIImage? {
+        switch rating {
+        case 1:
+            return UIImage.Icons.oneStarRating
+        case 2:
+            return UIImage.Icons.twoStarRating
+        case 3:
+            return UIImage.Icons.threeStarRating
+        case 4:
+            return UIImage.Icons.fourStarRating
+        case 5:
+            return UIImage.Icons.fiveStarRating
+        default:
+            return nil
+        }
+    }
+    
     private func setupUI() {
         contentView.backgroundColor = .whiteDay
         
         contentView.addSubview(nftImageView)
-        contentView.addSubview(nftNameLabel)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(nameStackView)
+        nameStackView.addArrangedSubview(nftNameLabel)
+        nameStackView.addArrangedSubview(starsImageView)
+        nameStackView.addArrangedSubview(authorLabel)
+        contentView.addSubview(priceStackView)
+        priceStackView.addArrangedSubview(priceLabel)
+        priceStackView.addArrangedSubview(currentPriceLabel)
         
         nftImageView.translatesAutoresizingMaskIntoConstraints = false
-        nftNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        nameStackView.translatesAutoresizingMaskIntoConstraints = false
+        priceStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupConstraints() {
@@ -68,8 +157,18 @@ final class MyNFTsCell: UITableViewCell {
             nftImageView.widthAnchor.constraint(equalToConstant: 108),
             nftImageView.heightAnchor.constraint(equalToConstant: 108),
             
-            nftNameLabel.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 20),
-            nftNameLabel.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 23),
+            likeButton.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 12),
+            likeButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: -12),
+            
+            nameStackView.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 20),
+            nameStackView.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 23),
+            nameStackView.bottomAnchor.constraint(equalTo: nftImageView.bottomAnchor, constant: -23),
+            nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -153),
+            
+            priceStackView.leadingAnchor.constraint(equalTo: nameStackView.trailingAnchor, constant: 39),
+            priceStackView.topAnchor.constraint(equalTo: nameStackView.topAnchor, constant: 10),
+            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -39),
+            priceStackView.bottomAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: -10)
         ])
     }
     

@@ -82,7 +82,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ProgressHUD.show()
+        UIBlockingProgressHUD.show()
         viewModel?.updateProfile()
     }
     
@@ -116,7 +116,7 @@ final class ProfileViewController: UIViewController {
             self?.profileWebsite.text = self?.viewModel?.profile.website
             self?.updateAvatar()
             self?.tableView.reloadData()
-            ProgressHUD.dismiss()
+            UIBlockingProgressHUD.dismiss()
         }
     }
     

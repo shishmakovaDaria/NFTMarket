@@ -35,7 +35,8 @@ final class ProfileEditingViewModel {
         profileService.changeProfileName(nameToSet: nameToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success:
+            case .success(let body):
+                self.profile = body
                 delegate?.updateProfile()
             case .failure(let error):
                 print("Ошибка изменения имени профиля: \(error)")
@@ -47,7 +48,8 @@ final class ProfileEditingViewModel {
         profileService.changeProfileDescription(descriptionToSet: descriptionToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success:
+            case .success(let body):
+                self.profile = body
                 delegate?.updateProfile()
             case .failure(let error):
                 print("Ошибка изменения описания профиля: \(error)")
@@ -59,7 +61,8 @@ final class ProfileEditingViewModel {
         profileService.changeProfileWebsite(websiteToSet: websiteToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success:
+            case .success(let body):
+                self.profile = body
                 delegate?.updateProfile()
             case .failure(let error):
                 print("Ошибка изменения сайта профиля: \(error)")
