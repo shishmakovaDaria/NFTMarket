@@ -10,7 +10,7 @@ import Foundation
 struct GetNFTRequest: NetworkRequest {
     let NFTID: String
     var endpoint: URL? {
-        return URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/nft/\(NFTID)")
+        Constants.endpoint.appendingPathComponent("/nft/\(NFTID)")
     }
     var httpMethod: HttpMethod { .get }
 }
