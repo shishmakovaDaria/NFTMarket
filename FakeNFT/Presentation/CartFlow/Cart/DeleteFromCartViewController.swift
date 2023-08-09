@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class DeleteFromCartViewController: UIViewController {
     
@@ -72,7 +73,7 @@ final class DeleteFromCartViewController: UIViewController {
 
     
     // MARK: - Properties
-     var NFTforDelete: mockNFTModel?
+     var NFTforDelete: NFTModel?
     
     
     //MARK: - LifeCircle
@@ -80,7 +81,6 @@ final class DeleteFromCartViewController: UIViewController {
         super.viewDidLoad()
         
         setView()
-        nftImageView.image = NFTforDelete?.images
     }
     
     // MARK: - Actions
@@ -102,6 +102,12 @@ final class DeleteFromCartViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
+        
+        guard
+            let image = NFTforDelete?.images.first,
+            let urlImage = URL(string: image)
+        else { return }
+        nftImageView.kf.setImage(with: urlImage)
         
         buttonsStackView.addArrangedSubview(deleteButton)
         buttonsStackView.addArrangedSubview(returnButton)

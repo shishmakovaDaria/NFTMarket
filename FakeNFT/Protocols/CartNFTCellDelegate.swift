@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CartNFTCellDelegate: AnyObject {
-    func didTapDeleteButton(on nft: mockNFTModel)
+    func didTapDeleteButton(on nft: NFTModel)
 }

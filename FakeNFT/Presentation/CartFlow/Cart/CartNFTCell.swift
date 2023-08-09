@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 
 final class CartNFTCell: UITableViewCell {
@@ -51,7 +52,7 @@ final class CartNFTCell: UITableViewCell {
     //MARK: - Properties
     
     weak var delegate: CartNFTCellDelegate?
-    private var model: mockNFTModel?
+    private var model: NFTModel?
     
     //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -72,9 +73,13 @@ final class CartNFTCell: UITableViewCell {
     }
     
     //MARK: - Methods
-    func configureCell(with model: mockNFTModel) {
+    func configureCell(with model: NFTModel) {
         self.model = model
-        nftImageView.image = model.images  // TO DO via Kingfisher
+        guard
+            let image = model.images.first,
+            let urlImage = URL(string: image)
+        else { return }
+        nftImageView.kf.setImage(with: urlImage)
         nftLabel.text = model.name
         priceValue.text = "\(model.price) ETH"
         switch model.rating {

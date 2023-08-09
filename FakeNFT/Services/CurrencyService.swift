@@ -9,7 +9,7 @@ import Foundation
 
 struct GetCurrenciesRequest: NetworkRequest {
     var endpoint: URL? {
-        Constants.endpoint?.appendingPathComponent("/currencies")
+        Constants.endpoint.appendingPathComponent("/currencies")
     }
 }
 

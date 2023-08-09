@@ -21,9 +21,12 @@ final class NFTService {
     func getNFT(with NFTID: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
         let getNFTRequest = GetNFTRequest(NFTID: NFTID)
         networkClient.send(request: getNFTRequest, type: NFTModel.self) { result in
-                DispatchQueue.main.async {
-                    completion(result)
-                }
+            switch result {
+            case .success(let nft):
+                completion(.success(nft))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }
