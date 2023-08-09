@@ -9,14 +9,14 @@ import Foundation
 
 struct GetProfileRequest: NetworkRequest {
     var endpoint: URL? {
-        return URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/profile/1")
+        Constants.endpoint.appendingPathComponent("/profile/1")
     }
     var httpMethod: HttpMethod { .get }
 }
 
 struct ChangeProfileRequest: NetworkRequest {
     var endpoint: URL? {
-        return URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/profile/1")
+        Constants.endpoint.appendingPathComponent("/profile/1")
     }
     var httpMethod: HttpMethod { .put }
     
