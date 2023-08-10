@@ -53,7 +53,6 @@
 		C46E7E0F2A750583006E12E3 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */; };
 		C49BA81E2A7EB3410030F48E /* PayViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */; };
 		C4BC31342A80E6E9007E4496 /* UserAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC31332A80E6E9007E4496 /* UserAgreementViewController.swift */; };
-		C4BC31382A80EC0C007E4496 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC31372A80EC0C007E4496 /* Constants.swift */; };
 		C4BC313A2A8107F3007E4496 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC31392A8107F3007E4496 /* CartService.swift */; };
 		C4BC313C2A8221E0007E4496 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC313B2A8221E0007E4496 /* CurrencyService.swift */; };
 		C4BC313E2A82513F007E4496 /* ResultPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC313D2A82513F007E4496 /* ResultPayViewController.swift */; };
@@ -142,7 +141,6 @@
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewDelegate.swift; sourceTree = "<group>"; };
 		C4BC31332A80E6E9007E4496 /* UserAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgreementViewController.swift; sourceTree = "<group>"; };
-		C4BC31372A80EC0C007E4496 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C4BC31392A8107F3007E4496 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 		C4BC313B2A8221E0007E4496 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		C4BC313D2A82513F007E4496 /* ResultPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPayViewController.swift; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 				3F6806A429CBBAF200B4F915 /* Info.plist */,
 				3F68069629CBBAF100B4F915 /* AppDelegate.swift */,
 				3F68069829CBBAF100B4F915 /* SceneDelegate.swift */,
-				C4BC31372A80EC0C007E4496 /* Constants.swift */,
 				3F68069F29CBBAF200B4F915 /* Assets.xcassets */,
 				3F478ECD29DB473000F6D39E /* DesignSystem */,
 				C465337E2A73D4D4003AB2C1 /* Extensions */,
@@ -660,7 +657,6 @@
 				C447CB812A78EF9C0032D6F7 /* CartViewModel.swift in Sources */,
 				C452BA182A7825BE00862092 /* Observable.swift in Sources */,
 				C40F172E2A7CE5B4004E0E7E /* СurrencyCell.swift in Sources */,
-				C4BC31382A80EC0C007E4496 /* Constants.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
 				3FC8C39129D2453B0081F015 /* ExampleRequest.swift in Sources */,
 				C447CB832A78EFB40032D6F7 /* CartNFTCell.swift in Sources */,
