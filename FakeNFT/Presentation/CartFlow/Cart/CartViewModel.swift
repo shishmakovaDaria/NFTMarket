@@ -50,8 +50,8 @@ final class CartViewModel {
     
     //   MARK: - Methods
     func startObserve() {
-        observeNFT()
         checkIsCartEmpty()
+        observeNFT()
     }
     
     func getOrder() {
@@ -71,7 +71,9 @@ final class CartViewModel {
     }
     
     private func observeNFT() {
-        if !order.isEmpty {
+        if order.isEmpty {
+            isCartEmpty = true
+        } else {
             order.forEach {
                 nfts = []
                 nftService.getNFT(with: $0) { [weak self] result in
@@ -95,7 +97,15 @@ final class CartViewModel {
     private func checkIsCartEmpty() {
         if order.isEmpty {
             isCartEmpty = true
+        } else {
+            isCartEmpty = false
         }
+    }
+    
+    func clearCart() {
+        order = []
+        nfts = []
+        isCartEmpty = true
     }
     
 }

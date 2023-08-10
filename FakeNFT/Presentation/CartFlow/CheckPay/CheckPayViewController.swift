@@ -199,7 +199,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
 extension CheckPayViewController: PayViewDelegate {
     func didTapPayButton() {
         
-    // NEED UPDATE WITH VIEWMODEL
+    // TO DO - NEED UPDATE WITH VIEWMODEL
         let resultPayViewController = ResultPayViewController()
         resultPayViewController.isSuccess = true
         navigationController?.pushViewController(resultPayViewController, animated: true)

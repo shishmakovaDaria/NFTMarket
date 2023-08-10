@@ -86,21 +86,21 @@ final class CartViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         viewModel.getOrder()
         
-//        viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
-//            if isCartEmpry {
-//                self?.showEmptyCartPlaceholder()
-//            } else {
-//                self?.showCart()
-//            }
-//        }
+        viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
+            if isCartEmpry {
+                self?.showEmptyCartPlaceholder()
+            } else {
+                self?.showCart()
+            }
+        }
         
         viewModel.$nfts.bind { [weak self] _ in
             guard let self else { return }
-            self.summaryView.configureSummary(with: viewModel.summaryInfo)
-            self.cartTableView.reloadData()
+            UIView.animate(withDuration: 0.3) {
+                self.summaryView.configureSummary(with: viewModel.summaryInfo)
+                self.cartTableView.reloadData()
+            }
         }
-        
-        cartTableView.reloadData()
         
     }
     
@@ -170,6 +170,7 @@ extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
         deleteFromCartVC.nftForDelete = nft
+        deleteFromCartVC.delegate = self
         deleteFromCartVC.modalPresentationStyle = .overFullScreen
         deleteFromCartVC.modalTransitionStyle = .crossDissolve
         present(deleteFromCartVC, animated: true)
@@ -199,13 +200,16 @@ extension CartViewController: UITableViewDelegate {
     
 }
 
+
+// MARK: - DeleteFromCartViewControllerDelegate
 extension CartViewController: DeleteFromCartViewControllerDelegate {
     func didTapReturnButton() {
         dismiss(animated: true)
     }
     
     func didTapDeleteButton(_ model: NFTModel) {
-        
+        viewModel?.clearCart()  // TO DO - fix delete method: need for one nft
+        dismiss(animated: true)
     }
     
 }
