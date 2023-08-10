@@ -10,23 +10,27 @@ import Foundation
 final class MyNFTsViewModel {
     
     @Observable
-    private(set) var NFTs: [NFTModel] = []
+    private(set) var nfts: [NFTModel] = []
     
-    private let nftService = NFTService()
     var nftIDs: [String] = []
+    private let nftService: NFTService
+    
+    init(nftService: NFTService = NFTService()) {
+        self.nftService = nftService
+    }
     
     func updateNFTs() {
-        var newNfts: [NFTModel] = []
+        var newNFTs: [NFTModel] = []
         nftIDs.forEach { nftID in
             nftService.getNFT(with: nftID) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let nft):
-                    newNfts.append(nft)
+                    newNFTs.append(nft)
                 case .failure(let error):
                     print("Ошибка получения NFT: \(error)")
                 }
-                self.NFTs = newNfts
+                self.nfts = newNFTs
             }
         }
     }

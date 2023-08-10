@@ -22,7 +22,7 @@ final class MyNFTsCell: UITableViewCell {
     private lazy var likeButton: UIButton = {
         let likeButton = UIButton(type: .system)
         likeButton.setBackgroundImage(UIImage.Icons.heartFill, for: .normal)
-        likeButton.tintColor = .whiteDay
+        likeButton.tintColor = .ypWhite
         likeButton.addTarget(self, action: #selector(likeButtonDidTap(_:)), for: .touchUpInside)
         return likeButton
     }()
@@ -33,25 +33,25 @@ final class MyNFTsCell: UITableViewCell {
         nameStackView.alignment = .fill
         nameStackView.spacing = 4
         nameStackView.distribution = .fillEqually
-        nameStackView.contentMode = .scaleToFill
         return nameStackView
     }()
     
     private lazy var nftNameLabel: UILabel = {
         let nftNameLabel = UILabel()
-        nftNameLabel.font = .boldSystemFont(ofSize: 17)
+        nftNameLabel.font = .bodyBold
         nftNameLabel.textColor = .blackDay
         return nftNameLabel
     }()
     
     private lazy var starsImageView: UIImageView = {
         let starsImageView = UIImageView()
+        starsImageView.contentMode = .left
         return starsImageView
     }()
     
     private lazy var authorLabel: UILabel = {
         let authorLabel = UILabel()
-        authorLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        authorLabel.font = .caption2
         authorLabel.textColor = .blackDay
         return authorLabel
     }()
@@ -68,7 +68,7 @@ final class MyNFTsCell: UITableViewCell {
     
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        priceLabel.font = .caption2
         priceLabel.textColor = .blackDay
         priceLabel.text = "Цена"
         return priceLabel
@@ -76,7 +76,7 @@ final class MyNFTsCell: UITableViewCell {
     
     private lazy var currentPriceLabel: UILabel = {
         let currentPriceLabel = UILabel()
-        currentPriceLabel.font = .boldSystemFont(ofSize: 17)
+        currentPriceLabel.font = .bodyBold
         currentPriceLabel.textColor = .blackDay
         return currentPriceLabel
     }()
@@ -88,15 +88,14 @@ final class MyNFTsCell: UITableViewCell {
     }
     
     @objc private func likeButtonDidTap(_ sender: Any?) {
-        // to do
+        //TODO: - sprint 20
     }
     
     func configureCell(nft: NFTModel) {
         nftNameLabel.text = nft.name
         updateNFTImage(url: nft.images.first)
-        let starsImage = getStarsImage(for: nft.rating)
-        starsImageView.image = starsImage
-        authorLabel.text = "от \(nft.author)" // to do: get author name
+        starsImageView.image = getStarsImage(for: nft.rating)
+        authorLabel.text = "от \(nft.author)"  //TODO: - sprint 20: get author name
         currentPriceLabel.text = "\(nft.price) ETH"
     }
     
@@ -115,6 +114,8 @@ final class MyNFTsCell: UITableViewCell {
     
     private func getStarsImage(for rating: Int) -> UIImage? {
         switch rating {
+        case 0:
+            return UIImage.Icons.zeroStarRating
         case 1:
             return UIImage.Icons.oneStarRating
         case 2:
@@ -133,20 +134,18 @@ final class MyNFTsCell: UITableViewCell {
     private func setupUI() {
         contentView.backgroundColor = .whiteDay
         
-        contentView.addSubview(nftImageView)
-        contentView.addSubview(likeButton)
-        contentView.addSubview(nameStackView)
-        nameStackView.addArrangedSubview(nftNameLabel)
-        nameStackView.addArrangedSubview(starsImageView)
-        nameStackView.addArrangedSubview(authorLabel)
-        contentView.addSubview(priceStackView)
-        priceStackView.addArrangedSubview(priceLabel)
-        priceStackView.addArrangedSubview(currentPriceLabel)
+        [nftImageView, likeButton, nameStackView, priceStackView].forEach {
+            contentView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
-        nftImageView.translatesAutoresizingMaskIntoConstraints = false
-        likeButton.translatesAutoresizingMaskIntoConstraints = false
-        nameStackView.translatesAutoresizingMaskIntoConstraints = false
-        priceStackView.translatesAutoresizingMaskIntoConstraints = false
+        [nftNameLabel, starsImageView, authorLabel].forEach {
+            nameStackView.addArrangedSubview($0)
+        }
+        
+        [priceLabel, currentPriceLabel].forEach {
+            priceStackView.addArrangedSubview($0)
+        }
     }
     
     private func setupConstraints() {

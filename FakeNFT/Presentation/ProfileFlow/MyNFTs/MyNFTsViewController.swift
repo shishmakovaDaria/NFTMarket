@@ -32,7 +32,7 @@ final class MyNFTsViewController: UIViewController {
         let placeholder = UILabel()
         placeholder.text = "You don't have NFT yet".localized()
         placeholder.textColor = .blackDay
-        placeholder.font = .boldSystemFont(ofSize: 17)
+        placeholder.font = .bodyBold
         return placeholder
     }()
     
@@ -49,6 +49,8 @@ final class MyNFTsViewController: UIViewController {
         setupUI()
         setupConstraints()
         bind()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,11 +60,11 @@ final class MyNFTsViewController: UIViewController {
     }
     
     @objc private func sortButtonDidTap(_ sender: Any?) {
-        // to be done
+        //TODO: - sprint 20
     }
     
     private func reloadPlaceholder() {
-        if viewModel?.NFTs.count == 0 {
+        if viewModel?.nfts.count == 0 {
             placeholder.isHidden = false
             navigationItem.title = ""
             sortButton.isHidden = true
@@ -77,7 +79,7 @@ final class MyNFTsViewController: UIViewController {
     
     private func bind() {
         UIBlockingProgressHUD.show()
-        viewModel?.$NFTs.bind() { [weak self] _ in
+        viewModel?.$nfts.bind() { [weak self] _ in
             self?.tableView.reloadData()
             self?.reloadPlaceholder()
             UIBlockingProgressHUD.dismiss()
@@ -85,8 +87,6 @@ final class MyNFTsViewController: UIViewController {
     }
     
     private func setupUI() {
-        tableView.dataSource = self
-        tableView.delegate = self
         view.backgroundColor = .whiteDay
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -95,11 +95,10 @@ final class MyNFTsViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: sortButton)
         
-        view.addSubview(placeholder)
-        view.addSubview(tableView)
-        
-        placeholder.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        [placeholder, tableView].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     private func setupConstraints() {
@@ -118,13 +117,13 @@ final class MyNFTsViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension MyNFTsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.NFTs.count ?? 0
+        viewModel?.nfts.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MyNFTsCell.reuseIdentifier, for: indexPath) as? MyNFTsCell else { return UITableViewCell()}
-        guard let nft = viewModel?.NFTs[indexPath.row] else { return UITableViewCell()}
+        guard let nft = viewModel?.nfts[indexPath.row] else { return UITableViewCell()}
         cell.configureCell(nft: nft)
         
         return cell

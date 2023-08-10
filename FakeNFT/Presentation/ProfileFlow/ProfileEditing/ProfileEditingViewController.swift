@@ -57,7 +57,7 @@ final class ProfileEditingViewController: UIViewController {
         uploadAvatarButton.setTitle("Download image".localized(), for: .normal)
         uploadAvatarButton.titleLabel?.textAlignment = .center
         uploadAvatarButton.tintColor = .ypBlack
-        uploadAvatarButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
+        uploadAvatarButton.titleLabel?.font = .bodyRegular
         uploadAvatarButton.isHidden = true
         uploadAvatarButton.addTarget(self, action: #selector(uploadAvatarButtonDidTap(_:)), for: .touchUpInside)
         return uploadAvatarButton
@@ -67,7 +67,7 @@ final class ProfileEditingViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.text = "Name".localized()
         nameLabel.textColor = .blackDay
-        nameLabel.font = .boldSystemFont(ofSize: 22)
+        nameLabel.font = .headline3
         return nameLabel
     }()
     
@@ -75,7 +75,7 @@ final class ProfileEditingViewController: UIViewController {
         let nameTextField = ProfileTextField()
         nameTextField.text = viewModel?.profile.name
         nameTextField.textColor = .blackDay
-        nameTextField.font = .systemFont(ofSize: 17, weight: .regular)
+        nameTextField.font = .bodyRegular
         nameTextField.backgroundColor = .lightGrayDay
         nameTextField.layer.cornerRadius = 12
         nameTextField.clearButtonMode = .whileEditing
@@ -88,7 +88,7 @@ final class ProfileEditingViewController: UIViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Description".localized()
         descriptionLabel.textColor = .blackDay
-        descriptionLabel.font = .boldSystemFont(ofSize: 22)
+        descriptionLabel.font = .headline3
         return descriptionLabel
     }()
     
@@ -96,7 +96,7 @@ final class ProfileEditingViewController: UIViewController {
         let descriptionTextField = UITextView()
         descriptionTextField.text = viewModel?.profile.description
         descriptionTextField.textColor = .blackDay
-        descriptionTextField.font = .systemFont(ofSize: 17, weight: .regular)
+        descriptionTextField.font = .bodyRegular
         descriptionTextField.backgroundColor = .lightGrayDay
         descriptionTextField.layer.cornerRadius = 12
         descriptionTextField.sizeToFit()
@@ -111,7 +111,7 @@ final class ProfileEditingViewController: UIViewController {
         let websiteLabel = UILabel()
         websiteLabel.text = "Website".localized()
         websiteLabel.textColor = .blackDay
-        websiteLabel.font = .boldSystemFont(ofSize: 22)
+        websiteLabel.font = .headline3
         return websiteLabel
     }()
     
@@ -119,7 +119,7 @@ final class ProfileEditingViewController: UIViewController {
         let websiteTextField = ProfileTextField()
         websiteTextField.text = viewModel?.profile.website
         websiteTextField.textColor = .blackDay
-        websiteTextField.font = .systemFont(ofSize: 17, weight: .regular)
+        websiteTextField.font = .bodyRegular
         websiteTextField.backgroundColor = .lightGrayDay
         websiteTextField.layer.cornerRadius = 12
         websiteTextField.clearButtonMode = .whileEditing
@@ -172,27 +172,10 @@ final class ProfileEditingViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.addSubview(closeButton)
-        view.addSubview(profilePhoto)
-        view.addSubview(changeAvatarButton)
-        view.addSubview(uploadAvatarButton)
-        view.addSubview(nameLabel)
-        view.addSubview(nameTextField)
-        view.addSubview(descriptionLabel)
-        view.addSubview(descriptionTextField)
-        view.addSubview(websiteLabel)
-        view.addSubview(websiteTextField)
-        
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        profilePhoto.translatesAutoresizingMaskIntoConstraints = false
-        changeAvatarButton.translatesAutoresizingMaskIntoConstraints = false
-        uploadAvatarButton.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
-        websiteLabel.translatesAutoresizingMaskIntoConstraints = false
-        websiteTextField.translatesAutoresizingMaskIntoConstraints = false
+        [closeButton, profilePhoto, changeAvatarButton, uploadAvatarButton, nameLabel, nameTextField, descriptionLabel, descriptionTextField, websiteLabel, websiteTextField].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     private func setupConstraints() {

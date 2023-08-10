@@ -20,7 +20,11 @@ final class ProfileViewModel {
         id: ""
     )
     
-    private let profileService = ProfileService()
+    private let profileService: ProfileService
+    
+    init(profileService: ProfileService = ProfileService()) {
+        self.profileService = profileService
+    }
     
     func updateProfile() {
         profileService.getProfile { [weak self] result in
@@ -51,5 +55,12 @@ final class ProfileViewModel {
     func provideWebsiteURL() -> URL? {
         let url = URL(string: profile.website)
         return url
+    }
+}
+
+//MARK: - ProfileEditingDelegate
+extension ProfileViewModel: ProfileEditingDelegate {
+    func updateProfileFields() {
+        updateProfile()
     }
 }

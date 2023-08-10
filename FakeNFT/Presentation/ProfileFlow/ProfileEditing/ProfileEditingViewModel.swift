@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ProfileEditingDelegate: AnyObject {
-    func updateProfile()
+    func updateProfileFields()
 }
 
 final class ProfileEditingViewModel {
@@ -24,8 +24,12 @@ final class ProfileEditingViewModel {
         id: ""
     )
     
-    private let profileService = ProfileService()
     var delegate: ProfileEditingDelegate?
+    private let profileService: ProfileService
+    
+    init(profileService: ProfileService = ProfileService()) {
+        self.profileService = profileService
+    }
     
     func updateProfile(profileToSet: ProfileModel) {
         profile = profileToSet
@@ -37,7 +41,7 @@ final class ProfileEditingViewModel {
             switch result {
             case .success(let body):
                 self.profile = body
-                delegate?.updateProfile()
+                self.delegate?.updateProfileFields()
             case .failure(let error):
                 print("Ошибка изменения имени профиля: \(error)")
             }
@@ -50,7 +54,7 @@ final class ProfileEditingViewModel {
             switch result {
             case .success(let body):
                 self.profile = body
-                delegate?.updateProfile()
+                self.delegate?.updateProfileFields()
             case .failure(let error):
                 print("Ошибка изменения описания профиля: \(error)")
             }
@@ -63,7 +67,7 @@ final class ProfileEditingViewModel {
             switch result {
             case .success(let body):
                 self.profile = body
-                delegate?.updateProfile()
+                self.delegate?.updateProfileFields()
             case .failure(let error):
                 print("Ошибка изменения сайта профиля: \(error)")
             }

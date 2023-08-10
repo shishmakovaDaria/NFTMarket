@@ -12,6 +12,6 @@ final class FavoriteNFTsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
-        // to be done
+        // TODO: - sprint 20
     }
 }

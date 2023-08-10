@@ -42,7 +42,7 @@ final class ProfileViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.text = viewModel?.profile.name
         nameLabel.textColor = .blackDay
-        nameLabel.font = .boldSystemFont(ofSize: 22)
+        nameLabel.font = .headline3
         nameLabel.minimumScaleFactor = 15
         return nameLabel
     }()
@@ -52,7 +52,7 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.text = viewModel?.profile.description
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
-        descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        descriptionLabel.font = .caption2
         return descriptionLabel
     }()
     
@@ -60,12 +60,13 @@ final class ProfileViewController: UIViewController {
         let profileWebsite = UILabel()
         profileWebsite.text = viewModel?.profile.website
         profileWebsite.textColor = .ypBlue
-        profileWebsite.font = .systemFont(ofSize: 15, weight: .regular)
+        profileWebsite.font = .caption1
         return profileWebsite
     }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.rowHeight = 54
         tableView.separatorColor = .whiteDay
         tableView.backgroundColor = .whiteDay
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -78,6 +79,8 @@ final class ProfileViewController: UIViewController {
         setupConstraints()
         bind()
         updateAvatar()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +94,7 @@ final class ProfileViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
         let vc = ProfileEditingViewController(viewModel: profileEditingViewModel)
-        profileEditingViewModel.delegate = self
+        profileEditingViewModel.delegate = viewModel
         vc.setProfilePhoto(imageToSet: profilePhoto.image ?? UIImage())
         present(vc, animated: true)
     }
@@ -121,23 +124,13 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupUI() {
-        tableView.dataSource = self
-        tableView.delegate = self
         view.backgroundColor = .whiteDay
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
-        view.addSubview(profilePhoto)
-        view.addSubview(nameLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(profileWebsite)
-        view.addSubview(tableView)
-        
-        editButton.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        profilePhoto.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        profileWebsite.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        [profilePhoto, nameLabel, descriptionLabel, profileWebsite, tableView].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     private func setupConstraints() {
@@ -176,7 +169,7 @@ extension ProfileViewController: UITableViewDataSource {
         let tableHeaders = viewModel?.provideTableHeaders()
         cell.textLabel?.text = tableHeaders?[indexPath.row]
         cell.textLabel?.textColor = .blackDay
-        cell.textLabel?.font = .boldSystemFont(ofSize: 17)
+        cell.textLabel?.font = .bodyBold
         cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
         cell.accessoryView?.tintColor = .blackDay
         cell.backgroundColor = .whiteDay
@@ -187,10 +180,6 @@ extension ProfileViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
@@ -211,12 +200,5 @@ extension ProfileViewController: UITableViewDelegate {
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }
-    }
-}
-
-//MARK: - ProfileEditingDelegate
-extension ProfileViewController: ProfileEditingDelegate {
-    func updateProfile() {
-        viewModel?.updateProfile()
     }
 }
