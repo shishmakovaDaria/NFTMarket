@@ -25,31 +25,35 @@ final class CartViewModel {
     private (set) var nfts: [NFTModel] = []
     
     @Observable
-    private (set) var summaryInfo: SummaryInfo = SummaryInfo(countNFT: 0, price: 0)
-    
-    @Observable
     private (set) var isCartEmpty: Bool = true
+    
+    var summaryInfo: SummaryInfo {
+        let price = nfts.reduce(0.0) { $0 + $1.price }
+        return SummaryInfo(countNFT: nfts.count, price: price)
+    }
     
     // MARK: - Properties
     private let cartService = CartService()
+    private let nftService = NFTService()
+    var order: [String] = []
     
     //   MARK: - Methods
     func startObserve() {
+        getOrder()
         observeNFT()
-        observeSummaryInfo()
+
         checkIsCartEmpty()
     }
     
-    private func observeNFT() {
-        var fetchedNfts: [NFTModel] = []
-        cartService.getNFTs { [weak self] result in
+    func getOrder() {
+        cartService.getOrder { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success(let nfts):
-                    print("\(nfts.count) enter on viewModel")
-                    self.nfts = nfts
-                    print("\(fetchedNfts.count) put on viewModel")
+                case .success(let order):
+                    print("\(order.count) order enter on viewModel")
+                    self.order = order
+                    print("\(self.order.count) order put on viewModel")
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -57,13 +61,30 @@ final class CartViewModel {
         }
     }
     
-    private func observeSummaryInfo() {
-        summaryInfo.countNFT = nfts.count
-        summaryInfo.price = nfts.reduce(0.0) { $0 + $1.price }
+    private func observeNFT() {
+        if !order.isEmpty {
+            order.forEach {
+                nfts = []
+                nftService.getNFT(with: $0) { [weak self] result in
+                    guard let self else { return }
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let nfts):
+                            self.nfts.append(nfts)
+                            print("\(self.nfts.count) on viewModel")
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+        }
     }
     
+    
+    
     private func checkIsCartEmpty() {
-        if nfts.isEmpty {
+        if order.isEmpty {
             isCartEmpty = true
         }
     }

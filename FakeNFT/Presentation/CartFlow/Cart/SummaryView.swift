@@ -14,7 +14,7 @@ final class SummaryView: UIView {
         let label = UILabel()
         label.font = .caption1
         label.textColor = .blackDay
-        label.text = "5 NFT"
+        label.text = "0 NFT"
         return label
     }()
     
@@ -22,7 +22,7 @@ final class SummaryView: UIView {
         let label = UILabel()
         label.font = .bodyBold
         label.textColor = .ypGreen
-        label.text = "22 BTC"
+        label.text = "0 BTC"
         return label
     }()
     

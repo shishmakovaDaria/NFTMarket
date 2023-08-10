@@ -21,6 +21,7 @@ final class CartViewController: UIViewController {
         let label = UILabel()
         label.text = "Cart is empty".localized()
         label.font = UIFont.bodyBold
+        label.isHidden = true
         return label
     }()
     
@@ -62,6 +63,7 @@ final class CartViewController: UIViewController {
         
         bind()
         setLayout()
+        viewModel?.getOrder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,22 +84,23 @@ final class CartViewController: UIViewController {
     //MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
+        viewModel.getOrder()
         
-        viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
-            if isCartEmpry {
-                self?.showEmptyCartPlaceholder()
-            } else {
-                self?.showCart()
-            }
-        }
+//        viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
+//            if isCartEmpry {
+//                self?.showEmptyCartPlaceholder()
+//            } else {
+//                self?.showCart()
+//            }
+//        }
         
         viewModel.$nfts.bind { [weak self] _ in
-            self?.cartTableView.reloadData()
+            guard let self else { return }
+            self.summaryView.configureSummary(with: viewModel.summaryInfo)
+            self.cartTableView.reloadData()
         }
         
-        viewModel.$summaryInfo.bind { [weak self] summaryInfo in
-            self?.summaryView.configureSummary(with: summaryInfo)
-        }
+        cartTableView.reloadData()
         
     }
     
@@ -193,6 +196,17 @@ extension CartViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CartViewController: UITableViewDelegate {
+    
+}
+
+extension CartViewController: DeleteFromCartViewControllerDelegate {
+    func didTapReturnButton() {
+        dismiss(animated: true)
+    }
+    
+    func didTapDeleteButton(_ model: NFTModel) {
+        
+    }
     
 }
 

@@ -55,14 +55,13 @@
 		C4BC313A2A8107F3007E4496 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC31392A8107F3007E4496 /* CartService.swift */; };
 		C4BC313C2A8221E0007E4496 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC313B2A8221E0007E4496 /* CurrencyService.swift */; };
 		C4BC313E2A82513F007E4496 /* ResultPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC313D2A82513F007E4496 /* ResultPayViewController.swift */; };
-
 		C4C26EC62A829958003F2F35 /* UICollectionView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C26EC52A829958003F2F35 /* UICollectionView+extension.swift */; };
-
 		C4D08E392A7A4B9F000B67FB /* CatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E382A7A4B9F000B67FB /* CatalogueViewModel.swift */; };
 		C4D08E3B2A7A4BCA000B67FB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3A2A7A4BCA000B67FB /* ProfileViewModel.swift */; };
 		C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */; };
 		C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */; };
 		C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */; };
+		C4E25C5D2A84D9C80006CC5D /* DeleteFromCartViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E25C5C2A84D9C80006CC5D /* DeleteFromCartViewControllerDelegate.swift */; };
 		E25279A82A829B2200FAE66A /* NFTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279A72A829B2200FAE66A /* NFTService.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
 		E29A5BD12A76A84900A76D9C /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BD02A76A84900A76D9C /* StatisticViewController.swift */; };
@@ -137,7 +136,6 @@
 		C452BA172A7825BE00862092 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C465337F2A73D4F6003AB2C1 /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		C46E7E0E2A750583006E12E3 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
-		
 		C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewDelegate.swift; sourceTree = "<group>"; };
 		C4BC31332A80E6E9007E4496 /* UserAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgreementViewController.swift; sourceTree = "<group>"; };
 		C4BC31372A80EC0C007E4496 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -150,6 +148,7 @@
 		C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		C4D18D8E2A7BBE3F00C48F28 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		C4E25C5C2A84D9C80006CC5D /* DeleteFromCartViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFromCartViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E25279A72A829B2200FAE66A /* NFTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTService.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E29A5BD02A76A84900A76D9C /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
@@ -264,7 +263,6 @@
 				C4BC313B2A8221E0007E4496 /* CurrencyService.swift */,
 				E25279A72A829B2200FAE66A /* NFTService.swift */,
 				612FE3B52A82C865003273F6 /* ProfileService.swift */,
-
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,6 +446,7 @@
 				C40F17212A7BDA32004E0E7E /* SummaryViewDelegate.swift */,
 				C40F17242A7BDA69004E0E7E /* CartNFTCellDelegate.swift */,
 				C49BA81D2A7EB3410030F48E /* PayViewDelegate.swift */,
+				C4E25C5C2A84D9C80006CC5D /* DeleteFromCartViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -626,6 +625,7 @@
 				E29A5BDD2A76B5FC00A76D9C /* UITableViewCell + Ext.swift in Sources */,
 				E29A5BDB2A76B54400A76D9C /* UICollectionViewCell + Ext.swift in Sources */,
 				C40F17252A7BDA69004E0E7E /* CartNFTCellDelegate.swift in Sources */,
+				C4E25C5D2A84D9C80006CC5D /* DeleteFromCartViewControllerDelegate.swift in Sources */,
 				3FC8C38B29D242E90081F015 /* ProductDetailsTableViewCell.swift in Sources */,
 				61DF57E02A7EA6AB006C1211 /* UserModel.swift in Sources */,
 				C4D18D8F2A7BBE3F00C48F28 /* ViewModelProtocol.swift in Sources */,
@@ -641,7 +641,6 @@
 				61DF57E22A7EA715006C1211 /* OrderModel.swift in Sources */,
 				6108DCD02A78519900AAEB34 /* String+extensions.swift in Sources */,
 				C40F17222A7BDA32004E0E7E /* SummaryViewDelegate.swift in Sources */,
-				C49BA81C2A7EAB040030F48E /* UICollectionView+extension.swift in Sources */,
 				3F6806D529CBBEC700B4F915 /* NetworkTask.swift in Sources */,
 				3F68069729CBBAF100B4F915 /* AppDelegate.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */,

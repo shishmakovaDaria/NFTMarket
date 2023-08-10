@@ -70,11 +70,11 @@ final class DeleteFromCartViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapReturnButton), for: .touchUpInside)
         return button
     }()
-
+    
     
     // MARK: - Properties
-     var NFTforDelete: NFTModel?
-    
+    var nftForDelete: NFTModel?
+    weak var delegate: DeleteFromCartViewControllerDelegate?
     
     //MARK: - LifeCircle
     override func viewDidLoad() {
@@ -84,15 +84,16 @@ final class DeleteFromCartViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
     @objc
     private func didTapReturnButton() {
-        dismiss(animated: true)
+        delegate?.didTapReturnButton()
     }
-
+    
     @objc
     private func didTapDeleteButton() {
-        
+        guard let nftForDelete else { return }
+        delegate?.didTapDeleteButton(nftForDelete)
     }
     
     
@@ -104,7 +105,7 @@ final class DeleteFromCartViewController: UIViewController {
         }
         
         guard
-            let image = NFTforDelete?.images.first,
+            let image = nftForDelete?.images.first,
             let urlImage = URL(string: image)
         else { return }
         nftImageView.kf.setImage(with: urlImage)
