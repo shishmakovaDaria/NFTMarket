@@ -76,7 +76,7 @@ final class DeleteFromCartViewController: UIViewController {
     var nftForDelete: NFTModel?
     weak var delegate: DeleteFromCartViewControllerDelegate?
     
-    //MARK: - LifeCircle
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

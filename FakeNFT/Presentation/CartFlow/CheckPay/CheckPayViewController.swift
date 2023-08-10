@@ -53,7 +53,7 @@ final class CheckPayViewController: UIViewController {
     )
         
     
-    //MARK: - LifeCircle
+    //MARK: - LifeCycle
     init(viewModel: CheckPayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

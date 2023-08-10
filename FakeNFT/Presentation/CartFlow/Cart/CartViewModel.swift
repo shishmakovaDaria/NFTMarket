@@ -33,15 +33,24 @@ final class CartViewModel {
     }
     
     // MARK: - Properties
-    private let cartService = CartService()
-    private let nftService = NFTService()
+    private let cartService: CartService
+    private let nftService: NFTService
+    
     var order: [String] = []
+    
+    
+    // MARK: - LifeCycle
+    init(cartService: CartService = CartService(), nftService: NFTService = NFTService()) {
+        
+        self.cartService = cartService
+        self.nftService = nftService
+        getOrder()
+    }
+    
     
     //   MARK: - Methods
     func startObserve() {
-        getOrder()
         observeNFT()
-
         checkIsCartEmpty()
     }
     

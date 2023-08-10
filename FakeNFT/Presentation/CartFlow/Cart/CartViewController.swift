@@ -45,7 +45,7 @@ final class CartViewController: UIViewController {
     private var viewModel: CartViewModel?
     
     
-    //MARK: - LifeCircle
+    //MARK: - LifeCycle
     init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -169,7 +169,7 @@ extension CartViewController: SummaryViewDelegate {
 extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
-        deleteFromCartVC.NFTforDelete = nft
+        deleteFromCartVC.nftForDelete = nft
         deleteFromCartVC.modalPresentationStyle = .overFullScreen
         deleteFromCartVC.modalTransitionStyle = .crossDissolve
         present(deleteFromCartVC, animated: true)

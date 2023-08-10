@@ -52,7 +52,7 @@ final class ResultPayViewController: UIViewController {
    
     var isSuccess: Bool?
     
-    //MARK: - LifeCircle
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

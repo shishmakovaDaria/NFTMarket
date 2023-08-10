@@ -53,7 +53,7 @@ final class PayView: UIView, UITextViewDelegate {
 
     weak var delegate: PayViewDelegate?
     
-    // MARK: - LifeCircle
+    // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()

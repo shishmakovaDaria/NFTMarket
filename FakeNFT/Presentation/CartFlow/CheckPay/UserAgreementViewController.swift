@@ -19,7 +19,7 @@ final class UserAgreementViewController: UIViewController {
         action: #selector(didTapBackButton)
     )
     
-    // MARK: - Lifecircle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

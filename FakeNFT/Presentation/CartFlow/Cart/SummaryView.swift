@@ -46,7 +46,7 @@ final class SummaryView: UIView {
     }()
     
     
-    // MARK: - LifeCircle
+    // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()

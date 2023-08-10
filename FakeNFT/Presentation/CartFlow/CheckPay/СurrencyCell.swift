@@ -47,7 +47,7 @@ final class CurrencyCell: UICollectionViewCell {
     var currencyModel: CurrencyModel?
     
     
-    // MARK: - Lifecircle
+    // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
