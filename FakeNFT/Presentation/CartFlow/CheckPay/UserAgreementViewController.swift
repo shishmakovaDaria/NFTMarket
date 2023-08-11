@@ -10,7 +10,6 @@ import WebKit
 
 final class UserAgreementViewController: UIViewController {
     // MARK: - Layout elements
-    
     private let webView = WKWebView()
     private lazy var backButton = UIBarButtonItem(
         image: UIImage.Icons.backward,
@@ -20,7 +19,6 @@ final class UserAgreementViewController: UIViewController {
     )
     
     // MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()

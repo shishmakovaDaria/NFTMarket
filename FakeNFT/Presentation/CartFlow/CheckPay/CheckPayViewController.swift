@@ -29,7 +29,7 @@ final class CheckPayViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier)
         collection.backgroundColor = .clear
-
+        
         return collection
     }()
     
@@ -51,14 +51,14 @@ final class CheckPayViewController: UIViewController {
         height: 46,
         cellSpacing: 8
     )
-        
+    
     
     //MARK: - LifeCycle
     init(viewModel: CheckPayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -96,7 +96,7 @@ final class CheckPayViewController: UIViewController {
     
     private func setLayout() {
         view.backgroundColor = .whiteDay
-       
+        
         [currenciesCollection, payView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -130,11 +130,11 @@ final class CheckPayViewController: UIViewController {
 
 //MARK: - UICollectionViewDataSource
 extension CheckPayViewController: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel?.currencies.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CurrencyCell = collectionView.dequeueReusableCell(indexPath: indexPath)
         if let model = viewModel?.currencies[indexPath.row] {
@@ -142,7 +142,7 @@ extension CheckPayViewController: UICollectionViewDataSource {
         }
         return cell
     }
-
+    
 }
 
 
@@ -152,7 +152,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     // selecting methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
-
+        
         guard let currencyID = cell.currencyModel?.id else { return }
         viewModel?.selectCurrency(with: currencyID)
         cell.select()
@@ -171,7 +171,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
         let cellWidth = availableSpace / collectionParams.cellCount
         return CGSize(width: cellWidth, height: collectionParams.height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int
     ) -> UIEdgeInsets {
         UIEdgeInsets(
@@ -181,13 +181,12 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
             right: collectionParams.rightInset
         )
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         collectionParams.cellSpacing
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         collectionParams.cellSpacing
@@ -199,12 +198,12 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
 extension CheckPayViewController: PayViewDelegate {
     func didTapPayButton() {
         
-    // TO DO - NEED UPDATE WITH VIEWMODEL
+        // TO DO - NEED UPDATE WITH VIEWMODEL
         let resultPayViewController = ResultPayViewController()
         resultPayViewController.isSuccess = true
         navigationController?.pushViewController(resultPayViewController, animated: true)
     }
-
+    
     func didTapUserAgreementLink() {
         let userAgreementViewController = UserAgreementViewController()
         navigationController?.pushViewController(userAgreementViewController, animated: true)

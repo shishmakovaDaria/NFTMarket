@@ -20,12 +20,15 @@ final class CheckPayViewModel {
     
     // MARK: - Properties
     
-    private let currencyService = CurrencyService()
+    private let currencyService: CurrencyService
+    
+    init(currencyService: CurrencyService = CurrencyService()) {
+        self.currencyService = currencyService
+    }
     
     //   MARK: - Methods
     func startObserve() {
         observeCurrencises()
-        
     }
     
     private func observeCurrencises() {

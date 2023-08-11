@@ -16,8 +16,13 @@ struct GetCurrenciesRequest: NetworkRequest {
 
 struct CurrencyService {
     
-    let networkClient = DefaultNetworkClient()
-    let request = GetCurrenciesRequest()
+    let networkClient: DefaultNetworkClient
+    let request: GetCurrenciesRequest
+    
+    init(networkClient: DefaultNetworkClient = DefaultNetworkClient(), request: GetCurrenciesRequest =  GetCurrenciesRequest()) {
+        self.networkClient = networkClient
+        self.request = request
+    }
     
     func getCurrencies(completion: @escaping (Result<[CurrencyModel], Error>) -> Void) {
         networkClient.send(request: request, type: [CurrencyModel].self) { result in
@@ -25,7 +30,6 @@ struct CurrencyService {
                 switch result {
                 case .success(let currencies):
                     completion(.success(currencies))
-    
                 case .failure(let error):
                     completion(.failure(error))
                 }

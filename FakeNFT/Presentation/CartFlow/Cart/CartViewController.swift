@@ -141,7 +141,7 @@ final class CartViewController: UIViewController {
             summaryView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             summaryView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             summaryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-           
+            
             cartTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             cartTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cartTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -183,7 +183,7 @@ extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.nfts.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CartNFTCell = cartTableView.dequeueReusableCell()
         if let model = viewModel?.nfts[indexPath.row] {

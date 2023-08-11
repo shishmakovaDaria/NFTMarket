@@ -51,7 +51,7 @@ final class SummaryView: UIView {
         super.init(frame: frame)
         setView()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -87,13 +87,13 @@ final class SummaryView: UIView {
         
         setConstraints()
     }
-
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             labelsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             labelsStack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             labelsStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-         
+            
             toPayButton.leadingAnchor.constraint(equalTo: labelsStack.trailingAnchor, constant: 24),
             toPayButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             toPayButton.centerYAnchor.constraint(equalTo: labelsStack.centerYAnchor),

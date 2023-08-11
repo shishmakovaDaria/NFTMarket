@@ -92,7 +92,7 @@ final class CartNFTCell: UITableViewCell {
         default:
             break
         }
-
+        
     }
     
     private func setView() {
@@ -115,13 +115,13 @@ final class CartNFTCell: UITableViewCell {
             nftImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             nftImageView.widthAnchor.constraint(equalToConstant: 108),
             nftImageView.heightAnchor.constraint(equalToConstant: 108),
-           
+            
             nftLabel.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 20),
             nftLabel.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 8),
             
             ratingImageView.leadingAnchor.constraint(equalTo: nftLabel.leadingAnchor),
             ratingImageView.topAnchor.constraint(equalTo: nftLabel.bottomAnchor, constant: 4),
-        
+            
             priceLabel.leadingAnchor.constraint(equalTo: nftLabel.leadingAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: priceValue.topAnchor, constant: -2),
             

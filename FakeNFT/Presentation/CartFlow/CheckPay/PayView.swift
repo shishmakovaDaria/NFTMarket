@@ -50,7 +50,6 @@ final class PayView: UIView, UITextViewDelegate {
     }()
     
     // MARK: - Properties
-
     weak var delegate: PayViewDelegate?
     
     // MARK: - LifeCycle
@@ -101,7 +100,7 @@ final class PayView: UIView, UITextViewDelegate {
             payButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             payButton.bottomAnchor.constraint(equalTo: bottomAnchor),
             payButton.heightAnchor.constraint(equalToConstant: 60),
-        
+            
             userAgreementTextView.leadingAnchor.constraint(equalTo: payButton.leadingAnchor),
             userAgreementTextView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             userAgreementTextView.trailingAnchor.constraint(equalTo: payButton.trailingAnchor),

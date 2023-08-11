@@ -46,11 +46,11 @@ final class ResultPayViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapReturnButton), for: .touchUpInside)
         return button
     }()
-
+    
     
     // MARK: - Properties
-   
     var isSuccess: Bool?
+      
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -60,7 +60,6 @@ final class ResultPayViewController: UIViewController {
     }
     
     // MARK: - Actions
-
     @objc
     private func didTapReturnButton() {
         if isSuccess! {
@@ -116,5 +115,5 @@ final class ResultPayViewController: UIViewController {
             returnButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-
+    
 }
