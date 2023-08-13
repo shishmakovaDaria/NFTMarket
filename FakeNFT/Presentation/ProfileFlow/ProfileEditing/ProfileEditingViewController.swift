@@ -22,6 +22,19 @@ final class ProfileEditingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var scrollContainer: UIView = {
+        let scrollContainer = UIView()
+        scrollContainer.translatesAutoresizingMaskIntoConstraints = false
+        return scrollContainer
+    }()
+    
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton(type: .system)
         closeButton.setBackgroundImage(UIImage.Icons.close, for: .normal)
@@ -130,7 +143,6 @@ final class ProfileEditingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .whiteDay
         setupUI()
         setupConstraints()
         bind()
@@ -172,36 +184,56 @@ final class ProfileEditingViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = .whiteDay
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContainer)
+        
         [closeButton, profilePhoto, changeAvatarButton, uploadAvatarButton, nameLabel, nameTextField, descriptionLabel, descriptionTextField, websiteLabel, websiteTextField].forEach {
-            view.addSubview($0)
+            scrollContainer.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func setupConstraints() {
+        let scrollContentGuide = scrollView.contentLayoutGuide
+        let scrollFrameLayoutGuide = scrollView.frameLayoutGuide
+        
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            profilePhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profilePhoto.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            scrollContainer.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            scrollContainer.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            scrollContainer.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
+            
+            scrollContainer.leadingAnchor.constraint(equalTo: scrollFrameLayoutGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: scrollFrameLayoutGuide.trailingAnchor),
+            
+            closeButton.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 24),
+            closeButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -24),
+            
+            profilePhoto.centerXAnchor.constraint(equalTo: scrollContainer.centerXAnchor),
+            profilePhoto.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 80),
             profilePhoto.heightAnchor.constraint(equalToConstant: 70),
             profilePhoto.widthAnchor.constraint(equalToConstant: 70),
             
-            changeAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            changeAvatarButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            changeAvatarButton.centerXAnchor.constraint(equalTo: scrollContainer.centerXAnchor),
+            changeAvatarButton.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 80),
             changeAvatarButton.heightAnchor.constraint(equalToConstant: 70),
             changeAvatarButton.widthAnchor.constraint(equalToConstant: 70),
             
-            uploadAvatarButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            uploadAvatarButton.centerXAnchor.constraint(equalTo: scrollContainer.centerXAnchor),
             uploadAvatarButton.topAnchor.constraint(equalTo: changeAvatarButton.bottomAnchor, constant: 5),
             
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 174),
+            nameLabel.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 16),
+            nameLabel.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 174),
             
             nameTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            nameTextField.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -16),
             nameTextField.heightAnchor.constraint(equalToConstant: 44),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
@@ -209,7 +241,7 @@ final class ProfileEditingViewController: UIViewController {
             
             descriptionTextField.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
             descriptionTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-            descriptionTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
+            descriptionTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             websiteLabel.leadingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor),
             websiteLabel.topAnchor.constraint(equalTo: descriptionTextField.bottomAnchor, constant: 24),
@@ -217,6 +249,7 @@ final class ProfileEditingViewController: UIViewController {
             websiteTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
             websiteTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             websiteTextField.topAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 8),
+            websiteTextField.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor, constant: -15),
             websiteTextField.heightAnchor.constraint(equalToConstant: 44)
         ])
     }

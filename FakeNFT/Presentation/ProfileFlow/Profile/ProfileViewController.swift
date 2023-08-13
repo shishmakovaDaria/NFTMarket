@@ -29,6 +29,19 @@ final class ProfileViewController: UIViewController {
         return editButton
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var scrollContainer: UIView = {
+        let scrollContainer = UIView()
+        scrollContainer.translatesAutoresizingMaskIntoConstraints = false
+        return scrollContainer
+    }()
+    
     private lazy var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView()
         profilePhoto.layer.cornerRadius = 35
@@ -50,7 +63,7 @@ final class ProfileViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.text = viewModel?.profile.description
-        descriptionLabel.numberOfLines = 10
+        descriptionLabel.numberOfLines = 200
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .caption2
         return descriptionLabel
@@ -125,18 +138,38 @@ final class ProfileViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .whiteDay
+        navigationController?.navigationBar.barTintColor = .whiteDay
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContainer)
         
         [profilePhoto, nameLabel, descriptionLabel, profileWebsite, tableView].forEach {
-            view.addSubview($0)
+            scrollContainer.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func setupConstraints() {
+        let scrollContentGuide = scrollView.contentLayoutGuide
+        let scrollFrameLayoutGuide = scrollView.frameLayoutGuide
+        
         NSLayoutConstraint.activate([
-            profilePhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            profilePhoto.topAnchor.constraint(equalTo: view.topAnchor, constant: 108),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            scrollContainer.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            scrollContainer.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            scrollContainer.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
+            
+            scrollContainer.leadingAnchor.constraint(equalTo: scrollFrameLayoutGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: scrollFrameLayoutGuide.trailingAnchor),
+            
+            profilePhoto.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 16),
+            profilePhoto.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 20),
             profilePhoto.heightAnchor.constraint(equalToConstant: 70),
             profilePhoto.widthAnchor.constraint(equalToConstant: 70),
             
@@ -145,15 +178,16 @@ final class ProfileViewController: UIViewController {
             
             descriptionLabel.leadingAnchor.constraint(equalTo: profilePhoto.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
+            descriptionLabel.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -18),
             
             profileWebsite.leadingAnchor.constraint(equalTo: profilePhoto.leadingAnchor),
             profileWebsite.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
             
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: 162),
-            tableView.topAnchor.constraint(equalTo: profileWebsite.bottomAnchor, constant: 40)
+            tableView.topAnchor.constraint(equalTo: profileWebsite.bottomAnchor, constant: 40),
+            tableView.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor, constant: -15)
         ])
     }
 }
