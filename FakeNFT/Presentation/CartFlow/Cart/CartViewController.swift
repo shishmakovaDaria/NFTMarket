@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ProgressHUD
+
 
 final class CartViewController: UIViewController {
     
@@ -63,7 +65,6 @@ final class CartViewController: UIViewController {
         
         bind()
         setLayout()
-        viewModel?.getOrder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +85,16 @@ final class CartViewController: UIViewController {
     //MARK: - Methods
     private func bind() {
         guard let viewModel = viewModel else { return }
-        viewModel.getOrder()
+
+        viewModel.$isLoaded.bind { isLoaded in
+            if !isLoaded {
+                ProgressHUD.show()
+                print("SHOW HUD")
+            } else {
+                ProgressHUD.dismiss()
+                print("DISMISS HUD")
+            }
+        }
         
         viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
             if isCartEmpry {

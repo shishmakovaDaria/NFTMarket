@@ -27,14 +27,18 @@ final class CartViewModel {
     @Observable
     private (set) var isCartEmpty: Bool = true
     
-    var summaryInfo: SummaryInfo {
-        let price = nfts.reduce(0.0) { $0 + $1.price }
-        return SummaryInfo(countNFT: nfts.count, price: price)
-    }
+    @Observable
+    private (set) var isLoaded: Bool = false
+    
     
     // MARK: - Properties
     private let cartService: CartService
     private let nftService: NFTService
+    
+    var summaryInfo: SummaryInfo {
+        let price = nfts.reduce(0.0) { $0 + $1.price }
+        return SummaryInfo(countNFT: nfts.count, price: price)
+    }
     
     var order: [String] = []
     
@@ -54,6 +58,7 @@ final class CartViewModel {
     }
     
     func getOrder() {
+        isLoaded = false
         cartService.getOrder { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -67,11 +72,14 @@ final class CartViewModel {
                 }
             }
         }
+        isLoaded = true
     }
     
     private func observeNFT() {
+        isLoaded = false
         if order.isEmpty {
             isCartEmpty = true
+            isLoaded = true
         } else {
             order.forEach {
                 nfts = []
@@ -89,9 +97,8 @@ final class CartViewModel {
                 }
             }
         }
+        isLoaded = true
     }
-    
-    
     
     private func checkIsCartEmpty() {
         if order.isEmpty {
@@ -120,7 +127,8 @@ extension CartViewModel: ViewModelProtocol {
             nfts = nfts.sorted(by: {$0.name < $1.name} )
         case .NFTCount:
             break
+        case .NFTName:
+            break
         }
     }
-    
 }
