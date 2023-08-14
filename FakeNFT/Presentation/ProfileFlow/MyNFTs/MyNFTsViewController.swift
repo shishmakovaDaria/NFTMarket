@@ -60,7 +60,8 @@ final class MyNFTsViewController: UIViewController {
     }
     
     @objc private func sortButtonDidTap(_ sender: Any?) {
-        //TODO: - sprint 20
+        guard let viewModel = viewModel else { return }
+        showAlertSort(viewModel: viewModel, valueSort: .profile)
     }
     
     private func reloadPlaceholder() {

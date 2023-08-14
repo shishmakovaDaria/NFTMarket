@@ -35,3 +35,21 @@ final class MyNFTsViewModel {
         }
     }
 }
+
+//MARK: - UITableViewDelegate
+extension MyNFTsViewModel: ViewModelProtocol {
+    func sort(param: Sort) {
+        switch param {
+        case .price:
+            nfts = nfts.sorted(by: { $0.price > $1.price })
+        case .rating:
+            nfts = nfts.sorted(by: { $0.rating > $1.rating })
+        case .NFTName:
+            nfts = nfts.sorted(by: { $0.name < $1.name })
+        case .name:
+            break
+        case .NFTCount:
+            break
+        }
+    }
+}
