@@ -125,7 +125,11 @@ extension MyNFTsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MyNFTsCell.reuseIdentifier, for: indexPath) as? MyNFTsCell else { return UITableViewCell()}
         guard let nft = viewModel?.nfts[indexPath.row] else { return UITableViewCell()}
-        cell.configureCell(nft: nft)
+        guard let isLiked = viewModel?.likedNFTs.contains(nft.id) else { return UITableViewCell()}
+        cell.configureCell(nft: nft, isLiked: isLiked)
+        cell.likeButtonTappedHandler = { [weak self] in
+            self?.viewModel?.handleLikeButtonTapped(at: nft.id)
+        }
         
         return cell
     }

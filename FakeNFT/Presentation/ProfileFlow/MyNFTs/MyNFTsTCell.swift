@@ -22,7 +22,6 @@ final class MyNFTsCell: UITableViewCell {
     private lazy var likeButton: UIButton = {
         let likeButton = UIButton(type: .system)
         likeButton.setBackgroundImage(UIImage.Icons.heartFill, for: .normal)
-        likeButton.tintColor = .ypWhite
         likeButton.addTarget(self, action: #selector(likeButtonDidTap(_:)), for: .touchUpInside)
         return likeButton
     }()
@@ -87,16 +86,24 @@ final class MyNFTsCell: UITableViewCell {
         setupConstraints()
     }
     
-    @objc private func likeButtonDidTap(_ sender: Any?) {
-        //TODO: - sprint 20
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(nft: NFTModel) {
+    var likeButtonTappedHandler: (() -> Void)?
+    
+    @objc private func likeButtonDidTap(_ sender: Any?) {
+        changeLike()
+        likeButtonTappedHandler?()
+    }
+    
+    func configureCell(nft: NFTModel, isLiked: Bool) {
         nftNameLabel.text = nft.name
         updateNFTImage(url: nft.images.first)
         starsImageView.image = getStarsImage(for: nft.rating)
         authorLabel.text = "From".localized().lowercased() + " \(nft.author)"  //TODO: - sprint 20: get author name
         currentPriceLabel.text = "\(nft.price) ETH"
+        setupLike(isLiked: isLiked)
     }
     
     private func updateNFTImage(url: String?) {
@@ -128,6 +135,22 @@ final class MyNFTsCell: UITableViewCell {
             return UIImage.Icons.fiveStarRating
         default:
             return nil
+        }
+    }
+    
+    private func setupLike(isLiked: Bool) {
+        if isLiked {
+            likeButton.tintColor = .ypRed
+        } else {
+            likeButton.tintColor = .ypWhite
+        }
+    }
+    
+    private func changeLike() {
+        if likeButton.tintColor == .ypRed {
+            likeButton.tintColor = .ypWhite
+        } else {
+            likeButton.tintColor = .ypRed
         }
     }
     
@@ -169,10 +192,6 @@ final class MyNFTsCell: UITableViewCell {
             priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -39),
             priceStackView.bottomAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: -10)
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

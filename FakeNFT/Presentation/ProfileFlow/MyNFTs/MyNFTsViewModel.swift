@@ -1,7 +1,7 @@
 //
 //  MyNFTsViewModel.swift
 //  FakeNFT
-//
+// 
 //  Created by Дарья Шишмакова on 08.08.2023.
 //
 
@@ -13,6 +13,7 @@ final class MyNFTsViewModel {
     private(set) var nfts: [NFTModel] = []
     
     var nftIDs: [String] = []
+    var likedNFTs: [String] = []
     private let nftService: NFTService
     
     init(nftService: NFTService = NFTService()) {
@@ -33,6 +34,11 @@ final class MyNFTsViewModel {
                 self.nfts = newNFTs
             }
         }
+    }
+    
+    func handleLikeButtonTapped(at nftId: String) {
+        //добавить блокировку UI и HUD
+        //добавить работу с сетью
     }
 }
 
