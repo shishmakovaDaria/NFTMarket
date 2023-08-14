@@ -70,7 +70,7 @@ final class MyNFTsCell: UITableViewCell {
         let priceLabel = UILabel()
         priceLabel.font = .caption2
         priceLabel.textColor = .blackDay
-        priceLabel.text = "Цена"
+        priceLabel.text = "Price".localized()
         return priceLabel
     }()
     
@@ -95,7 +95,7 @@ final class MyNFTsCell: UITableViewCell {
         nftNameLabel.text = nft.name
         updateNFTImage(url: nft.images.first)
         starsImageView.image = getStarsImage(for: nft.rating)
-        authorLabel.text = "от \(nft.author)"  //TODO: - sprint 20: get author name
+        authorLabel.text = "From".localized().lowercased() + " \(nft.author)"  //TODO: - sprint 20: get author name
         currentPriceLabel.text = "\(nft.price) ETH"
     }
     

@@ -59,7 +59,7 @@ final class ProfileEditingViewController: UIViewController {
         changeAvatarButton.titleLabel?.numberOfLines = 2
         changeAvatarButton.titleLabel?.textAlignment = .center
         changeAvatarButton.tintColor = .ypWhite
-        changeAvatarButton.titleLabel?.font = .systemFont(ofSize: 10, weight: .medium)
+        changeAvatarButton.titleLabel?.font = .bodyMedium
         changeAvatarButton.addTarget(self, action: #selector(changeAvatarButtonDidTap(_:)), for: .touchUpInside)
         return changeAvatarButton
     }()
