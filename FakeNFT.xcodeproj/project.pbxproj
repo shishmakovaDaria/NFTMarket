@@ -349,8 +349,8 @@
 			children = (
 				C40F17292A7CE553004E0E7E /* CheckPayViewController.swift */,
 				C40F172B2A7CE577004E0E7E /* CheckPayViewModel.swift */,
-				C40F172D2A7CE5B4004E0E7E /* СurrencyCell.swift */,
 				C40F172F2A7D0E52004E0E7E /* PayView.swift */,
+				C40F172D2A7CE5B4004E0E7E /* СurrencyCell.swift */,
 				C4BC31332A80E6E9007E4496 /* UserAgreementViewController.swift */,
 				C4BC313D2A82513F007E4496 /* ResultPayViewController.swift */,
 			);
@@ -419,8 +419,8 @@
 			isa = PBXGroup;
 			children = (
 				E29A5BD62A76A92C00A76D9C /* CartViewController.swift */,
-				C447CB7E2A78EF7E0032D6F7 /* SummaryView.swift */,
 				C447CB802A78EF9C0032D6F7 /* CartViewModel.swift */,
+				C447CB7E2A78EF7E0032D6F7 /* SummaryView.swift */,
 				C447CB822A78EFB40032D6F7 /* CartNFTCell.swift */,
 				C40F17262A7BDCCD004E0E7E /* DeleteFromCartViewController.swift */,
 			);

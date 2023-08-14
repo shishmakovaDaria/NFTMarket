@@ -17,6 +17,8 @@ final class CheckPayViewModel {
     @Observable
     private (set) var selectedCurrency: CurrencyModel?
     
+    @Observable
+    private (set) var isLoaded: Bool = false
     
     // MARK: - Properties
     
@@ -32,6 +34,7 @@ final class CheckPayViewModel {
     }
     
     private func observeCurrencises() {
+        isLoaded = false
         currencyService.getCurrencies { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -43,6 +46,7 @@ final class CheckPayViewModel {
                 }
             }
         }
+        isLoaded = true
     }
     
     func selectCurrency(with id: String) {

@@ -89,10 +89,8 @@ final class CartViewController: UIViewController {
         viewModel.$isLoaded.bind { isLoaded in
             if !isLoaded {
                 ProgressHUD.show()
-                print("SHOW HUD")
             } else {
                 ProgressHUD.dismiss()
-                print("DISMISS HUD")
             }
         }
         

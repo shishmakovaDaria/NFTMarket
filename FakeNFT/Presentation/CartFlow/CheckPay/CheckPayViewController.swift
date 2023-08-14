@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ProgressHUD
+
 
 final class CheckPayViewController: UIViewController {
     //MARK: - Layout properties
@@ -88,7 +90,17 @@ final class CheckPayViewController: UIViewController {
     
     //MARK: - Methods
     private func bind() {
-        viewModel?.$currencies.bind { [weak self] _ in
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.$isLoaded.bind { isLoaded in
+            if !isLoaded {
+                ProgressHUD.show()
+            } else {
+                ProgressHUD.dismiss()
+            }
+        }
+        
+        viewModel.$currencies.bind { [weak self] _ in
             self?.currenciesCollection.reloadData()
         }
         
