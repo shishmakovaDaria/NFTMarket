@@ -82,6 +82,7 @@ final class ProfileViewController: UIViewController {
         tableView.rowHeight = 54
         tableView.separatorColor = .whiteDay
         tableView.backgroundColor = .whiteDay
+        tableView.isScrollEnabled = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
