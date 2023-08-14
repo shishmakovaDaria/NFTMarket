@@ -12,6 +12,7 @@ enum Sort {
     case rating
     case name
     case NFTCount
+    case NFTName
 }
 
 enum SortForScreen {
@@ -35,9 +36,11 @@ extension UIViewController {
         let sortByPriceAction = UIAlertAction(title: "By price".localized(), style: .default) { _ in
             viewModel.sort(param: .price)
         }
+        
         let sortByRatingAction = UIAlertAction(title: "By rating".localized(), style: .default) { _ in
             viewModel.sort(param: .rating)
         }
+        
         let sortByNameAction = UIAlertAction(title: "By name".localized(), style: .default) { _ in
             viewModel.sort(param: .name)
         }
@@ -46,21 +49,24 @@ extension UIViewController {
             viewModel.sort(param: .NFTCount)
         }
         
-        let closeAction = UIAlertAction(title: "Close".localized(), style: .cancel)
+        let sortByNFTNameAction = UIAlertAction(title: "By NFT name".localized(), style: .default) { _ in
+            viewModel.sort(param: .NFTName)
+        }
         
+        let closeAction = UIAlertAction(title: "Close".localized(), style: .cancel)
         
         switch valueSort {
         case .catalogue:
-            alert.addAction(sortByNameAction)
+            alert.addAction(sortByNFTNameAction)
             alert.addAction(sortByNFTCountAction)
         case .profile:
             alert.addAction(sortByPriceAction)
             alert.addAction(sortByRatingAction)
-            alert.addAction(sortByNameAction)
+            alert.addAction(sortByNFTNameAction)
         case .cart:
             alert.addAction(sortByPriceAction)
             alert.addAction(sortByRatingAction)
-            alert.addAction(sortByNameAction)
+            alert.addAction(sortByNFTNameAction)
         case .statistic:
             alert.addAction(sortByNameAction)
             alert.addAction(sortByRatingAction)
