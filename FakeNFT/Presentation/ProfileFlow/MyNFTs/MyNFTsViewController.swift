@@ -85,6 +85,10 @@ final class MyNFTsViewController: UIViewController {
             self?.reloadPlaceholder()
             UIBlockingProgressHUD.dismiss()
         }
+        
+        viewModel?.$nftsAuthors.bind() { [weak self] _ in
+            self?.tableView.reloadData()
+        }
     }
     
     private func setupUI() {
@@ -124,11 +128,11 @@ extension MyNFTsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MyNFTsCell.reuseIdentifier, for: indexPath) as? MyNFTsCell else { return UITableViewCell()}
-        guard let nft = viewModel?.nfts[indexPath.row] else { return UITableViewCell()}
-        guard let isLiked = viewModel?.likedNFTs.contains(nft.id) else { return UITableViewCell()}
-        cell.configureCell(nft: nft, isLiked: isLiked)
+        guard let cellModel = viewModel?.configureCellModel(nftIndex: indexPath.row) else { return UITableViewCell()}
+        
+        cell.configureCell(cellModel: cellModel)
         cell.likeButtonTappedHandler = { [weak self] in
-            self?.viewModel?.handleLikeButtonTapped(at: nft.id)
+            self?.viewModel?.handleLikeButtonTapped(nftIndex: indexPath.row)
         }
         
         return cell

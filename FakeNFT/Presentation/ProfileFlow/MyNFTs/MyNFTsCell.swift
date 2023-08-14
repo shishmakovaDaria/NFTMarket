@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 import Kingfisher
 
+struct MyNFTsCellModel {
+    let name: String
+    let image: String
+    let rating: Int
+    let author: String
+    let price: String
+    let isLiked: Bool
+}
+
 final class MyNFTsCell: UITableViewCell {
     
     private lazy var nftImageView: UIImageView = {
@@ -97,13 +106,13 @@ final class MyNFTsCell: UITableViewCell {
         likeButtonTappedHandler?()
     }
     
-    func configureCell(nft: NFTModel, isLiked: Bool) {
-        nftNameLabel.text = nft.name
-        updateNFTImage(url: nft.images.first)
-        starsImageView.image = getStarsImage(for: nft.rating)
-        authorLabel.text = "From".localized().lowercased() + " \(nft.author)"  //TODO: - sprint 20: get author name
-        currentPriceLabel.text = "\(nft.price) ETH"
-        setupLike(isLiked: isLiked)
+    func configureCell(cellModel: MyNFTsCellModel) {
+        nftNameLabel.text = cellModel.name
+        updateNFTImage(url: cellModel.image)
+        starsImageView.image = getStarsImage(for: cellModel.rating)
+        authorLabel.text = cellModel.author
+        currentPriceLabel.text = cellModel.price
+        setupLike(isLiked: cellModel.isLiked)
     }
     
     private func updateNFTImage(url: String?) {
