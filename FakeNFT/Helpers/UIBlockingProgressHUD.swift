@@ -1,14 +1,12 @@
 //
-//  File.swift
+//  UIBlockingProgressHUD.swift
 //  FakeNFT
 //
-//  Created by Aleksandr Garipov on 09.08.2023.
+//  Created by Дарья Шишмакова on 09.08.2023.
 //
-
 
 import UIKit
 import ProgressHUD
-
 
 final class UIBlockingProgressHUD {
     private static var window: UIWindow? {
@@ -24,4 +22,5 @@ final class UIBlockingProgressHUD {
         window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()
     }
+    
 }
