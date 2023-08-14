@@ -12,14 +12,18 @@ final class StatisticViewModel {
     @Observable
     private (set) var users: [UserModel] = []
     
+    //MARK: - Properties
+    
+    private var sortConfig = UserDefaults.standard.object(forKey: "sortConfig")
+    
     //MARK: - Servicies
     let usersService = UsersService()
     
     // MARK: - Methods
     func startObserve() {
-        getUsers()
+        print(sortConfig)
+        users.isEmpty ? getUsers() : ()
     }
-
     
     private func getUsers() {
         usersService.getUsers {result in
@@ -37,8 +41,10 @@ final class StatisticViewModel {
 extension StatisticViewModel: ViewModelProtocol {
     func sort(param: Sort) {
         if param == .rating {
+            UserDefaults.standard.set("rating", forKey: "sortConfig")
             users.sort { Int($0.rating)! > Int($1.rating)!}
         } else if param == .name {
+            UserDefaults.standard.set("name", forKey: "sortConfig")
             users.sort { $0.name < $1.name }
         }
     }
