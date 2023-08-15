@@ -20,6 +20,9 @@ final class ProfileViewModel {
         id: ""
     )
     
+    @Observable
+    private(set) var isLoading: Bool = false
+    
     private let profileService: ProfileService
     
     init(profileService: ProfileService = ProfileService()) {
@@ -27,6 +30,7 @@ final class ProfileViewModel {
     }
     
     func updateProfile() {
+        isLoading = true
         profileService.getProfile { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -35,6 +39,7 @@ final class ProfileViewModel {
             case .failure(let error):
                 print("Ошибка получения профиля: \(error)")
             }
+            isLoading = false
         }
     }
     

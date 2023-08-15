@@ -99,7 +99,6 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIBlockingProgressHUD.show()
         viewModel?.updateProfile()
     }
     
@@ -133,7 +132,14 @@ final class ProfileViewController: UIViewController {
             self?.profileWebsite.text = self?.viewModel?.profile.website
             self?.updateAvatar()
             self?.tableView.reloadData()
-            UIBlockingProgressHUD.dismiss()
+        }
+        
+        viewModel?.$isLoading.bind() { isLoading in
+            if isLoading {
+                UIBlockingProgressHUD.show()
+            } else {
+                UIBlockingProgressHUD.dismiss()
+            }
         }
     }
     

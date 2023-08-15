@@ -24,6 +24,9 @@ final class ProfileEditingViewModel {
         id: ""
     )
     
+    @Observable
+    private(set) var isLoading: Bool = false
+    
     var delegate: ProfileEditingDelegate?
     private let profileService: ProfileService
     
@@ -36,6 +39,7 @@ final class ProfileEditingViewModel {
     }
     
     func changeProfileName(nameToSet: String) {
+        isLoading = true
         profileService.changeProfileName(nameToSet: nameToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -45,10 +49,12 @@ final class ProfileEditingViewModel {
             case .failure(let error):
                 print("Ошибка изменения имени профиля: \(error)")
             }
+            isLoading = false
         }
     }
     
     func changeProfileDescription(descriptionToSet: String) {
+        isLoading = true
         profileService.changeProfileDescription(descriptionToSet: descriptionToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -58,10 +64,12 @@ final class ProfileEditingViewModel {
             case .failure(let error):
                 print("Ошибка изменения описания профиля: \(error)")
             }
+            isLoading = false
         }
     }
     
     func changeProfileWebsite(websiteToSet: String) {
+        isLoading = true
         profileService.changeProfileWebsite(websiteToSet: websiteToSet) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -71,6 +79,7 @@ final class ProfileEditingViewModel {
             case .failure(let error):
                 print("Ошибка изменения сайта профиля: \(error)")
             }
+            isLoading = false
         }
     }
     

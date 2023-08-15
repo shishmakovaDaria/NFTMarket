@@ -18,6 +18,9 @@ final class MyNFTsViewModel {
     @Observable
     private(set) var nftsAuthors: [UserModel] = []
     
+    @Observable
+    private(set) var isLoading: Bool = false
+    
     var nftIDs: [String] = []
     var nftsAuthorsIDs: Set<String> = []
     private let nftService: NFTService
@@ -40,6 +43,7 @@ final class MyNFTsViewModel {
     }
     
     func updateNFTs() {
+        isLoading = true
         nftIDs.forEach { nftID in
             nftService.getNFT(with: nftID) { [weak self] result in
                 guard let self = self else { return }
@@ -51,12 +55,15 @@ final class MyNFTsViewModel {
                     print("Ошибка получения NFT: \(error)")
                 }
                 getNFTsAuthors()
+                if nfts.count == nftIDs.count {
+                    isLoading = false
+                }
             }
         }
     }
     
     func handleLikeButtonTapped(nftIndex: Int) {
-        //добавить блокировку UI и HUD
+        isLoading = true
         let nft = nfts[nftIndex]
         profileService.changeNFTLike(like: nft.id) { [weak self] result in
             guard let self = self else { return }
@@ -66,6 +73,7 @@ final class MyNFTsViewModel {
             case .failure(let error):
                 print("Ошибка отправки лайка: \(error)")
             }
+            isLoading = false
         }
     }
     
@@ -84,6 +92,7 @@ final class MyNFTsViewModel {
     }
     
     func getNFTsAuthors() {
+        isLoading = true
         if nfts.count == nftIDs.count { //проверяем, что все nft подгрузились
             nftsAuthorsIDs.forEach { id in
                 userByIDService.getUserByID(with: id) { [weak self] result in
@@ -94,6 +103,7 @@ final class MyNFTsViewModel {
                     case .failure(let error):
                         print("Ошибка получения автора NFT: \(error)")
                     }
+                    isLoading = false
                 }
             }
         }
