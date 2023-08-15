@@ -14,14 +14,14 @@ final class StatisticViewModel {
     
     //MARK: - Properties
     
-    private var sortConfig = UserDefaults.standard.object(forKey: "sortConfig")
+    private var sortConfig: String? = UserDefaults.standard.string(forKey: "sortConfig")
     
     //MARK: - Servicies
     let usersService = UsersService()
     
     // MARK: - Methods
     func startObserve() {
-        print(sortConfig)
+        startSort()
         users.isEmpty ? getUsers() : ()
     }
     
@@ -30,11 +30,16 @@ final class StatisticViewModel {
             switch result {
             case let .success(users):
                 self.users = users
+                self.startSort()
             case let .failure(error):
                 print("Ошибка получения списка рейтинга юзеров: \(error)")
-                
             }
         }
+    }
+    
+    private func startSort() {
+        guard let sortConfig else { return }
+        sortConfig == "rating" ? sort(param: .rating) : sort(param: .name)
     }
 }
 
