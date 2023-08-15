@@ -10,7 +10,9 @@ import ProgressHUD
 
 
 final class CheckPayViewController: UIViewController {
+    
     //MARK: - Layout properties
+    
     private lazy var navBarTitle: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "Select a Payment Method".localized()
@@ -41,8 +43,8 @@ final class CheckPayViewController: UIViewController {
         return view
     }()
     
-    
     // MARK: - Properties
+    
     var viewModel: CheckPayViewModel?
     private let collectionParams = UICollectionView.CollectionParams(
         cellCount: 2,
@@ -54,8 +56,8 @@ final class CheckPayViewController: UIViewController {
         cellSpacing: 8
     )
     
-    
     //MARK: - LifeCycle
+    
     init(viewModel: CheckPayViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -80,20 +82,20 @@ final class CheckPayViewController: UIViewController {
         viewModel?.startObserve()
     }
     
-    
     //MARK: - Actions
+    
     @objc
     private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
-    
     //MARK: - Methods
+    
     private func bind() {
         guard let viewModel = viewModel else { return }
         
-        viewModel.$isLoaded.bind { isLoaded in
-            if !isLoaded {
+        viewModel.$isLoading.bind { isLoading in
+            if isLoading {
                 ProgressHUD.show()
             } else {
                 ProgressHUD.dismiss()
@@ -141,6 +143,7 @@ final class CheckPayViewController: UIViewController {
 }
 
 //MARK: - UICollectionViewDataSource
+
 extension CheckPayViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,8 +160,8 @@ extension CheckPayViewController: UICollectionViewDataSource {
     
 }
 
-
 //MARK: - UICollectionViewDelegateFlowLayout
+
 extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     
     // selecting methods
@@ -205,8 +208,8 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
 // MARK: - PayViewDelegate
+
 extension CheckPayViewController: PayViewDelegate {
     func didTapPayButton() {
         

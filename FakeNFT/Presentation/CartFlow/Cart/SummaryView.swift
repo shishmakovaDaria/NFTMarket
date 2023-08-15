@@ -9,7 +9,9 @@ import UIKit
 
 
 final class SummaryView: UIView {
+    
     //MARK: - Layout properties
+    
     private var nftCountLabel: UILabel = {
         let label = UILabel()
         label.font = .caption1
@@ -45,8 +47,8 @@ final class SummaryView: UIView {
         return button
     }()
     
-    
     // MARK: - LifeCycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
@@ -61,12 +63,14 @@ final class SummaryView: UIView {
     weak var delegate: SummaryViewDelegate?
     
     // MARK: - Actions
+    
     @objc
     private func didTapToPayButton() {
         delegate?.didTapToPayButton()
     }
     
     //MARK: - Methods
+    
     func configureSummary(with summaryInfo: SummaryInfo) {
         nftCountLabel.text = "\(summaryInfo.countNFT) NFT"
         priceLabel.text = "\(summaryInfo.price) ETH"

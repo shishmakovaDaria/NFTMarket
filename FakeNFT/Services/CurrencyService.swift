@@ -11,8 +11,9 @@ struct GetCurrenciesRequest: NetworkRequest {
     var endpoint: URL? {
         Constants.endpoint.appendingPathComponent("/currencies")
     }
+    
+    var httpMethod: HttpMethod { .get }
 }
-
 
 struct CurrencyService {
     

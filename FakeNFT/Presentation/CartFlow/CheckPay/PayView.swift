@@ -7,8 +7,11 @@
 
 import UIKit
 
+
 final class PayView: UIView, UITextViewDelegate {
+    
     //MARK: - Layout properties
+    
     private lazy var userAgreementTextView: UITextView = {
         let textView = UITextView()
         textView.font = .caption2
@@ -50,9 +53,11 @@ final class PayView: UIView, UITextViewDelegate {
     }()
     
     // MARK: - Properties
+    
     weak var delegate: PayViewDelegate?
     
     // MARK: - LifeCycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
@@ -61,7 +66,6 @@ final class PayView: UIView, UITextViewDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - Actions
     
@@ -74,11 +78,8 @@ final class PayView: UIView, UITextViewDelegate {
     private func didTapUserAgreementLink(sender: UIGestureRecognizer) {
         delegate?.didTapUserAgreementLink()
     }
-    
-    
+        
     // MARK: - Methods
-    
-    
     
     private func setView() {
         backgroundColor = .lightGrayDay
@@ -92,7 +93,6 @@ final class PayView: UIView, UITextViewDelegate {
         
         setConstraints()
     }
-    
     
     private func setConstraints() {
         NSLayoutConstraint.activate([

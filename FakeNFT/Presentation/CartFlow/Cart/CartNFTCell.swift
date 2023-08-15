@@ -10,7 +10,9 @@ import Kingfisher
 
 
 final class CartNFTCell: UITableViewCell {
+    
     // MARK: - Layout elements
+    
     private var nftImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
@@ -55,6 +57,7 @@ final class CartNFTCell: UITableViewCell {
     private var model: NFTModel?
     
     //MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setView()
@@ -64,8 +67,8 @@ final class CartNFTCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     //MARK: - Actions
+    
     @objc
     private func didTapRemoveButton() {
         guard let model else { return }
@@ -73,6 +76,7 @@ final class CartNFTCell: UITableViewCell {
     }
     
     //MARK: - Methods
+    
     func configureCell(with model: NFTModel) {
         self.model = model
         guard
@@ -83,16 +87,15 @@ final class CartNFTCell: UITableViewCell {
         nftLabel.text = model.name
         priceValue.text = "\(model.price) ETH"
         switch model.rating {
-        case 0: ratingImageView.image = UIImage.Icons.zeroStarRating
-        case 1: ratingImageView.image = UIImage.Icons.oneStarRating
-        case 2: ratingImageView.image = UIImage.Icons.twoStarRating
-        case 3: ratingImageView.image = UIImage.Icons.threeStarRating
-        case 4: ratingImageView.image = UIImage.Icons.fourStarRating
-        case 5: ratingImageView.image = UIImage.Icons.fiveStarRating
+            case 0: ratingImageView.image = UIImage.Icons.zeroStarRating
+            case 1: ratingImageView.image = UIImage.Icons.oneStarRating
+            case 2: ratingImageView.image = UIImage.Icons.twoStarRating
+            case 3: ratingImageView.image = UIImage.Icons.threeStarRating
+            case 4: ratingImageView.image = UIImage.Icons.fourStarRating
+            case 5: ratingImageView.image = UIImage.Icons.fiveStarRating
         default:
             break
         }
-        
     }
     
     private func setView() {
@@ -109,7 +112,6 @@ final class CartNFTCell: UITableViewCell {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            
             nftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             nftImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             nftImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
@@ -136,4 +138,5 @@ final class CartNFTCell: UITableViewCell {
 }
 
 // MARK: - ReuseIdentifying
+
 extension CartNFTCell: ReuseIdentifying {}

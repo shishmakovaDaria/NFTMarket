@@ -11,6 +11,7 @@ import Kingfisher
 final class CurrencyCell: UICollectionViewCell {
     
     // MARK: - Layout elements
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -44,10 +45,11 @@ final class CurrencyCell: UICollectionViewCell {
     }()
     
     // MARK: - Properties
+    
     var currencyModel: CurrencyModel?
     
-    
     // MARK: - LifeCycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setView()
@@ -57,8 +59,8 @@ final class CurrencyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Methods
+    
     func configure(with model: CurrencyModel) {
         currencyModel = model
         
@@ -76,7 +78,6 @@ final class CurrencyCell: UICollectionViewCell {
     func deselect() {
         contentView.layer.borderWidth = 0
     }
-    
     
     // MARK: - Layout methods
     
@@ -115,6 +116,6 @@ final class CurrencyCell: UICollectionViewCell {
     }
 }
 
-
 // MARK: - ReuseIdentifying
+
 extension CurrencyCell: ReuseIdentifying {}

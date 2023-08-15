@@ -11,8 +11,22 @@ struct GetOrderRequest: NetworkRequest {
     var endpoint: URL? {
         Constants.endpoint.appendingPathComponent("/orders/1")
     }
+    
+    var httpMethod: HttpMethod { .get }
 }
 
+struct PutOrderRequest: NetworkRequest {
+    var endpoint: URL? {
+        Constants.endpoint.appendingPathComponent("/orders/1")
+    }
+    
+    private let updatedOrder: [String]
+    var httpMethod: HttpMethod { .put }
+    
+    init(updatedOrder: [String]) {
+        self.updatedOrder = updatedOrder
+    }
+}
 
 struct CartService {
     
@@ -33,6 +47,18 @@ struct CartService {
                 case .failure(let error):
                     completion(.failure(error))
                 }
+            }
+        }
+    }
+    
+    func updateOrder(updatedOrder: [String], completion: @escaping (Result<[String], Error>) -> Void) {
+        let putOrderRequest = PutOrderRequest(updatedOrder: updatedOrder)
+        networkClient.send(request: putOrderRequest, type: OrderModel.self) { result in
+            switch result {
+            case .success(let order):
+                completion(.success(order.nfts))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

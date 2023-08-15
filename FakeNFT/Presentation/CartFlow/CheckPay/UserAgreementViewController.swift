@@ -8,8 +8,11 @@
 import UIKit
 import WebKit
 
+
 final class UserAgreementViewController: UIViewController {
+    
     // MARK: - Layout elements
+    
     private let webView = WKWebView()
     private lazy var backButton = UIBarButtonItem(
         image: UIImage.Icons.backward,
@@ -19,6 +22,7 @@ final class UserAgreementViewController: UIViewController {
     )
     
     // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
@@ -26,12 +30,14 @@ final class UserAgreementViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @objc
     private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Methods
+    
     private func loadPage() {
         let request = URLRequest(url: Constants.userAgreementUrl)
         webView.load(request)

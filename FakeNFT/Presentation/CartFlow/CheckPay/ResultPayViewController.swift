@@ -35,7 +35,6 @@ final class ResultPayViewController: UIViewController {
         return stack
     }()
     
-    
     private lazy var returnButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.masksToBounds = true
@@ -47,12 +46,12 @@ final class ResultPayViewController: UIViewController {
         return button
     }()
     
-    
     // MARK: - Properties
+    
     var isSuccess: Bool?
       
-    
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +59,7 @@ final class ResultPayViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @objc
     private func didTapReturnButton() {
         if isSuccess! {
@@ -69,8 +69,8 @@ final class ResultPayViewController: UIViewController {
         }
     }
     
-    
     //MARK: - Methods
+    
     func setView() {
         view.backgroundColor = .whiteDay
         

@@ -71,12 +71,13 @@ final class DeleteFromCartViewController: UIViewController {
         return button
     }()
     
-    
     // MARK: - Properties
+    
     var nftForDelete: NFTModel?
     weak var delegate: DeleteFromCartViewControllerDelegate?
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,10 +96,10 @@ final class DeleteFromCartViewController: UIViewController {
         guard let nftForDelete else { return }
         delegate?.didTapDeleteButton(nftForDelete)
     }
-    
-    
+        
     //MARK: - Methods
-    func setView() {
+    
+    private func setView() {
         [blurView, nftImageView, alertLabel, buttonsStackView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -116,18 +117,17 @@ final class DeleteFromCartViewController: UIViewController {
         setConstraints()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            // nftImageView
             nftImageView.centerXAnchor.constraint(equalTo: alertLabel.centerXAnchor),
             nftImageView.bottomAnchor.constraint(equalTo: alertLabel.topAnchor, constant: -12),
             nftImageView.widthAnchor.constraint(equalToConstant: 108),
             nftImageView.heightAnchor.constraint(equalToConstant: 108),
-            // alertLabel
+
             alertLabel.widthAnchor.constraint(equalToConstant: 180),
             alertLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             alertLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            // buttonsStackView
+
             buttonsStackView.centerXAnchor.constraint(equalTo: alertLabel.centerXAnchor),
             buttonsStackView.topAnchor.constraint(equalTo: alertLabel.bottomAnchor, constant: 20),
             buttonsStackView.widthAnchor.constraint(equalToConstant: 262),

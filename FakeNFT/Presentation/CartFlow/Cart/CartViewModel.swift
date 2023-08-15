@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 struct CartCellModel {
     let image: UIImage
     let name: String
@@ -20,7 +21,9 @@ struct SummaryInfo {
 }
 
 final class CartViewModel {
+    
     // MARK: - Observables
+    
     @Observable
     private (set) var nfts: [NFTModel] = []
     
@@ -28,37 +31,35 @@ final class CartViewModel {
     private (set) var isCartEmpty: Bool = true
     
     @Observable
-    private (set) var isLoaded: Bool = false
-    
+    private (set) var isLoading: Bool = true
     
     // MARK: - Properties
+    
     private let cartService: CartService
     private let nftService: NFTService
-    
     var summaryInfo: SummaryInfo {
         let price = nfts.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nfts.count, price: price)
     }
-    
     var order: [String] = []
     
-    
     // MARK: - LifeCycle
+    
     init(cartService: CartService = CartService(), nftService: NFTService = NFTService()) {
         self.cartService = cartService
         self.nftService = nftService
         getOrder()
     }
     
-    
     //   MARK: - Methods
+    
     func startObserve() {
         checkIsCartEmpty()
         observeNFT()
     }
     
     func getOrder() {
-        isLoaded = false
+        isLoading = true
         cartService.getOrder { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -72,14 +73,14 @@ final class CartViewModel {
                 }
             }
         }
-        isLoaded = true
+        isLoading = false
     }
     
     private func observeNFT() {
-        isLoaded = false
+        isLoading = true
         if order.isEmpty {
             isCartEmpty = true
-            isLoaded = true
+            isLoading = false
         } else {
             order.forEach {
                 nfts = []
@@ -96,8 +97,27 @@ final class CartViewModel {
                     }
                 }
             }
+            isLoading = false
         }
-        isLoaded = true
+    }
+    
+    func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void) {
+        isLoading = true
+        let updatedOrder = order.filter { $0 != nft.id }
+        
+        cartService.updateOrder(updatedOrder: updatedOrder) { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let nfts):
+                    self.order = self.order.filter { nfts.contains($0) }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        isLoading = false
     }
     
     private func checkIsCartEmpty() {
@@ -115,6 +135,8 @@ final class CartViewModel {
     }
     
 }
+
+// MARK: - ViewModelProtocol
 
 extension CartViewModel: ViewModelProtocol {
     func sort(param: Sort) {

@@ -12,6 +12,7 @@ import ProgressHUD
 final class CartViewController: UIViewController {
     
     //MARK: - Layout properties
+    
     private lazy var sortButton = UIBarButtonItem(
         image: UIImage.Icons.sort,
         style: .plain,
@@ -41,13 +42,13 @@ final class CartViewController: UIViewController {
         view.delegate = self
         return view
     }()
-    
-    
+        
     // MARK: - Properties
+    
     private var viewModel: CartViewModel?
     
-    
     //MARK: - LifeCycle
+    
     init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -72,22 +73,22 @@ final class CartViewController: UIViewController {
         viewModel?.startObserve()
     }
     
-    
     //MARK: - Actions
+    
     @objc
     private func didTapSortButton() {
         guard let viewModel = viewModel else { return }
         showAlertSort(viewModel: viewModel, valueSort: .cart)
         cartTableView.reloadData()
     }
-    
-    
+        
     //MARK: - Methods
+    
     private func bind() {
         guard let viewModel = viewModel else { return }
 
-        viewModel.$isLoaded.bind { isLoaded in
-            if !isLoaded {
+        viewModel.$isLoading.bind { isLoading in
+            if isLoading {
                 ProgressHUD.show()
             } else {
                 ProgressHUD.dismiss()
@@ -161,8 +162,8 @@ final class CartViewController: UIViewController {
     }
 }
 
-
 // MARK: - SummaryViewDelegate
+
 extension CartViewController: SummaryViewDelegate {
     func didTapToPayButton() {
         let model = CheckPayViewModel()
@@ -174,6 +175,7 @@ extension CartViewController: SummaryViewDelegate {
 }
 
 // MARK: - CartNFTCellDelegate
+
 extension CartViewController: CartNFTCellDelegate {
     func didTapDeleteButton(on nft: NFTModel) {
         let deleteFromCartVC = DeleteFromCartViewController()
@@ -185,8 +187,8 @@ extension CartViewController: CartNFTCellDelegate {
     }
 }
 
-
 // MARK: - UITableViewDataSource
+
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.nfts.count ?? 0
@@ -202,22 +204,21 @@ extension CartViewController: UITableViewDataSource {
     }
 }
 
-
 // MARK: - UITableViewDelegate
-extension CartViewController: UITableViewDelegate {
-    
-}
 
+extension CartViewController: UITableViewDelegate {}
 
 // MARK: - DeleteFromCartViewControllerDelegate
+
 extension CartViewController: DeleteFromCartViewControllerDelegate {
     func didTapReturnButton() {
         dismiss(animated: true)
     }
     
     func didTapDeleteButton(_ model: NFTModel) {
-        viewModel?.clearCart()  // TO DO - fix delete method: need for one nft
-        dismiss(animated: true)
+        viewModel?.deleteNFT(model) { [weak self] in
+            self?.dismiss(animated: true)
+        }
     }
     
 }
