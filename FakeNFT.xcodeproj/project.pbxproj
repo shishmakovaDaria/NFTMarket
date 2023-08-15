@@ -55,6 +55,7 @@
 		E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */; };
 		E24D24D22A7E9B11005D75CA /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24D12A7E9B11005D75CA /* DataProvider.swift */; };
 		E25279A82A829B2200FAE66A /* NFTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279A72A829B2200FAE66A /* NFTService.swift */; };
+		E25279AC2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md in Resources */ = {isa = PBXBuildFile; fileRef = E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */; };
 		E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43B92A7F503D0044EAD6 /* UsersService.swift */; };
 		E27B43BE2A8274660044EAD6 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
@@ -137,6 +138,7 @@
 		E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCell.swift; sourceTree = "<group>"; };
 		E24D24D12A7E9B11005D75CA /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		E25279A72A829B2200FAE66A /* NFTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTService.swift; sourceTree = "<group>"; };
+		E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = StatisticFlowDecomposition.md; sourceTree = "<group>"; };
 		E27B43B92A7F503D0044EAD6 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		3F68068A29CBBAF100B4F915 = {
 			isa = PBXGroup;
 			children = (
+				E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */,
 				3F68069529CBBAF100B4F915 /* FakeNFT */,
 				3F6806AC29CBBAF200B4F915 /* FakeNFTTests */,
 				3F6806B629CBBAF200B4F915 /* FakeNFTUITests */,
@@ -567,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F6806A329CBBAF200B4F915 /* LaunchScreen.storyboard in Resources */,
+				E25279AC2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md in Resources */,
 				6108DCD42A78522B00AAEB34 /* Localizable.strings in Resources */,
 				3F6806A029CBBAF200B4F915 /* Assets.xcassets in Resources */,
 			);
@@ -664,13 +668,9 @@
 				E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
-				E25279AA2A83CDFF00FAE66A /* UIBlockingProgressHUD.swift in Sources */,
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
-
 				E24D24CB2A7D3381005D75CA /* WebViewVIewController.swift in Sources */,
-
 				611EEBD92A840B21001C7954 /* UIBlockingProgressHUD.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
