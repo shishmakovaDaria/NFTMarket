@@ -220,8 +220,10 @@ extension ProfileViewController: UITableViewDelegate {
         if indexPath.row == 0 {
             let myNFTsViewModel = MyNFTsViewModel()
             let vc = MyNFTsViewController(viewModel: myNFTsViewModel)
-            myNFTsViewModel.nftIDs = viewModel?.profile.nfts ?? []
-            myNFTsViewModel.likedNFTs = viewModel?.profile.likes ?? []
+            myNFTsViewModel.setValues(
+                myNFTS: viewModel?.profile.nfts ?? [],
+                myLikedNFTs: viewModel?.profile.likes ?? []
+            )
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -102,7 +102,6 @@ final class MyNFTsCell: UITableViewCell {
     var likeButtonTappedHandler: (() -> Void)?
     
     @objc private func likeButtonDidTap(_ sender: Any?) {
-        changeLike()
         likeButtonTappedHandler?()
     }
     
@@ -152,14 +151,6 @@ final class MyNFTsCell: UITableViewCell {
             likeButton.tintColor = .ypRed
         } else {
             likeButton.tintColor = .ypWhite
-        }
-    }
-    
-    private func changeLike() {
-        if likeButton.tintColor == .ypRed {
-            likeButton.tintColor = .ypWhite
-        } else {
-            likeButton.tintColor = .ypRed
         }
     }
     

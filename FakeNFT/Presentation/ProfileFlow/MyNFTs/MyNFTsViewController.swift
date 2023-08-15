@@ -89,6 +89,10 @@ final class MyNFTsViewController: UIViewController {
         viewModel?.$nftsAuthors.bind() { [weak self] _ in
             self?.tableView.reloadData()
         }
+        
+        viewModel?.$likes.bind() { [weak self] _ in
+            self?.tableView.reloadData()
+        }
     }
     
     private func setupUI() {

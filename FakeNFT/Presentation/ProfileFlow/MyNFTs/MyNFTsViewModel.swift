@@ -13,30 +13,43 @@ final class MyNFTsViewModel {
     private(set) var nfts: [NFTModel] = []
     
     @Observable
+    private(set) var likes: [String] = []
+    
+    @Observable
     private(set) var nftsAuthors: [UserModel] = []
     
     var nftIDs: [String] = []
-    var likedNFTs: [String] = []
+    var nftsAuthorsIDs: Set<String> = []
     private let nftService: NFTService
     private let userByIDService: UserByIDService
+    private let profileService: ProfileService
     
-    init(nftService: NFTService = NFTService(), userByIDService: UserByIDService = UserByIDService()) {
+    init(
+        nftService: NFTService = NFTService(),
+        userByIDService: UserByIDService = UserByIDService(),
+        profileService: ProfileService = ProfileService()
+    ) {
         self.nftService = nftService
         self.userByIDService = userByIDService
+        self.profileService = profileService
+    }
+    
+    func setValues(myNFTS: [String], myLikedNFTs: [String]) {
+        nftIDs = myNFTS
+        likes = myLikedNFTs
     }
     
     func updateNFTs() {
-        var newNFTs: [NFTModel] = []
         nftIDs.forEach { nftID in
             nftService.getNFT(with: nftID) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let nft):
-                    newNFTs.append(nft)
+                    self.nfts.append(nft)
+                    self.nftsAuthorsIDs.insert(nft.author)
                 case .failure(let error):
                     print("Ошибка получения NFT: \(error)")
                 }
-                self.nfts = newNFTs
                 getNFTsAuthors()
             }
         }
@@ -44,13 +57,21 @@ final class MyNFTsViewModel {
     
     func handleLikeButtonTapped(nftIndex: Int) {
         //добавить блокировку UI и HUD
-        //добавить работу с сетью
+        let nft = nfts[nftIndex]
+        profileService.changeNFTLike(like: nft.id) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                likes = profile.likes
+            case .failure(let error):
+                print("Ошибка отправки лайка: \(error)")
+            }
+        }
     }
     
     func configureCellModel(nftIndex: Int) -> MyNFTsCellModel {
         let nft = nfts[nftIndex]
-        let isLiked = likedNFTs.contains(nft.id)
-        let author = getAuthor(id: nft.author)
+        let author = setAuthorName(id: nft.author)
         
         return MyNFTsCellModel(
             name: nft.name,
@@ -58,27 +79,27 @@ final class MyNFTsViewModel {
             rating: nft.rating,
             author: "From".localized().lowercased() + " \(author)",
             price: "\(nft.price) ETH",
-            isLiked: isLiked
+            isLiked: likes.contains(nft.id)
         )
     }
     
-    private func getNFTsAuthors() {
-        var newAuthors: [UserModel] = []
-        nfts.forEach { nft in
-            userByIDService.getUserByID(with: nft.author) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let user):
-                    newAuthors.append(user)
-                case .failure(let error):
-                    print("Ошибка получения автора NFT: \(error)")
+    func getNFTsAuthors() {
+        if nfts.count == nftIDs.count { //проверяем, что все nft подгрузились
+            nftsAuthorsIDs.forEach { id in
+                userByIDService.getUserByID(with: id) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let user):
+                        self.nftsAuthors.append(user)
+                    case .failure(let error):
+                        print("Ошибка получения автора NFT: \(error)")
+                    }
                 }
-                self.nftsAuthors = newAuthors
             }
         }
     }
     
-    private func getAuthor(id: String) -> String {
+    private func setAuthorName(id: String) -> String {
         var authorToSet = ""
         nftsAuthors.forEach { author in
             if author.id == id {
