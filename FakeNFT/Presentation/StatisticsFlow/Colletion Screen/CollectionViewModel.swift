@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ProgressHUD
 
 final class CollectionViewModel {
     // MARK: - Observables
@@ -14,6 +13,8 @@ final class CollectionViewModel {
     private (set) var nfts: [NFTModel] = []
     @Observable
     private (set) var likes: [String] = []
+    @Observable
+    private (set) var isLoading = false
     
     //MARK: - Properties:
     
@@ -34,15 +35,16 @@ final class CollectionViewModel {
     //MARK: - Actions:
     
     func likeButtonTapped(id: String) {
+        self.isLoading = true
         profileService.changeNFTLike(like: id) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let profile):
                 self.likes = profile.likes
-                UIBlockingProgressHUD.dismiss()
+                isLoading = false
             case .failure(let error):
                 print("Ошибка обновления лайка: \(error)")
-                UIBlockingProgressHUD.dismiss()
+                isLoading = false
             }
         }
     }

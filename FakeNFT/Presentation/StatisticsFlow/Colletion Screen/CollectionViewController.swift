@@ -55,7 +55,6 @@ final class CollectionViewController: UIViewController {
     
         //MARK: - Actions
     func handleLikeButtonTapped(at idNFT: String) {
-        UIBlockingProgressHUD.show()
         viewModel?.likeButtonTapped(id: idNFT)
     }
     
@@ -84,6 +83,9 @@ final class CollectionViewController: UIViewController {
         }
         viewModel.$likes.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
+        }
+        viewModel.$isLoading.bind { [weak self] isLoading in
+            isLoading ? UIBlockingProgressHUD.show() : UIBlockingProgressHUD.dismiss()
         }
     }
 }
