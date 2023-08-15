@@ -20,12 +20,9 @@ struct PutOrderRequest: NetworkRequest {
         Constants.endpoint.appendingPathComponent("/orders/1")
     }
     
-    private let updatedOrder: [String]
     var httpMethod: HttpMethod { .put }
     
-    init(updatedOrder: [String]) {
-        self.updatedOrder = updatedOrder
-    }
+    var dto: Encodable?
 }
 
 struct CartService {
@@ -51,15 +48,17 @@ struct CartService {
         }
     }
     
-    func updateOrder(updatedOrder: [String], completion: @escaping (Result<[String], Error>) -> Void) {
-        let putOrderRequest = PutOrderRequest(updatedOrder: updatedOrder)
+    func updateOrder(updatedOrder: [String], completion: @escaping (Result<OrderModel, Error>) -> Void) {
+        let putOrderRequest = PutOrderRequest(dto: ["nfts": updatedOrder])
         networkClient.send(request: putOrderRequest, type: OrderModel.self) { result in
             switch result {
-            case .success(let order):
-                completion(.success(order.nfts))
-            case .failure(let error):
+                case .success(let order):
+                print(order)
+                completion(.success(order))
+                case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
+    
 }
