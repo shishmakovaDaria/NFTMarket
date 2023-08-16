@@ -21,22 +21,25 @@ final class CollectionViewModel {
     private let nftCollection: [String]
     
     //MARK: - Servicies
-    let nftService = NFTService()
-    let profileService = ProfileService()
+    let nftService: NFTService
+    let profileService: ProfileService
     
     //MARK: - LifeCycle
     
-    init(nfts: [String]) {
+    init(nfts: [String], nftService: NFTService = NFTService(), profileService: ProfileService = ProfileService()) {
         self.nftCollection = nfts
+        self.nftService = nftService
+        self.profileService = profileService
         self.getNFTModel()
         self.getProfile()
     }
     
     //MARK: - Actions:
     
-    func likeButtonTapped(id: String) {
+    func likeButtonTapped(at indexPath: IndexPath) {
+        let nftModel = nfts[indexPath.row]
         self.isLoading = true
-        profileService.changeNFTLike(like: id) { [weak self] result in
+        profileService.changeNFTLike(like: nftModel.id) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let profile):
@@ -50,6 +53,13 @@ final class CollectionViewModel {
     }
     
     //MARK: - Methods
+    
+    func getCellModel(at indexPath: IndexPath) ->  NFTCollectionCellModel {
+        let nftModel = nfts[indexPath.row]
+        let isLiked = likes.contains(nftModel.id)
+        let nftCollectionCellModel = NFTCollectionCellModel(image: nftModel.images[0], rating: nftModel.rating, name: nftModel.name, price: nftModel.price, isLiked: isLiked)
+        return nftCollectionCellModel
+    }
     
     private func getNFTModel() {
         nftCollection.forEach { nftID in
@@ -72,7 +82,6 @@ final class CollectionViewModel {
             switch result {
             case .success(let profile):
                 self.likes = profile.likes
-                print(self.likes)
             case .failure(let error):
                 print("Ошибка получения лайков из профиля \(error)")
             }

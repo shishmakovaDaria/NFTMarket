@@ -54,8 +54,8 @@ final class CollectionViewController: UIViewController {
     }
     
         //MARK: - Actions
-    func handleLikeButtonTapped(at idNFT: String) {
-        viewModel?.likeButtonTapped(id: idNFT)
+    func handleLikeButtonTapped(at indexPath: IndexPath) {
+        viewModel?.likeButtonTapped(at: indexPath)
     }
     
     // MARK: - Methods
@@ -102,13 +102,10 @@ extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as! NFTCollectionCell
         guard let viewModel else { return cell }
-        let nftModel = viewModel.nfts[indexPath.row]
-        let likes = viewModel.likes
-        let isLiked = likes.contains(nftModel.id)
-        let nftCollectionCellModel = NFTCollectionCellModel(image: nftModel.images[0], rating: nftModel.rating, name: nftModel.name, price: nftModel.price, isLiked: isLiked)
+        let nftCollectionCellModel = viewModel.getCellModel(at: indexPath)
         cell.configure(model: nftCollectionCellModel)
         cell.likeButtonTappedHandler = { [weak self] in
-            self?.handleLikeButtonTapped(at: nftModel.id)
+            self?.handleLikeButtonTapped(at: indexPath)
         }
         return cell
     }

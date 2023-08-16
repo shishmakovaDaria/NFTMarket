@@ -53,6 +53,7 @@ final class NFTCollectionCell: UICollectionViewCell {
     private lazy var cartButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(.Icons.addToCart, for: .normal)
+        button.tintColor = .blackDay
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

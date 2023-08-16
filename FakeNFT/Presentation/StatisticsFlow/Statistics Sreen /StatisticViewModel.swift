@@ -11,13 +11,20 @@ final class StatisticViewModel {
     // MARK: - Observables
     @Observable
     private (set) var users: [UserModel] = []
+    @Observable
+    private (set) var isLoading = false
     
     //MARK: - Properties
     
     private var sortConfig: String? = UserDefaults.standard.string(forKey: "sortConfig")
     
     //MARK: - Servicies
-    let usersService = UsersService()
+    let usersService: UsersService
+    
+    //MARK: - LifeCycle
+    init(userService: UsersService = UsersService()) {
+        self.usersService = userService
+    }
     
     // MARK: - Methods
     func startObserve() {
@@ -26,13 +33,16 @@ final class StatisticViewModel {
     }
     
     private func getUsers() {
+        isLoading = true
         usersService.getUsers {result in
             switch result {
             case let .success(users):
                 self.users = users
                 self.startSort()
+                self.isLoading = false
             case let .failure(error):
                 print("Ошибка получения списка рейтинга юзеров: \(error)")
+                self.isLoading = false
             }
         }
     }
