@@ -10,7 +10,7 @@ import Kingfisher
 
 final class UserViewController: UIViewController {
     
-    private var viewModel: UserViewModel?
+    private var viewModel: UserViewModel
     
     //MARK: - Layout properties
     
@@ -25,7 +25,7 @@ final class UserViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel?.user?.name
+        nameLabel.text = viewModel.user.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .boldSystemFont(ofSize: 22)
         nameLabel.minimumScaleFactor = 15
@@ -35,7 +35,7 @@ final class UserViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = viewModel?.user?.description
+        descriptionLabel.text = viewModel.user.description
         descriptionLabel.numberOfLines = 10
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
@@ -93,8 +93,7 @@ final class UserViewController: UIViewController {
     
     @objc
     private func siteButtonTapped() {
-        guard let viewModel else { return }
-        guard let urlString = viewModel.user?.website else { return }
+        let urlString = viewModel.user.website
         guard let url = URL(string: urlString) else { return }
         let webViewController = WebViewViewController(url: url)
         navigationController?.pushViewController(webViewController, animated: true)
@@ -104,17 +103,15 @@ final class UserViewController: UIViewController {
     //MARK: - Methods
     
     private func bind() {
-        guard let viewModel else {return}
         viewModel.$user.bind {[weak self] user in
-            self?.nameLabel.text = user?.name
-            self?.descriptionLabel.text = user?.description
+            self?.nameLabel.text = user.name
+            self?.descriptionLabel.text = user.description
             self?.updateAvatar()
         }
     }
     
     private func updateAvatar() {
-        guard let viewModel else { return }
-        guard let urlString = viewModel.user?.avatar else { return }
+        let urlString = viewModel.user.avatar
         guard let url = URL(string: urlString) else { return }
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .seconds(1)
@@ -171,7 +168,7 @@ final class UserViewController: UIViewController {
 
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let user = viewModel?.user else { return }
+        let user = viewModel.user
         let collectionViewModel = CollectionViewModel(nfts: user.nfts)
         let collectionViewController = CollectionViewController(viewModel: collectionViewModel)
         navigationController?.pushViewController(collectionViewController, animated: true)
@@ -185,7 +182,7 @@ extension UserViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        guard let user = viewModel?.user else { return cell}
+       let user = viewModel.user
         cell.textLabel?.text = "\("My NFTs".localized()) (\(user.nfts.count))"
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .boldSystemFont(ofSize: 17)

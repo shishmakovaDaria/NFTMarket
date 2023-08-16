@@ -31,7 +31,7 @@ final class StatisticViewController: UIViewController {
     
     // MARK: - Properties
 
-    private var viewModel: StatisticViewModel?
+    private var viewModel: StatisticViewModel
     
     //MARK: - LifeCyle
     
@@ -53,13 +53,12 @@ final class StatisticViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.startObserve()
+        viewModel.startObserve()
     }
     
     // MARK: - Actions
     @objc
     private func sortButtonTapped() {
-        guard let viewModel else {return}
         showAlertSort(viewModel: viewModel, valueSort: .statistic)
     }
     
@@ -86,7 +85,6 @@ final class StatisticViewController: UIViewController {
     }
     
     private func bind() {
-        guard let viewModel = viewModel else { return }
         viewModel.$users.bind { [weak self] _ in
             self?.statsTableView.reloadData()
         }
@@ -100,7 +98,6 @@ final class StatisticViewController: UIViewController {
 
 extension StatisticViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel else { return }
         let userModel = viewModel.users[indexPath.row]
         let userViewModel = UserViewModel(user: userModel)
         let userViewController = UserViewController(viewModel: userViewModel)
@@ -110,7 +107,7 @@ extension StatisticViewController: UITableViewDelegate {
 
 extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.users.count ?? 0
+        viewModel.users.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -120,7 +117,8 @@ extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
         let indexNumber = indexPath.row + 1
-        guard let userModel = viewModel?.users[indexPath.row] else { return cell }
+            //TODO: - Отдать создание cellModel в viewModel
+        let userModel = viewModel.users[indexPath.row]
         let cellModel = StatisticCellModel(name: userModel.name,
                                            avatar: userModel.avatar,
                                            rating: userModel.rating,

@@ -31,7 +31,7 @@ final class CollectionViewController: UIViewController {
     
     //MARK: - Properties
     
-    private var viewModel: CollectionViewModel?
+    private var viewModel: CollectionViewModel
     
     // MARK: - LifeCycle
     
@@ -55,7 +55,7 @@ final class CollectionViewController: UIViewController {
     
         //MARK: - Actions
     func handleLikeButtonTapped(at indexPath: IndexPath) {
-        viewModel?.likeButtonTapped(at: indexPath)
+        viewModel.likeButtonTapped(at: indexPath)
     }
     
     // MARK: - Methods
@@ -77,7 +77,6 @@ final class CollectionViewController: UIViewController {
     }
     
     private func bind() {
-        guard let viewModel  else { return }
         viewModel.$nfts.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
@@ -95,13 +94,11 @@ final class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel else { return 0}
         return viewModel.nfts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as! NFTCollectionCell
-        guard let viewModel else { return cell }
         let nftCollectionCellModel = viewModel.getCellModel(at: indexPath)
         cell.configure(model: nftCollectionCellModel)
         cell.likeButtonTappedHandler = { [weak self] in

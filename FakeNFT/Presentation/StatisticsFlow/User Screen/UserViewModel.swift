@@ -10,7 +10,7 @@ import UIKit
 final class UserViewModel {
     // MARK: - Observables
     @Observable
-    private (set) var user: UserModel?
+    private (set) var user: UserModel
     
     //MARK: - LifeCycle
     
