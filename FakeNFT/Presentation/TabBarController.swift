@@ -9,11 +9,6 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    let catalogueViewModel = CatalogueViewModel()
-    let profileViewModel = ProfileViewModel()
-    let cartViewModel = CartViewModel()
-    let statisticViewModel = StatisticViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -35,19 +30,19 @@ final class TabBarController: UITabBarController {
     
     private func setupTabBarItems() {
         viewControllers = [
-            createNavController(for: ProfileViewController(viewModel: profileViewModel),
+            createNavController(for: ProfileViewController(),
                                 title: "Profile".localized(),
                                 image: .Icons.profileTab!),
             
-            createNavController(for: CatalogViewController(viewModel: catalogueViewModel),
+            createNavController(for: CatalogViewController(),
                                 title: "Catalog".localized(),
                                 image: .Icons.catalogueTab!),
             
-            createNavController(for: CartViewController(viewModel: cartViewModel),
+            createNavController(for: CartViewController(),
                                 title: "Cart".localized(),
                                 image: .Icons.cartTab!),
             
-            createNavController(for: StatisticViewController(viewModel: statisticViewModel),
+            createNavController(for: StatisticViewController(),
                                 title: "Statistics".localized(),
                                 image: .Icons.statisticsTab!)
         ]
