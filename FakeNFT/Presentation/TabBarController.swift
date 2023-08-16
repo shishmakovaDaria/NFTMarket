@@ -9,39 +9,44 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    let catalogueViewModel = CatalogueViewModel()
-    let profileViewModel = ProfileViewModel()
-    let cartViewModel = CartViewModel()
-    let statisticViewModel = StatisticViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         tabBar.backgroundColor = .whiteDay
         UITabBar.appearance().barTintColor = .systemBackground
-        setupVCs()
-        
+        setupTabBarItems()
     }
     
-    fileprivate func createNavController(for rootViewController: UIViewController,
-                                                    title: String,
-                                                    image: UIImage) -> UIViewController {
-          let navController = UINavigationController(rootViewController: rootViewController)
-          navController.tabBarItem.title = title
-          navController.tabBarItem.image = image
-          navController.navigationBar.prefersLargeTitles = true
-          return navController
+    private func createNavController(for rootViewController: UIViewController,
+                                     title: String,
+                                     image: UIImage
+    ) -> UIViewController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
+        navController.navigationBar.prefersLargeTitles = true
+        return navController
     }
     
-    fileprivate func setupVCs() {
+    private func setupTabBarItems() {
         viewControllers = [
-            createNavController(for: ProfileViewController(viewModel: profileViewModel), title: "Profile".localized(), image: .Icons.profileTab!),
-            createNavController(for: CatalogViewController(viewModel: catalogueViewModel), title: "Catalog".localized(), image: .Icons.catalogueTab!),
-            createNavController(for: CartViewController(viewModel: cartViewModel), title: "Cart".localized(), image: .Icons.cartTab!),
-            createNavController(for: StatisticViewController(viewModel: statisticViewModel), title: "Statistics".localized(), image: .Icons.statisticsTab!)
+            createNavController(for: ProfileViewController(),
+                                title: "Profile".localized(),
+                                image: .Icons.profileTab!),
+            
+            createNavController(for: CatalogViewController(),
+                                title: "Catalog".localized(),
+                                image: .Icons.catalogueTab!),
+            
+            createNavController(for: CartViewController(),
+                                title: "Cart".localized(),
+                                image: .Icons.cartTab!),
+            
+            createNavController(for: StatisticViewController(),
+                                title: "Statistics".localized(),
+                                image: .Icons.statisticsTab!)
         ]
         tabBar.unselectedItemTintColor = .blackDay
     }
-    
     
 }

@@ -10,7 +10,8 @@ import UIKit
 final class CartViewController: UIViewController {
     
     private var viewModel: CartViewModel?
-    init(viewModel: CartViewModel) {
+    
+    init(viewModel: CartViewModel = CartViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

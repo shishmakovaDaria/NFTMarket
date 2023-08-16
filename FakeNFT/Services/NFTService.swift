@@ -7,16 +7,14 @@
 
 import Foundation
 
-struct GetNFTRequest: NetworkRequest {
-    let NFTID: String
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/nft/\(NFTID)")
-    }
-    var httpMethod: HttpMethod { .get }
-}
 
-final class NFTService {
-    let networkClient = DefaultNetworkClient()
+final class NFTService: NFTServiceProtocol {
+    
+    let networkClient: NetworkClient
+    
+    init(networkClient: NetworkClient = DefaultNetworkClient()) {
+        self.networkClient = networkClient
+    }
     
     func getNFT(with NFTID: String, completion: @escaping (Result<NFTModel, Error>) -> Void) {
         let getNFTRequest = GetNFTRequest(NFTID: NFTID)
