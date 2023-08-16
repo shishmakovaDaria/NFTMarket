@@ -10,7 +10,8 @@ import UIKit
 final class CatalogViewController: UIViewController {
     
     private var viewModel: CatalogueViewModel?
-    init(viewModel: CatalogueViewModel) {
+    
+    init(viewModel: CatalogueViewModel = CatalogueViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

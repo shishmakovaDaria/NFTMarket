@@ -53,7 +53,7 @@ final class StatisticViewModel {
     }
 }
 
-extension StatisticViewModel: ViewModelProtocol {
+extension StatisticViewModel: Sortable {
     func sort(param: Sort) {
         if param == .rating {
             UserDefaults.standard.set("rating", forKey: "sortConfig")

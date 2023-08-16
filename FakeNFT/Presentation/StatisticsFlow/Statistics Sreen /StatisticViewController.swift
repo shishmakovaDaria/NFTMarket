@@ -35,7 +35,7 @@ final class StatisticViewController: UIViewController {
     
     //MARK: - LifeCyle
     
-    init(viewModel: StatisticViewModel) {
+    init(viewModel: StatisticViewModel = StatisticViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

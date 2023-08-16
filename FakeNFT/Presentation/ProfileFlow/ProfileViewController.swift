@@ -10,7 +10,8 @@ import UIKit
 final class ProfileViewController: UIViewController {
     
     private var viewModel: ProfileViewModel?
-    init(viewModel: ProfileViewModel) {
+    
+    init(viewModel: ProfileViewModel = ProfileViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
