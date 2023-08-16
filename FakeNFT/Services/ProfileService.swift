@@ -7,25 +7,14 @@
 
 import Foundation
 
-struct GetProfileRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/profile/1")
-    }
-    var httpMethod: HttpMethod { .get }
-}
-
-struct ChangeProfileRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/profile/1")
-    }
-    var httpMethod: HttpMethod { .put }
-    
-    var dto: Encodable?
-}
 
 final class ProfileService {
     
-    private let networkClient = DefaultNetworkClient()
+    private let networkClient: NetworkClient
+    
+    init(networkClient: NetworkClient = DefaultNetworkClient()) {
+        self.networkClient = networkClient
+    }
 
     func getProfile(completion: @escaping (Result<ProfileModel, Error>) -> Void) {
         let getProfileRequest = GetProfileRequest()
