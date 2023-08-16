@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ViewModelProtocol {
+protocol Sortable {
     func sort(param: Sort)
 }
