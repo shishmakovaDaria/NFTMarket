@@ -129,9 +129,9 @@ final class CartViewModel {
     
 }
 
-// MARK: - ViewModelProtocol
+// MARK: - Sortable
 
-extension CartViewModel: ViewModelProtocol {
+extension CartViewModel: Sortable {
     func sort(param: Sort) {
         switch param {
             case .price:
