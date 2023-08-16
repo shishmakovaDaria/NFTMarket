@@ -2,39 +2,21 @@
 //  CurrencyService.swift
 //  FakeNFT
 //
-//  Created by Vitaly Anpilov on 08.08.2023.
+//  Created by Vitaly Anpilov on 16.08.2023.
 //
 
 import Foundation
 
-struct GetCurrenciesRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/currencies")
-    }
-    
-    var httpMethod: HttpMethod { .get }
-}
 
-struct PaymentOrderRequest: NetworkRequest {
-    private let id: String
+struct CurrencyService: CurrencyServiceProtocol {
     
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/orders/1/payment/\(id)")
-    }
+    let networkClient: NetworkClient
+    let request: NetworkRequest
     
-    var httpMethod: HttpMethod { .get }
-    
-    init(id: String) {
-        self.id = id
-    }
-}
-
-struct CurrencyService {
-    
-    let networkClient: DefaultNetworkClient
-    let request: GetCurrenciesRequest
-    
-    init(networkClient: DefaultNetworkClient = DefaultNetworkClient(), request: GetCurrenciesRequest =  GetCurrenciesRequest()) {
+    init(
+        networkClient: NetworkClient = DefaultNetworkClient(),
+        request: NetworkRequest = GetCurrenciesRequest()
+    ) {
         self.networkClient = networkClient
         self.request = request
     }
@@ -61,7 +43,6 @@ struct CurrencyService {
                 case .failure(let error):
                 completion(.failure(error))
             }
-            
         }
     }
 }

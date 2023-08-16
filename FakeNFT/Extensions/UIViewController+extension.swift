@@ -25,7 +25,7 @@ enum SortForScreen {
 
 extension UIViewController {
     
-    func showAlertSort(viewModel: ViewModelProtocol, valueSort: SortForScreen) {
+    func showAlertSort(viewModel: Sortable, valueSort: SortForScreen) {
         
         let alert = UIAlertController(
             title: nil,
@@ -56,18 +56,18 @@ extension UIViewController {
         let closeAction = UIAlertAction(title: "Close".localized(), style: .cancel)
         
         switch valueSort {
-        case .catalogue:
+            case .catalogue:
             alert.addAction(sortByNFTNameAction)
             alert.addAction(sortByNFTCountAction)
-        case .profile:
+            case .profile:
             alert.addAction(sortByPriceAction)
             alert.addAction(sortByRatingAction)
             alert.addAction(sortByNFTNameAction)
-        case .cart:
+            case .cart:
             alert.addAction(sortByPriceAction)
             alert.addAction(sortByRatingAction)
             alert.addAction(sortByNFTNameAction)
-        case .statistic:
+            case .statistic:
             alert.addAction(sortByNameAction)
             alert.addAction(sortByRatingAction)
         }

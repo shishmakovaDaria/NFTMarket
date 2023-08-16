@@ -49,7 +49,7 @@ final class CartViewController: UIViewController {
     
     //MARK: - LifeCycle
     
-    init(viewModel: CartViewModel) {
+    init(viewModel: CartViewModel = CartViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

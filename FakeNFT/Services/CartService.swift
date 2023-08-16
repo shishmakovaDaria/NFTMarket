@@ -2,35 +2,21 @@
 //  CartService.swift
 //  FakeNFT
 //
-//  Created by Vitaly Anpilov on 07.08.2023.
+//  Created by Vitaly Anpilov on 16.08.2023.
 //
 
 import Foundation
 
-struct GetOrderRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/orders/1")
-    }
-    
-    var httpMethod: HttpMethod { .get }
-}
 
-struct PutOrderRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/orders/1")
-    }
+struct CartService: CartServiceProtocol {
     
-    var httpMethod: HttpMethod { .put }
+    let networkClient: NetworkClient
+    let getOrderNFTs: NetworkRequest
     
-    var dto: Encodable?
-}
-
-struct CartService {
-    
-    var networkClient: DefaultNetworkClient
-    var getOrderNFTs: GetOrderRequest
-    
-    init(networkClient: DefaultNetworkClient = DefaultNetworkClient(), getOrderNFTs: GetOrderRequest = GetOrderRequest()) {
+    init(
+        networkClient: NetworkClient = DefaultNetworkClient(),
+        getOrderNFTs: NetworkRequest = GetOrderRequest()
+    ) {
         self.networkClient = networkClient
         self.getOrderNFTs = getOrderNFTs
     }
