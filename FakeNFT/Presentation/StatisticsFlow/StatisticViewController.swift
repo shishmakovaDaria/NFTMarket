@@ -10,7 +10,8 @@ import UIKit
 final class StatisticViewController: UIViewController {
     
     private var viewModel: StatisticViewModel?
-    init(viewModel: StatisticViewModel) {
+    
+    init(viewModel: StatisticViewModel = StatisticViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

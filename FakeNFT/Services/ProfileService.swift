@@ -7,25 +7,14 @@
 
 import Foundation
 
-struct GetProfileRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/profile/1")
-    }
-    var httpMethod: HttpMethod { .get }
-}
 
-struct ChangeProfileRequest: NetworkRequest {
-    var endpoint: URL? {
-        Constants.endpoint.appendingPathComponent("/profile/1")
+final class ProfileService: ProfileServiceProtocol {
+    
+    let networkClient: NetworkClient
+    
+    init(networkClient: NetworkClient = DefaultNetworkClient()) {
+        self.networkClient = networkClient
     }
-    var httpMethod: HttpMethod { .put }
-    
-    var dto: Encodable?
-}
-
-final class ProfileService {
-    
-    private let networkClient = DefaultNetworkClient()
 
     func getProfile(completion: @escaping (Result<ProfileModel, Error>) -> Void) {
         let getProfileRequest = GetProfileRequest()
@@ -93,7 +82,7 @@ final class ProfileService {
         }
     }
     
-    private func changeProfileLikes(likesToSet: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+    func changeProfileLikes(likesToSet: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
         let changeProfileLikesRequest = ChangeProfileRequest(dto: ["likes": likesToSet])
         
         networkClient.send(request: changeProfileLikesRequest, type: ProfileModel.self) { result in
