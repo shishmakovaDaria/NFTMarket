@@ -11,7 +11,7 @@ import ProgressHUD
 
 final class ProfileEditingViewController: UIViewController {
     
-    private var viewModel: ProfileEditingViewModel?
+    private var viewModel: ProfileEditingViewModel
     
     init(viewModel: ProfileEditingViewModel) {
         self.viewModel = viewModel
@@ -86,7 +86,7 @@ final class ProfileEditingViewController: UIViewController {
     
     private lazy var nameTextField: ProfileTextField = {
         let nameTextField = ProfileTextField()
-        nameTextField.text = viewModel?.profile.name
+        nameTextField.text = viewModel.profile.name
         nameTextField.textColor = .blackDay
         nameTextField.font = .bodyRegular
         nameTextField.backgroundColor = .lightGrayDay
@@ -107,7 +107,7 @@ final class ProfileEditingViewController: UIViewController {
     
     private lazy var descriptionTextField: UITextView = {
         let descriptionTextField = UITextView()
-        descriptionTextField.text = viewModel?.profile.description
+        descriptionTextField.text = viewModel.profile.description
         descriptionTextField.textColor = .blackDay
         descriptionTextField.font = .bodyRegular
         descriptionTextField.backgroundColor = .lightGrayDay
@@ -130,7 +130,7 @@ final class ProfileEditingViewController: UIViewController {
     
     private lazy var websiteTextField: ProfileTextField = {
         let websiteTextField = ProfileTextField()
-        websiteTextField.text = viewModel?.profile.website
+        websiteTextField.text = viewModel.profile.website
         websiteTextField.textColor = .blackDay
         websiteTextField.font = .bodyRegular
         websiteTextField.backgroundColor = .lightGrayDay
@@ -162,12 +162,12 @@ final class ProfileEditingViewController: UIViewController {
     
     @objc private func uploadAvatarButtonDidTap(_ sender: Any?) {
         uploadAvatarButton.isHidden = true
-        viewModel?.changeProfileAvatar()
+        viewModel.changeProfileAvatar()
     }
     
     private func bind() {
-        viewModel?.$profile.bind { [weak self] _ in
-            if let url = self?.viewModel?.provideAvatarURL() {
+        viewModel.$profile.bind { [weak self] _ in
+            if let url = self?.viewModel.provideAvatarURL() {
                 let cache = ImageCache.default
                 cache.diskStorage.config.expiration = .days(1)
                 
@@ -178,7 +178,7 @@ final class ProfileEditingViewController: UIViewController {
             }
         }
         
-        viewModel?.$isLoading.bind() { isLoading in
+        viewModel.$isLoading.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {
@@ -265,11 +265,11 @@ extension ProfileEditingViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         if let text = nameTextField.text {
-            viewModel?.changeProfileName(nameToSet: text)
+            viewModel.changeProfileName(nameToSet: text)
         }
         
         if let text = websiteTextField.text {
-            viewModel?.changeProfileWebsite(websiteToSet: text)
+            viewModel.changeProfileWebsite(websiteToSet: text)
         }
         
         return true
@@ -281,7 +281,7 @@ extension ProfileEditingViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            viewModel?.changeProfileDescription(descriptionToSet: descriptionTextField.text)
+            viewModel.changeProfileDescription(descriptionToSet: descriptionTextField.text)
             return false
         }
         return true

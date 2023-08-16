@@ -10,7 +10,7 @@ import ProgressHUD
 
 final class MyNFTsViewController: UIViewController {
     
-    private var viewModel: MyNFTsViewModel?
+    private var viewModel: MyNFTsViewModel
     
     init(viewModel: MyNFTsViewModel) {
         self.viewModel = viewModel
@@ -55,16 +55,15 @@ final class MyNFTsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.updateNFTs()
+        viewModel.updateNFTs()
     }
     
     @objc private func sortButtonDidTap(_ sender: Any?) {
-        guard let viewModel = viewModel else { return }
         showAlertSort(viewModel: viewModel, valueSort: .profile)
     }
     
     private func reloadPlaceholder() {
-        if viewModel?.nfts.count == 0 {
+        if viewModel.nfts.count == 0 {
             placeholder.isHidden = false
             navigationItem.title = ""
             sortButton.isHidden = true
@@ -78,20 +77,20 @@ final class MyNFTsViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel?.$nfts.bind() { [weak self] _ in
+        viewModel.$nfts.bind() { [weak self] _ in
             self?.tableView.reloadData()
             self?.reloadPlaceholder()
         }
         
-        viewModel?.$nftsAuthors.bind() { [weak self] _ in
+        viewModel.$nftsAuthors.bind() { [weak self] _ in
             self?.tableView.reloadData()
         }
         
-        viewModel?.$likes.bind() { [weak self] _ in
+        viewModel.$likes.bind() { [weak self] _ in
             self?.tableView.reloadData()
         }
         
-        viewModel?.$isLoading.bind() { isLoading in
+        viewModel.$isLoading.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {
@@ -131,17 +130,17 @@ final class MyNFTsViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension MyNFTsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.nfts.count ?? 0
+        viewModel.nfts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: MyNFTsCell.reuseIdentifier, for: indexPath) as? MyNFTsCell else { return UITableViewCell()}
-        guard let cellModel = viewModel?.configureCellModel(nftIndex: indexPath.row) else { return UITableViewCell()}
+        let cellModel = viewModel.configureCellModel(nftIndex: indexPath.row)
         
         cell.configureCell(cellModel: cellModel)
         cell.likeButtonTappedHandler = { [weak self] in
-            self?.viewModel?.handleLikeButtonTapped(nftIndex: indexPath.row)
+            self?.viewModel.handleLikeButtonTapped(nftIndex: indexPath.row)
         }
         
         return cell
@@ -149,6 +148,4 @@ extension MyNFTsViewController: UITableViewDataSource {
 }
 
 //MARK: - UITableViewDelegate
-extension MyNFTsViewController: UITableViewDelegate {
-    
-}
+extension MyNFTsViewController: UITableViewDelegate {}
