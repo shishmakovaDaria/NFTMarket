@@ -39,9 +39,9 @@ struct CartService {
         networkClient.send(request: getOrderNFTs, type: OrderModel.self) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let order):
+                    case .success(let order):
                     completion(.success(order.nfts))
-                case .failure(let error):
+                    case .failure(let error):
                     completion(.failure(error))
                 }
             }

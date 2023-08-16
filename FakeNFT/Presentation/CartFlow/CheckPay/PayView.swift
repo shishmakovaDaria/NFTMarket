@@ -48,6 +48,7 @@ final class PayView: UIView, UITextViewDelegate {
         button.setTitleColor(.whiteDay, for: .normal)
         button.setTitle("Pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
+        button.isEnabled = false
         button.addTarget(self, action: #selector(didTapPayButton), for: .touchUpInside)
         return button
     }()
@@ -80,6 +81,10 @@ final class PayView: UIView, UITextViewDelegate {
     }
         
     // MARK: - Methods
+    
+    func enablePayButton() {
+        payButton.isEnabled = true
+    }
     
     private func setView() {
         backgroundColor = .lightGrayDay

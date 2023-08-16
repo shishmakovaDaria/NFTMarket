@@ -20,6 +20,9 @@ final class CheckPayViewModel {
     @Observable
     private (set) var isLoading: Bool = true
     
+    @Observable
+    private (set) var paymentStatus: Bool = false
+    
     // MARK: - Properties
     
     private let currencyService: CurrencyService

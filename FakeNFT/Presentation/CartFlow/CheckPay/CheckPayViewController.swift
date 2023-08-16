@@ -171,6 +171,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
         guard let currencyID = cell.currencyModel?.id else { return }
         viewModel?.selectCurrency(with: currencyID)
         cell.select()
+        payView.enablePayButton()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
