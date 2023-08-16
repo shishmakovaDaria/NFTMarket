@@ -11,6 +11,7 @@ struct NFTCollectionCellModel {
     let name: String
     let price: Float
     let isLiked: Bool
+    let isInCart: Bool
 }
 
 import UIKit
@@ -54,6 +55,7 @@ final class NFTCollectionCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setImage(.Icons.addToCart, for: .normal)
         button.tintColor = .blackDay
+        button.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -84,9 +86,14 @@ final class NFTCollectionCell: UICollectionViewCell {
     //MARK: - Actions:
     
     var likeButtonTappedHandler: (() -> Void)?
+    var cartButtonTappedHandler: (() -> Void)?
     
     @objc private func likeButtonTapped() {
         likeButtonTappedHandler?()
+    }
+    
+    @objc private func cartButtonTapped() {
+        cartButtonTappedHandler?()
     }
     
     //MARK: - Methods
@@ -98,11 +105,20 @@ final class NFTCollectionCell: UICollectionViewCell {
         self.starsImageView.image = starsImage
         self.nftNameLabel.text = model.name
         self.nftPriceLabel.text = "\(model.price) ETH"
-        let image: UIImage = {
+        let likeImage: UIImage = {
             if model.isLiked {
             return UIImage.Icons.heartFill!.withTintColor(.red, renderingMode: .alwaysOriginal)
         } else {return UIImage.Icons.heartFill!.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)}}()
-        self.likeButton.setImage(image, for: .normal)
+        let cartImage: UIImage =  {
+            if model.isInCart {
+                return UIImage.Icons.deleteFromCart!.withTintColor(.blackDay!, renderingMode: .alwaysOriginal)
+            } else {
+                return UIImage.Icons.addToCart!.withTintColor(.blackDay!, renderingMode: .alwaysOriginal)
+            }
+        }()
+        self.likeButton.setImage(likeImage, for: .normal)
+        self.cartButton.setImage(cartImage, for: .normal)
+        
     }
     
     

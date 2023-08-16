@@ -52,9 +52,15 @@ final class CollectionViewController: UIViewController {
     }
     
         //MARK: - Actions
-    func handleLikeButtonTapped(at indexPath: IndexPath) {
+    private func handleLikeButtonTapped(at indexPath: IndexPath) {
         viewModel.likeButtonTapped(at: indexPath)
     }
+    
+    private func handleCartButtonTapped(at indexPath: IndexPath) {
+        viewModel.cartButtonTapped(at: indexPath)
+    }
+    
+    
     
     // MARK: - Methods
     
@@ -75,10 +81,14 @@ final class CollectionViewController: UIViewController {
     }
     
     private func bind() {
+        viewModel.isLoading ? UIBlockingProgressHUD.show() : ()
         viewModel.$nfts.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
         viewModel.$likes.bind { [weak self] _ in
+            self?.nftCollectionView.reloadData()
+        }
+        viewModel.$cartNFTs.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
         viewModel.$isLoading.bind { [weak self] isLoading in
@@ -101,6 +111,9 @@ extension CollectionViewController: UICollectionViewDataSource {
         cell.configure(model: nftCollectionCellModel)
         cell.likeButtonTappedHandler = { [weak self] in
             self?.handleLikeButtonTapped(at: indexPath)
+        }
+        cell.cartButtonTappedHandler = { [weak self] in
+            self?.handleCartButtonTapped(at: indexPath)
         }
         return cell
     }
