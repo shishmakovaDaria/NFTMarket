@@ -24,16 +24,16 @@ final class MyNFTsViewModel {
     var nftIDs: [String] = []
     var nftsAuthorsIDs: Set<String> = []
     private let nftService: NFTService
-    private let userByIDService: UserByIDService
+    //private let userByIDService: UserByIDService
     private let profileService: ProfileService
     
     init(
         nftService: NFTService = NFTService(),
-        userByIDService: UserByIDService = UserByIDService(),
+        //userByIDService: UserByIDService = UserByIDService(),
         profileService: ProfileService = ProfileService()
     ) {
         self.nftService = nftService
-        self.userByIDService = userByIDService
+        //self.userByIDService = userByIDService
         self.profileService = profileService
     }
     
@@ -92,7 +92,7 @@ final class MyNFTsViewModel {
     }
     
     func getNFTsAuthors() {
-        isLoading = true
+        /*isLoading = true
         if nfts.count == nftIDs.count { //проверяем, что все nft подгрузились
             nftsAuthorsIDs.forEach { id in
                 userByIDService.getUserByID(with: id) { [weak self] result in
@@ -106,7 +106,7 @@ final class MyNFTsViewModel {
                     isLoading = false
                 }
             }
-        }
+        }*/
     }
     
     private func setAuthorName(id: String) -> String {
