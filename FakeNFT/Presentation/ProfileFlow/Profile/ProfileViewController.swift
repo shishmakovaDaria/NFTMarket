@@ -116,12 +116,10 @@ final class ProfileViewController: UIViewController {
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .days(1)
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
         profilePhoto.kf.indicatorType = .activity
         profilePhoto.kf.setImage(with: url,
                                  placeholder: nil,
-                                 options: [.processor(processor),
-                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+                                 options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
     private func bind() {

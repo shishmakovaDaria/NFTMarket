@@ -119,12 +119,10 @@ final class MyNFTsCell: UITableViewCell {
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .days(1)
         
-        let processor = RoundCornerImageProcessor(cornerRadius: 12, backgroundColor: .clear)
         nftImageView.kf.indicatorType = .activity
         nftImageView.kf.setImage(with: nftURL,
                                  placeholder: nil,
-                                 options: [.processor(processor),
-                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+                                 options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
     private func getStarsImage(for rating: Int) -> UIImage? {

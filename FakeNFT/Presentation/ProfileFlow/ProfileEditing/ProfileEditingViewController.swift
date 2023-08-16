@@ -167,18 +167,15 @@ final class ProfileEditingViewController: UIViewController {
     
     private func bind() {
         viewModel?.$profile.bind { [weak self] _ in
-            guard let url = self?.viewModel?.provideAvatarURL() else { return }
-            
-            let cache = ImageCache.default
-            cache.diskStorage.config.expiration = .days(1)
-            
-            
-            let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
-            self?.profilePhoto.kf.indicatorType = .activity
-            self?.profilePhoto.kf.setImage(with: url,
-                                     placeholder: nil,
-                                     options: [.processor(processor),
-                                               .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+            if let url = self?.viewModel?.provideAvatarURL() {
+                let cache = ImageCache.default
+                cache.diskStorage.config.expiration = .days(1)
+                
+                self?.profilePhoto.kf.indicatorType = .activity
+                self?.profilePhoto.kf.setImage(with: url,
+                                         placeholder: nil,
+                                         options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
+            }
         }
         
         viewModel?.$isLoading.bind() { isLoading in
