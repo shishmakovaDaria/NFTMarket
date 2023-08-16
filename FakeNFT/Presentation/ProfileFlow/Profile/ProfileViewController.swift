@@ -201,12 +201,12 @@ final class ProfileViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.tableHeaders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let tableHeaders = viewModel.provideTableHeaders()
+        let tableHeaders = viewModel.tableHeaders
         cell.textLabel?.text = tableHeaders[indexPath.row]
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .bodyBold

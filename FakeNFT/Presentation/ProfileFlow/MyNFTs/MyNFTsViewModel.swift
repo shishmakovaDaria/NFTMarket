@@ -23,14 +23,14 @@ final class MyNFTsViewModel {
     
     var nftIDs: [String] = []
     var nftsAuthorsIDs: Set<String> = []
-    private let nftService: NFTService
-    private let userByIDService: UserByIDService
-    private let profileService: ProfileService
+    private let nftService: NFTServiceProtocol
+    private let userByIDService: UserByIDServiceProtocol
+    private let profileService: ProfileServiceProtocol
     
     init(
-        nftService: NFTService = NFTService(),
-        userByIDService: UserByIDService = UserByIDService(),
-        profileService: ProfileService = ProfileService()
+        nftService: NFTServiceProtocol = NFTService(),
+        userByIDService: UserByIDServiceProtocol = UserByIDService(),
+        profileService: ProfileServiceProtocol = ProfileService()
     ) {
         self.nftService = nftService
         self.userByIDService = userByIDService

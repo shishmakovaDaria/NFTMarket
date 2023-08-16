@@ -23,9 +23,18 @@ final class ProfileViewModel {
     @Observable
     private(set) var isLoading: Bool = false
     
-    private let profileService: ProfileService
+    var tableHeaders: [String] {
+        let tableHeaders: [String] = [
+            "\("My NFTs".localized()) (\(profile.nfts.count))",
+            "\("Favorite NFTs".localized()) (\(profile.likes.count))",
+            "About the developer".localized()
+        ]
+        return tableHeaders
+    }
     
-    init(profileService: ProfileService = ProfileService()) {
+    private let profileService: ProfileServiceProtocol
+    
+    init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
@@ -41,15 +50,6 @@ final class ProfileViewModel {
             }
             isLoading = false
         }
-    }
-    
-    func provideTableHeaders() -> [String] {
-        let tableHeaders: [String] = [
-            "\("My NFTs".localized()) (\(profile.nfts.count))",
-            "\("Favorite NFTs".localized()) (\(profile.likes.count))",
-            "About the developer".localized()
-        ]
-        return tableHeaders
     }
     
     func provideAvatarURL() -> URL? {

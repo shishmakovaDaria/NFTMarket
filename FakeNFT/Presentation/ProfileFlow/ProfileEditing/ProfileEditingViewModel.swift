@@ -28,9 +28,9 @@ final class ProfileEditingViewModel {
     private(set) var isLoading: Bool = false
     
     var delegate: ProfileEditingDelegate?
-    private let profileService: ProfileService
+    private let profileService: ProfileServiceProtocol
     
-    init(profileService: ProfileService = ProfileService()) {
+    init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
