@@ -11,9 +11,9 @@ import ProgressHUD
 
 final class ProfileEditingViewController: UIViewController {
     
-    private var viewModel: ProfileEditingViewModel
+    private var viewModel: ProfileEditingViewModelProtocol
     
-    init(viewModel: ProfileEditingViewModel) {
+    init(viewModel: ProfileEditingViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -166,7 +166,7 @@ final class ProfileEditingViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.$profile.bind { [weak self] _ in
+        viewModel.profileObservable.bind { [weak self] _ in
             if let url = self?.viewModel.provideAvatarURL() {
                 let cache = ImageCache.default
                 cache.diskStorage.config.expiration = .days(1)
@@ -178,7 +178,7 @@ final class ProfileEditingViewController: UIViewController {
             }
         }
         
-        viewModel.$isLoading.bind() { isLoading in
+        viewModel.isLoadingObservable.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {

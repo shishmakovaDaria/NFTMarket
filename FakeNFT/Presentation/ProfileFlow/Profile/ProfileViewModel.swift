@@ -7,7 +7,19 @@
 
 import Foundation
 
-final class ProfileViewModel {
+protocol ProfileViewModelProtocol: ProfileEditingDelegate {
+    var profile: ProfileModel { get }
+    var profileObservable: Observable<ProfileModel> { get }
+    var isLoading: Bool { get }
+    var isLoadingObservable: Observable<Bool> { get }
+    var tableHeaders: [String] { get }
+    
+    func updateProfile()
+    func provideAvatarURL() -> URL?
+    func provideWebsiteURL() -> URL?
+}
+
+final class ProfileViewModel: ProfileViewModelProtocol {
     
     @Observable
     private(set) var profile = ProfileModel(
@@ -31,6 +43,9 @@ final class ProfileViewModel {
         ]
         return tableHeaders
     }
+    
+    var profileObservable: Observable<ProfileModel> { $profile }
+    var isLoadingObservable: Observable<Bool> { $isLoading }
     
     private let profileService: ProfileServiceProtocol
     

@@ -11,7 +11,22 @@ protocol ProfileEditingDelegate: AnyObject {
     func updateProfileFields()
 }
 
-final class ProfileEditingViewModel {
+protocol ProfileEditingViewModelProtocol {
+    var profile: ProfileModel { get }
+    var profileObservable: Observable<ProfileModel> { get }
+    var isLoading: Bool { get }
+    var isLoadingObservable: Observable<Bool> { get }
+    var delegate: ProfileEditingDelegate? { get }
+    
+    func updateProfile(profileToSet: ProfileModel)
+    func changeProfileName(nameToSet: String)
+    func changeProfileDescription(descriptionToSet: String)
+    func changeProfileWebsite(websiteToSet: String)
+    func changeProfileAvatar()
+    func provideAvatarURL() -> URL?
+}
+
+final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
     
     @Observable
     private(set) var profile = ProfileModel(
@@ -27,7 +42,10 @@ final class ProfileEditingViewModel {
     @Observable
     private(set) var isLoading: Bool = false
     
+    var profileObservable: Observable<ProfileModel> { $profile }
+    var isLoadingObservable: Observable<Bool> { $isLoading }
     var delegate: ProfileEditingDelegate?
+    
     private let profileService: ProfileServiceProtocol
     
     init(profileService: ProfileServiceProtocol = ProfileService()) {

@@ -7,7 +7,23 @@
 
 import Foundation
 
-final class MyNFTsViewModel {
+protocol MyNFTsViewModelProtocol: Sortable {
+    var nfts: [NFTModel] { get }
+    var nftsObservable: Observable<[NFTModel]> { get }
+    var likes: [String] { get }
+    var likesObservable: Observable<[String]> { get }
+    var nftsAuthors: [UserModel] { get }
+    var nftsAuthorsObservable: Observable<[UserModel]> { get }
+    var isLoading: Bool { get }
+    var isLoadingObservable: Observable<Bool> { get }
+    
+    func setValues(myNFTS: [String], myLikedNFTs: [String])
+    func updateNFTs()
+    func handleLikeButtonTapped(nftIndex: Int)
+    func configureCellModel(nftIndex: Int) -> MyNFTsCellModel
+}
+
+final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     
     @Observable
     private(set) var nfts: [NFTModel] = []
@@ -21,8 +37,13 @@ final class MyNFTsViewModel {
     @Observable
     private(set) var isLoading: Bool = false
     
-    var nftIDs: [String] = []
-    var nftsAuthorsIDs: Set<String> = []
+    var nftsObservable: Observable<[NFTModel]> { $nfts }
+    var likesObservable: Observable<[String]> { $likes }
+    var nftsAuthorsObservable: Observable<[UserModel]> { $nftsAuthors }
+    var isLoadingObservable: Observable<Bool> { $isLoading }
+    
+    private var nftIDs: [String] = []
+    private var nftsAuthorsIDs: Set<String> = []
     private let nftService: NFTServiceProtocol
     private let userByIDService: UserByIDServiceProtocol
     private let profileService: ProfileServiceProtocol
@@ -91,7 +112,7 @@ final class MyNFTsViewModel {
         )
     }
     
-    func getNFTsAuthors() {
+    private func getNFTsAuthors() {
         isLoading = true
         if nfts.count == nftIDs.count { //проверяем, что все nft подгрузились
             nftsAuthorsIDs.forEach { id in

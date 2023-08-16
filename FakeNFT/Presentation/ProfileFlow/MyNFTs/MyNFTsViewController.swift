@@ -10,9 +10,9 @@ import ProgressHUD
 
 final class MyNFTsViewController: UIViewController {
     
-    private var viewModel: MyNFTsViewModel
+    private var viewModel: MyNFTsViewModelProtocol
     
-    init(viewModel: MyNFTsViewModel) {
+    init(viewModel: MyNFTsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -77,20 +77,20 @@ final class MyNFTsViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.$nfts.bind() { [weak self] _ in
+        viewModel.nftsObservable.bind() { [weak self] _ in
             self?.tableView.reloadData()
             self?.reloadPlaceholder()
         }
         
-        viewModel.$nftsAuthors.bind() { [weak self] _ in
+        viewModel.nftsAuthorsObservable.bind() { [weak self] _ in
             self?.tableView.reloadData()
         }
         
-        viewModel.$likes.bind() { [weak self] _ in
+        viewModel.likesObservable.bind() { [weak self] _ in
             self?.tableView.reloadData()
         }
         
-        viewModel.$isLoading.bind() { isLoading in
+        viewModel.isLoadingObservable.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {

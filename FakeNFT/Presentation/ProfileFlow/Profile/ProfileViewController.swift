@@ -11,9 +11,9 @@ import ProgressHUD
 
 final class ProfileViewController: UIViewController {
     
-    private var viewModel: ProfileViewModel
+    private var viewModel: ProfileViewModelProtocol
     
-    init(viewModel: ProfileViewModel = ProfileViewModel()) {
+    init(viewModel: ProfileViewModelProtocol = ProfileViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -123,7 +123,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.$profile.bind { [weak self] _ in
+        viewModel.profileObservable.bind { [weak self] _ in
             self?.nameLabel.text = self?.viewModel.profile.name
             self?.descriptionLabel.text = self?.viewModel.profile.description
             self?.profileWebsite.text = self?.viewModel.profile.website
@@ -131,7 +131,7 @@ final class ProfileViewController: UIViewController {
             self?.tableView.reloadData()
         }
         
-        viewModel.$isLoading.bind() { isLoading in
+        viewModel.isLoadingObservable.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {
