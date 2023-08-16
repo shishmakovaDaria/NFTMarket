@@ -48,8 +48,6 @@ final class CollectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupLayout()
         bind()
     }
     
