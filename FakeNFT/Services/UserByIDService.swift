@@ -8,8 +8,9 @@
 import Foundation
 
 
-final class UserByIDService {
-    private let networkClient: NetworkClient
+final class UserByIDService: UserByIDServiceProtocol {
+    
+    let networkClient: NetworkClient
     
     init(networkClient: NetworkClient = DefaultNetworkClient()) {
         self.networkClient = networkClient

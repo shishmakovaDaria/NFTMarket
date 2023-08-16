@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct CurrencyService {
+struct CurrencyService: CurrencyServiceProtocol {
     
     let networkClient: NetworkClient
     let request: NetworkRequest
@@ -43,7 +43,6 @@ struct CurrencyService {
                 case .failure(let error):
                 completion(.failure(error))
             }
-            
         }
     }
 }

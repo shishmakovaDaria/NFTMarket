@@ -8,10 +8,10 @@
 import Foundation
 
 
-struct CartService {
+struct CartService: CartServiceProtocol {
     
-    var networkClient: NetworkClient
-    var getOrderNFTs: NetworkRequest
+    let networkClient: NetworkClient
+    let getOrderNFTs: NetworkRequest
     
     init(
         networkClient: NetworkClient = DefaultNetworkClient(),

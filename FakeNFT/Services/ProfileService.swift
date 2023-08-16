@@ -8,9 +8,9 @@
 import Foundation
 
 
-final class ProfileService {
+final class ProfileService: ProfileServiceProtocol {
     
-    private let networkClient: NetworkClient
+    let networkClient: NetworkClient
     
     init(networkClient: NetworkClient = DefaultNetworkClient()) {
         self.networkClient = networkClient
@@ -82,7 +82,7 @@ final class ProfileService {
         }
     }
     
-    private func changeProfileLikes(likesToSet: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
+    func changeProfileLikes(likesToSet: [String], completion: @escaping (Result<ProfileModel, Error>) -> Void) {
         let changeProfileLikesRequest = ChangeProfileRequest(dto: ["likes": likesToSet])
         
         networkClient.send(request: changeProfileLikesRequest, type: ProfileModel.self) { result in

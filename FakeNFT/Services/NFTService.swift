@@ -8,9 +8,9 @@
 import Foundation
 
 
-final class NFTService {
+final class NFTService: NFTServiceProtocol {
     
-    private let networkClient: NetworkClient
+    let networkClient: NetworkClient
     
     init(networkClient: NetworkClient = DefaultNetworkClient()) {
         self.networkClient = networkClient

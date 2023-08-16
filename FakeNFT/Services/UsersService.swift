@@ -8,8 +8,9 @@
 import Foundation
 
 
-final class UsersService {
-    private let networkClient: NetworkClient
+final class UsersService: UsersServiceProtocol {
+    
+    var networkClient: NetworkClient
     let getUsersRequest: NetworkRequest
     
     init(
