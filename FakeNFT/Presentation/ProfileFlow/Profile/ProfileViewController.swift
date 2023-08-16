@@ -11,9 +11,9 @@ import ProgressHUD
 
 final class ProfileViewController: UIViewController {
     
-    private var viewModel: ProfileViewModel?
+    private var viewModel: ProfileViewModel
     
-    init(viewModel: ProfileViewModel) {
+    init(viewModel: ProfileViewModel = ProfileViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,7 +53,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = viewModel?.profile.name
+        nameLabel.text = viewModel.profile.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .headline3
         nameLabel.minimumScaleFactor = 15
@@ -62,7 +62,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = viewModel?.profile.description
+        descriptionLabel.text = viewModel.profile.description
         descriptionLabel.numberOfLines = 200
         descriptionLabel.textColor = .blackDay
         descriptionLabel.font = .caption2
@@ -71,7 +71,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var profileWebsite: UILabel = {
         let profileWebsite = UILabel()
-        profileWebsite.text = viewModel?.profile.website
+        profileWebsite.text = viewModel.profile.website
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .caption1
         return profileWebsite
@@ -99,12 +99,11 @@ final class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.updateProfile()
+        viewModel.updateProfile()
     }
     
     @objc private func editButtonDidTap(_ sender: Any?) {
         let profileEditingViewModel = ProfileEditingViewModel()
-        guard let viewModel = viewModel else { return }
         profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
         let vc = ProfileEditingViewController(viewModel: profileEditingViewModel)
         profileEditingViewModel.delegate = viewModel
@@ -113,7 +112,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func updateAvatar() {
-        guard let url = viewModel?.provideAvatarURL() else { return }
+        guard let url = viewModel.provideAvatarURL() else { return }
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .days(1)
         
@@ -126,15 +125,15 @@ final class ProfileViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel?.$profile.bind { [weak self] _ in
-            self?.nameLabel.text = self?.viewModel?.profile.name
-            self?.descriptionLabel.text = self?.viewModel?.profile.description
-            self?.profileWebsite.text = self?.viewModel?.profile.website
+        viewModel.$profile.bind { [weak self] _ in
+            self?.nameLabel.text = self?.viewModel.profile.name
+            self?.descriptionLabel.text = self?.viewModel.profile.description
+            self?.profileWebsite.text = self?.viewModel.profile.website
             self?.updateAvatar()
             self?.tableView.reloadData()
         }
         
-        viewModel?.$isLoading.bind() { isLoading in
+        viewModel.$isLoading.bind() { isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {
@@ -207,8 +206,8 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let tableHeaders = viewModel?.provideTableHeaders()
-        cell.textLabel?.text = tableHeaders?[indexPath.row]
+        let tableHeaders = viewModel.provideTableHeaders()
+        cell.textLabel?.text = tableHeaders[indexPath.row]
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .bodyBold
         cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
@@ -227,8 +226,8 @@ extension ProfileViewController: UITableViewDelegate {
             let myNFTsViewModel = MyNFTsViewModel()
             let vc = MyNFTsViewController(viewModel: myNFTsViewModel)
             myNFTsViewModel.setValues(
-                myNFTS: viewModel?.profile.nfts ?? [],
-                myLikedNFTs: viewModel?.profile.likes ?? []
+                myNFTS: viewModel.profile.nfts,
+                myLikedNFTs: viewModel.profile.likes
             )
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
@@ -239,7 +238,7 @@ extension ProfileViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
         if indexPath.row == 2 {
-            guard let url = viewModel?.provideWebsiteURL() else { return }
+            guard let url = viewModel.provideWebsiteURL() else { return }
             let vc = ProfileWebsiteViewController(url: url)
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)

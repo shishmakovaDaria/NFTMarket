@@ -1,5 +1,5 @@
 //
-//  CatalogViewController.swift
+//  ProfileViewController.swift
 //  FakeNFT
 //
 //  Created by Aleksandr Garipov on 30.07.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class CatalogViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
-    private var viewModel: CatalogueViewModel?
+    private var viewModel: ProfileViewModel?
     
-    init(viewModel: CatalogueViewModel = CatalogueViewModel()) {
+    init(viewModel: ProfileViewModel = ProfileViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -22,6 +22,6 @@ final class CatalogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .cyan
     }
 }
