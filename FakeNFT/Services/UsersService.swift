@@ -8,13 +8,6 @@
 
 import Foundation
 
-//struct GetUsersRequest: NetworkRequest {
-//    var endpoint: URL? {
-//        return URL(string: "https://64c51731c853c26efada7bb6.mockapi.io/api/v1/users")
-//    }
-//    var httpMethod: HttpMethod { .get }
-//}
-
 final class UsersService: UsersServiceProtocol {
     
     var networkClient: NetworkClient
