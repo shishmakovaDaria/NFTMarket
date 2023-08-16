@@ -14,10 +14,6 @@ struct GetUsersRequest: NetworkRequest {
     var httpMethod: HttpMethod { .get }
 }
 
-struct UsersModel: Decodable {
-    let users: [UsersModel]
-}
-
 final class UsersService {
     let networkClient = DefaultNetworkClient()
     let getUsersRequest = GetUsersRequest()
