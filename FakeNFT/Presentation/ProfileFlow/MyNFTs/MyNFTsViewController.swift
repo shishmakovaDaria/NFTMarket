@@ -56,6 +56,7 @@ final class MyNFTsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.updateNFTs()
+        reloadPlaceholder()
     }
     
     @objc private func sortButtonDidTap(_ sender: Any?) {
