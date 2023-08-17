@@ -45,7 +45,7 @@ final class CheckPayViewController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: CheckPayViewModel?
+    var viewModel: CheckPayViewModel
     private let collectionParams = UICollectionView.CollectionParams(
         cellCount: 2,
         leftInset: 16,
@@ -79,7 +79,7 @@ final class CheckPayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.startObserve()
+        viewModel.startObserve()
     }
     
     //MARK: - Actions
@@ -92,7 +92,6 @@ final class CheckPayViewController: UIViewController {
     //MARK: - Methods
     
     private func bind() {
-        guard let viewModel = viewModel else { return }
         
         viewModel.$isLoading.bind { isLoading in
             if isLoading {
@@ -104,6 +103,22 @@ final class CheckPayViewController: UIViewController {
         
         viewModel.$currencies.bind { [weak self] _ in
             self?.currenciesCollection.reloadData()
+        }
+        
+        viewModel.$paymentStatus.bind { [weak self] status in
+            
+            let resultPayViewController = ResultPayViewController()
+                  
+            switch status {
+                case .success:
+                resultPayViewController.isSuccess = true
+                self?.navigationController?.pushViewController(resultPayViewController, animated: true)
+                case .failure: 
+                resultPayViewController.isSuccess = false
+                self?.navigationController?.pushViewController(resultPayViewController, animated: true)
+                default:
+                break
+            }
         }
         
     }
@@ -147,14 +162,14 @@ final class CheckPayViewController: UIViewController {
 extension CheckPayViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.currencies.count ?? 0
+        viewModel.currencies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CurrencyCell = collectionView.dequeueReusableCell(indexPath: indexPath)
-        if let model = viewModel?.currencies[indexPath.row] {
-            cell.configure(with: model)
-        }
+        let model = viewModel.currencies[indexPath.row]
+        cell.configure(with: model)
+        
         return cell
     }
     
@@ -169,7 +184,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
         let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
         
         guard let currencyID = cell.currencyModel?.id else { return }
-        viewModel?.selectCurrency(with: currencyID)
+        viewModel.selectCurrency(with: currencyID)
         cell.select()
         payView.enablePayButton()
     }
@@ -213,11 +228,12 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
 
 extension CheckPayViewController: PayViewDelegate {
     func didTapPayButton() {
+        viewModel.performPayment()
         
         // TO DO - NEED UPDATE WITH VIEWMODEL
-        let resultPayViewController = ResultPayViewController()
-        resultPayViewController.isSuccess = true
-        navigationController?.pushViewController(resultPayViewController, animated: true)
+//        let resultPayViewController = ResultPayViewController()
+//        resultPayViewController.isSuccess = true
+//        navigationController?.pushViewController(resultPayViewController, animated: true)
     }
     
     func didTapUserAgreementLink() {

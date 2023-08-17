@@ -9,6 +9,12 @@ import UIKit
 
 final class CheckPayViewModel {
     
+    enum PaymentStatus {
+        case notPay
+        case success
+        case failure
+    }
+    
     // MARK: - Observables
     
     @Observable
@@ -21,7 +27,7 @@ final class CheckPayViewModel {
     private (set) var isLoading: Bool = true
     
     @Observable
-    private (set) var paymentStatus: Bool = false
+    private (set) var paymentStatus: PaymentStatus = .notPay
     
     // MARK: - Properties
     
@@ -32,10 +38,6 @@ final class CheckPayViewModel {
     }
     
     //   MARK: - Methods
-    
-    func startObserve() {
-        observeCurrencises()
-    }
     
     private func observeCurrencises() {
         isLoading = true
@@ -53,9 +55,36 @@ final class CheckPayViewModel {
         isLoading = false
     }
     
+    func startObserve() {
+        observeCurrencises()
+    }
+    
     func selectCurrency(with id: String) {
         self.selectedCurrency = currencies.first(where: { $0.id == id } )
         print("\(String(describing: selectedCurrency?.name)) was selected")
     }
+    
+    func performPayment() {
+        guard let id = selectedCurrency?.id else { return }
+        
+        currencyService.performPaymentOrder(with: id) { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let result):
+                    if result.success == true {
+                        self.paymentStatus = .success
+                        // TO DO: - ADD CLEAR CART METHOD
+                    } else {
+                        self.paymentStatus = .failure
+                    }
+                case .failure(let error):
+                    self.paymentStatus = .failure
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
 }
 

@@ -67,7 +67,6 @@ final class CartViewModel {
                         switch result {
                         case .success(let nfts):
                             self.nfts.append(nfts)
-                            print("\(self.nfts.count) on viewModel")
                         case .failure(let error):
                             print(error.localizedDescription)
                         }
@@ -116,8 +115,8 @@ final class CartViewModel {
             DispatchQueue.main.async {
                 switch result {
                     case .success(let order):
-                    print(order)
                     self.order = order.nfts
+                    self.nfts.removeAll { !order.nfts.contains($0.id) }
                     case .failure(let error):
                     print(error.localizedDescription)
                 }

@@ -45,7 +45,7 @@ final class CartViewController: UIViewController {
         
     // MARK: - Properties
     
-    private var viewModel: CartViewModel?
+    private var viewModel: CartViewModel
     
     //MARK: - LifeCycle
     
@@ -70,14 +70,13 @@ final class CartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.startObserve()
+        viewModel.startObserve()
     }
     
     //MARK: - Actions
     
     @objc
     private func didTapSortButton() {
-        guard let viewModel = viewModel else { return }
         showAlertSort(viewModel: viewModel, valueSort: .cart)
         cartTableView.reloadData()
     }
@@ -85,7 +84,6 @@ final class CartViewController: UIViewController {
     //MARK: - Methods
     
     private func bind() {
-        guard let viewModel = viewModel else { return }
 
         viewModel.$isLoading.bind { isLoading in
             if isLoading {
@@ -106,7 +104,7 @@ final class CartViewController: UIViewController {
         viewModel.$nfts.bind { [weak self] _ in
             guard let self else { return }
             UIView.animate(withDuration: 0.3) {
-                self.summaryView.configureSummary(with: viewModel.summaryInfo)
+                self.summaryView.configureSummary(with: self.viewModel.summaryInfo)
                 self.cartTableView.reloadData()
             }
         }
@@ -191,15 +189,15 @@ extension CartViewController: CartNFTCellDelegate {
 
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.nfts.count ?? 0
+        viewModel.nfts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CartNFTCell = cartTableView.dequeueReusableCell()
-        if let model = viewModel?.nfts[indexPath.row] {
-            cell.delegate = self
-            cell.configureCell(with: model)
-        }
+        let model = viewModel.nfts[indexPath.row]
+        cell.delegate = self
+        cell.configureCell(with: model)
+        
         return cell
     }
 }
@@ -216,7 +214,7 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
     }
     
     func didTapDeleteButton(_ model: NFTModel) {
-        viewModel?.deleteNFT(model) { [weak self] in
+        viewModel.deleteNFT(model) { [weak self] in
             self?.dismiss(animated: true)
         }
     }
