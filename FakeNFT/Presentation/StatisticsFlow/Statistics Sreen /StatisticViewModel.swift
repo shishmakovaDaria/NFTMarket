@@ -71,7 +71,11 @@ extension StatisticViewModel: Sortable {
     func sort(param: Sort) {
         if param == .rating {
             UserDefaults.standard.set("rating", forKey: "sortConfig")
-            users.sort { Int($0.rating)! > Int($1.rating)!}
+            users.sort { if let ratingOne = Int($0.rating), let ratingTwo = Int($1.rating) {
+                return ratingOne > ratingTwo
+            }
+                return false
+            }
         } else if param == .name {
             UserDefaults.standard.set("name", forKey: "sortConfig")
             users.sort { $0.name < $1.name }
