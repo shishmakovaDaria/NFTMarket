@@ -62,8 +62,6 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-        let heartImage = UIImage.Icons.heartFill?.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)
-        button.setImage(heartImage, for: .normal)
         button.tintColor = .whiteDay
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -106,15 +104,24 @@ final class NFTCollectionCell: UICollectionViewCell {
         self.nftNameLabel.text = model.name
         self.nftPriceLabel.text = "\(model.price) ETH"
         let likeImage: UIImage = {
-            if model.isLiked {
-            return UIImage.Icons.heartFill!.withTintColor(.red, renderingMode: .alwaysOriginal)
-        } else {return UIImage.Icons.heartFill!.withTintColor(.whiteDay!, renderingMode: .alwaysOriginal)}}()
+            if let heartFillImage = UIImage.Icons.heartFill, let whiteDay: UIColor = .whiteDay {
+                    if model.isLiked {
+                        return heartFillImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+                    } else {
+                        return heartFillImage.withTintColor(whiteDay, renderingMode: .alwaysOriginal)
+                    }
+                }
+                return UIImage()
+        }()
         let cartImage: UIImage =  {
-            if model.isInCart {
-                return UIImage.Icons.deleteFromCart!.withTintColor(.blackDay!, renderingMode: .alwaysOriginal)
-            } else {
-                return UIImage.Icons.addToCart!.withTintColor(.blackDay!, renderingMode: .alwaysOriginal)
+            if let addToCartImage = UIImage.Icons.addToCart, let deleteFromCartImage = UIImage.Icons.deleteFromCart, let blackDay = UIColor.blackDay {
+                if model.isInCart {
+                    return deleteFromCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+                } else {
+                    return addToCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+                }
             }
+            return UIImage()
         }()
         self.likeButton.setImage(likeImage, for: .normal)
         self.cartButton.setImage(cartImage, for: .normal)
