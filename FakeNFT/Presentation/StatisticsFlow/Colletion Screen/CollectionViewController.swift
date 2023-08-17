@@ -106,7 +106,7 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as! NFTCollectionCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NFTCollectionCell.reuseIdentifier, for: indexPath) as? NFTCollectionCell else { return UICollectionViewCell() }
         let nftCollectionCellModel = viewModel.getCellModel(at: indexPath)
         cell.configure(model: nftCollectionCellModel)
         cell.likeButtonTappedHandler = { [weak self] in
