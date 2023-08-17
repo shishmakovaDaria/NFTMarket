@@ -47,15 +47,18 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     private let nftService: NFTServiceProtocol
     private let userByIDService: UserByIDServiceProtocol
     private let profileService: ProfileServiceProtocol
+    private let sortingSaveService: SortingSaveServiceProtocol
     
     init(
         nftService: NFTServiceProtocol = NFTService(),
         userByIDService: UserByIDServiceProtocol = UserByIDService(),
-        profileService: ProfileServiceProtocol = ProfileService()
+        profileService: ProfileServiceProtocol = ProfileService(),
+        sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .profile)
     ) {
         self.nftService = nftService
         self.userByIDService = userByIDService
         self.profileService = profileService
+        self.sortingSaveService = sortingSaveService
     }
     
     func setValues(myNFTS: [String], myLikedNFTs: [String]) {
@@ -79,6 +82,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
                     getNFTsAuthors()
                     if nfts.count == nftIDs.count {
                         isLoading = false
+                        self.sort(param: sortingSaveService.savedSorting)
                     }
                 }
             }
@@ -147,6 +151,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
 //MARK: - UITableViewDelegate
 extension MyNFTsViewModel: Sortable {
     func sort(param: Sort) {
+        sortingSaveService.saveSorting(param: param)
         switch param {
         case .price:
             nfts = nfts.sorted(by: { $0.price > $1.price })
