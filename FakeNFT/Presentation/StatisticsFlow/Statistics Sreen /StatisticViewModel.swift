@@ -35,6 +35,15 @@ final class StatisticViewModel: StatisticViewModelProtocol {
         users.isEmpty ? getUsers() : ()
     }
     
+    func getCellModel(at indexPath: IndexPath) -> StatisticCellModel {
+        let userModel = users[indexPath.row]
+        let cellModel = StatisticCellModel(name: userModel.name,
+                                           avatar: userModel.avatar,
+                                           rating: userModel.rating,
+                                           indexNumber: indexPath.row + 1)
+        return cellModel
+    }
+    
     private func getUsers() {
         isLoading = true
         usersService.getUsers {result in

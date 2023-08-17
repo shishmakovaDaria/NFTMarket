@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 
-
 final class StatisticViewController: UIViewController {
     
     //MARK: - Layout properties
@@ -44,7 +43,6 @@ final class StatisticViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
@@ -62,7 +60,6 @@ final class StatisticViewController: UIViewController {
     private func sortButtonTapped() {
         showAlertSort(viewModel: viewModel, valueSort: .statistic)
     }
-    
     
     // MARK: - Methods
     
@@ -95,7 +92,6 @@ final class StatisticViewController: UIViewController {
     }
 }
 
-
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension StatisticViewController: UITableViewDelegate {
@@ -118,18 +114,9 @@ extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
-        let indexNumber = indexPath.row + 1
-        //MARK: TODO: - Отдать создание cellModel в viewModel
-        let userModel = viewModel.users[indexPath.row]
-        let cellModel = StatisticCellModel(name: userModel.name,
-                                           avatar: userModel.avatar,
-                                           rating: userModel.rating,
-                                           indexNumber: indexNumber)
-        
+        let cellModel = viewModel.getCellModel(at: indexPath)
         cell.configure(model: cellModel)
         return cell
     }
-    
-    
 }
 

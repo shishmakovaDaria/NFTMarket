@@ -15,4 +15,5 @@ protocol StatisticViewModelProtocol {
     var sortConfig: String? { get }
     var usersService: UsersServiceProtocol { get }
     func startObserve()
+    func getCellModel(at indexPath: IndexPath) -> StatisticCellModel
 }
