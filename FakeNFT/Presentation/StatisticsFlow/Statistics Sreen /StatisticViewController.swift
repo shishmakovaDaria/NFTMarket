@@ -74,7 +74,7 @@ final class StatisticViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            statsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            statsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             statsTableView.trailingAnchor.constraint(equalTo: view
                 .trailingAnchor, constant: -16),
             statsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
