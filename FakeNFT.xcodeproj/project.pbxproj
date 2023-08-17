@@ -75,6 +75,8 @@
 		E25279A82A829B2200FAE66A /* NFTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279A72A829B2200FAE66A /* NFTService.swift */; };
 		E25279AC2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md in Resources */ = {isa = PBXBuildFile; fileRef = E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */; };
 		E25279AF2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */; };
+		E25279B12A8E69E700FAE66A /* UserViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279B02A8E69E700FAE66A /* UserViewModelProtocol.swift */; };
+		E25279B32A8E6E4100FAE66A /* CollectionViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279B22A8E6E4100FAE66A /* CollectionViewModelProtocol.swift */; };
 		E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43B92A7F503D0044EAD6 /* UsersService.swift */; };
 		E27B43BE2A8274660044EAD6 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
@@ -177,6 +179,8 @@
 		E25279A72A829B2200FAE66A /* NFTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTService.swift; sourceTree = "<group>"; };
 		E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = StatisticFlowDecomposition.md; sourceTree = "<group>"; };
 		E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModelProtocol.swift; sourceTree = "<group>"; };
+		E25279B02A8E69E700FAE66A /* UserViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelProtocol.swift; sourceTree = "<group>"; };
+		E25279B22A8E6E4100FAE66A /* CollectionViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModelProtocol.swift; sourceTree = "<group>"; };
 		E27B43B92A7F503D0044EAD6 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -478,6 +482,8 @@
 				C4406AD62A8CE9E3007593E9 /* UserByIDServiceProtocol.swift */,
 				C4406AD82A8CEA17007593E9 /* UsersServiceProtocol.swift */,
 				E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */,
+				E25279B02A8E69E700FAE66A /* UserViewModelProtocol.swift */,
+				E25279B22A8E6E4100FAE66A /* CollectionViewModelProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -717,6 +723,7 @@
 				C4406AC72A8CC67F007593E9 /* GetUserByIDRequest.swift in Sources */,
 				C46533802A73D4F6003AB2C1 /* UIColor+extension.swift in Sources */,
 				612FE3B62A82C865003273F6 /* ProfileService.swift in Sources */,
+				E25279B32A8E6E4100FAE66A /* CollectionViewModelProtocol.swift in Sources */,
 				61DF57E62A7EA8B0006C1211 /* CurrencyModel.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
@@ -732,6 +739,7 @@
 				61DF57DC2A7EA546006C1211 /* ProfileModel.swift in Sources */,
 				3F6806D729CBC50A00B4F915 /* CellsReusingUtils.swift in Sources */,
 				C4406ABD2A8CC3C3007593E9 /* CartService.swift in Sources */,
+				E25279B12A8E69E700FAE66A /* UserViewModelProtocol.swift in Sources */,
 				61DF57DE2A7EA59E006C1211 /* NFTModel.swift in Sources */,
 				C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */,
 				61DF57E82A7EA948006C1211 /* PaymentCurrencyModel.swift in Sources */,

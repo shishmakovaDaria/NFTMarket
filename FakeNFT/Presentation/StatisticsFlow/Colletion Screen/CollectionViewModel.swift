@@ -7,35 +7,40 @@
 
 import Foundation
 
-final class CollectionViewModel {
+final class CollectionViewModel: CollectionViewModelProtocol {
+    
     // MARK: - Observables
     @Observable
     private (set) var nfts: [NFTModel] = []
+    var nftsObservable: Observable<[NFTModel]> { $nfts }
     @Observable
     private (set) var likes: [String] = []
+    var likesObservable: Observable<[String]> { $likes }
     @Observable
     private (set) var cartNFTs: [String] = []
+    var cartNFTsObservable: Observable<[String]> { $cartNFTs }
     @Observable
     private (set) var isLoading = false
+    var isLoadingObservable: Observable<Bool> { $isLoading }
     
     //MARK: - Properties:
     
     private let nftCollection: [String]
     
     //MARK: - Servicies
-    let nftService: NFTService
-    let profileService: ProfileService
-    let cartService: CartService
+    let nftService: NFTServiceProtocol
+    let profileService: ProfileServiceProtocol
+    let cartService: CartServiceProtocol
     
     //MARK: - LifeCycle
     
-    init(nfts: [String], nftService: NFTService = NFTService(), profileService: ProfileService = ProfileService(), cartService: CartService = CartService()) {
+    init(nfts: [String], nftService: NFTServiceProtocol = NFTService(), profileService: ProfileServiceProtocol = ProfileService(), cartService: CartServiceProtocol = CartService()) {
         self.nftCollection = nfts
         self.nftService = nftService
         self.profileService = profileService
         self.cartService = cartService
         self.getOrder()
-        self.getProfile()
+        self.getLikesFromProfile()
         self.getNFTModel()
     }
     
@@ -112,7 +117,7 @@ final class CollectionViewModel {
         }
     }
     
-    private func getProfile() {
+    private func getLikesFromProfile() {
         profileService.getProfile { [weak self] result in
             guard let self else { return }
             switch result {

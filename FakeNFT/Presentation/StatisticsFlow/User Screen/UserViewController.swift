@@ -11,7 +11,7 @@ import ProgressHUD
 
 final class UserViewController: UIViewController {
     
-    private var viewModel: UserViewModel
+    private var viewModel: UserViewModelProtocol
     
     //MARK: - Layout properties
     
@@ -69,7 +69,7 @@ final class UserViewController: UIViewController {
     
     //MARK: - LifeCycle
     
-    init(viewModel: UserViewModel) {
+    init(viewModel: UserViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         bind()
@@ -96,7 +96,7 @@ final class UserViewController: UIViewController {
     //MARK: - Methods
     
     private func bind() {
-        viewModel.$user.bind {[weak self] user in
+        viewModel.userObservable.bind {[weak self] user in
             self?.nameLabel.text = user.name
             self?.descriptionLabel.text = user.description
             self?.updateAvatar()
@@ -162,7 +162,7 @@ final class UserViewController: UIViewController {
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = viewModel.user
-        let collectionViewModel = CollectionViewModel(nfts: user.nfts)
+        let collectionViewModel: CollectionViewModelProtocol = CollectionViewModel(nfts: user.nfts)
         let collectionViewController = CollectionViewController(viewModel: collectionViewModel)
         navigationController?.pushViewController(collectionViewController, animated: true)
     }

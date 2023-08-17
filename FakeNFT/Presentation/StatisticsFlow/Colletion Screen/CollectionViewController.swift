@@ -31,11 +31,11 @@ final class CollectionViewController: UIViewController {
     
     //MARK: - Properties
     
-    private var viewModel: CollectionViewModel
+    private var viewModel: CollectionViewModelProtocol
     
     // MARK: - LifeCycle
     
-    init(viewModel: CollectionViewModel) {
+    init(viewModel: CollectionViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupUI()
@@ -82,16 +82,16 @@ final class CollectionViewController: UIViewController {
     
     private func bind() {
         viewModel.isLoading ? UIBlockingProgressHUD.show() : ()
-        viewModel.$nfts.bind { [weak self] _ in
+        viewModel.nftsObservable.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
-        viewModel.$likes.bind { [weak self] _ in
+        viewModel.likesObservable.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
-        viewModel.$cartNFTs.bind { [weak self] _ in
+        viewModel.cartNFTsObservable.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }
-        viewModel.$isLoading.bind { [weak self] isLoading in
+        viewModel.isLoadingObservable.bind { [weak self] isLoading in
             isLoading ? UIBlockingProgressHUD.show() : UIBlockingProgressHUD.dismiss()
         }
     }

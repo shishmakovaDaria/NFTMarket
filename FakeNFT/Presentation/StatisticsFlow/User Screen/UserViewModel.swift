@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class UserViewModel {
+final class UserViewModel: UserViewModelProtocol {
     // MARK: - Observables
     @Observable
     private (set) var user: UserModel
-    
+    var userObservable: Observable<UserModel> { $user }
     //MARK: - LifeCycle
     
     init(user: UserModel) {

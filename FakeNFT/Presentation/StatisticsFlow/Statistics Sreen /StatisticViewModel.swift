@@ -12,10 +12,10 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     // MARK: - Observables
     @Observable
     private (set) var users: [UserModel] = []
-    var usersObservable: Observable<[UserModel]> {$users}
+    var usersObservable: Observable<[UserModel]> { $users }
     @Observable
     private (set) var isLoading = false
-    var isLoadingObservable: Observable<Bool> {$isLoading}
+    var isLoadingObservable: Observable<Bool> { $isLoading }
     
     //MARK: - Properties
     
