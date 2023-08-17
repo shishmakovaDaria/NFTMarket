@@ -233,7 +233,7 @@ extension ProfileViewController: UITableViewDelegate {
         if indexPath.row == 1 {
             let favoriteNFTsViewModel = FavoriteNFTsViewModel()
             let vc = FavoriteNFTsViewController(viewModel: favoriteNFTsViewModel)
-            favoriteNFTsViewModel.setValues(favoriteNFTS: viewModel.profile.likes)
+            favoriteNFTsViewModel.setValue(favoriteNFTS: viewModel.profile.likes)
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -1,24 +1,22 @@
 //
-//  MyNFTsTCell.swift
+//  FavoriteNFTsCell.swift
 //  FakeNFT
 //
-//  Created by Дарья Шишмакова on 08.08.2023.
+//  Created by Дарья Шишмакова on 17.08.2023.
 //
 
 import Foundation
 import UIKit
 import Kingfisher
 
-struct MyNFTsCellModel {
+struct FavoriteNFTsCellModel {
     let name: String
     let image: String
     let rating: Int
-    let author: String
     let price: String
-    let isLiked: Bool
 }
 
-final class MyNFTsCell: UITableViewCell {
+final class FavoriteNFTsCell: UICollectionViewCell {
     
     private lazy var nftImageView: UIImageView = {
         let imageView = UIImageView()
@@ -31,6 +29,7 @@ final class MyNFTsCell: UITableViewCell {
     private lazy var likeButton: UIButton = {
         let likeButton = UIButton(type: .system)
         likeButton.setBackgroundImage(UIImage.Icons.heartFill, for: .normal)
+        likeButton.tintColor = .ypRed
         likeButton.addTarget(self, action: #selector(likeButtonDidTap(_:)), for: .touchUpInside)
         return likeButton
     }()
@@ -57,42 +56,28 @@ final class MyNFTsCell: UITableViewCell {
         return starsImageView
     }()
     
-    private lazy var authorLabel: UILabel = {
-        let authorLabel = UILabel()
-        authorLabel.font = .caption2
-        authorLabel.textColor = .blackDay
-        return authorLabel
-    }()
-    
-    private lazy var priceStackView: UIStackView = {
-        let priceStackView = UIStackView()
-        priceStackView.axis = .vertical
-        priceStackView.alignment = .fill
-        priceStackView.spacing = 2
-        priceStackView.distribution = .fillEqually
-        priceStackView.contentMode = .scaleToFill
-        return priceStackView
-    }()
-    
     private lazy var priceLabel: UILabel = {
         let priceLabel = UILabel()
-        priceLabel.font = .caption2
+        priceLabel.font = .caption1
         priceLabel.textColor = .blackDay
-        priceLabel.text = "Price".localized()
         return priceLabel
     }()
     
-    private lazy var currentPriceLabel: UILabel = {
-        let currentPriceLabel = UILabel()
-        currentPriceLabel.font = .bodyBold
-        currentPriceLabel.textColor = .blackDay
-        return currentPriceLabel
-    }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
         setupConstraints()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nftNameLabel.text = nil
+        likeButton.tintColor = .ypRed
+        starsImageView.image = getStarsImage(for: 0)
+        priceLabel.text = nil
+        nftImageView.image = nil
+        nftImageView.kf.cancelDownloadTask()
     }
     
     required init?(coder: NSCoder) {
@@ -102,16 +87,15 @@ final class MyNFTsCell: UITableViewCell {
     var likeButtonTappedHandler: (() -> Void)?
     
     @objc private func likeButtonDidTap(_ sender: Any?) {
+        likeButton.tintColor = .ypWhite
         likeButtonTappedHandler?()
     }
     
-    func configureCell(cellModel: MyNFTsCellModel) {
+    func configureCell(cellModel: FavoriteNFTsCellModel) {
         nftNameLabel.text = cellModel.name
         updateNFTImage(url: cellModel.image)
         starsImageView.image = getStarsImage(for: cellModel.rating)
-        authorLabel.text = cellModel.author
-        currentPriceLabel.text = cellModel.price
-        setupLike(isLiked: cellModel.isLiked)
+        priceLabel.text = cellModel.price
     }
     
     private func updateNFTImage(url: String?) {
@@ -144,51 +128,34 @@ final class MyNFTsCell: UITableViewCell {
         }
     }
     
-    private func setupLike(isLiked: Bool) {
-        if isLiked {
-            likeButton.tintColor = .ypRed
-        } else {
-            likeButton.tintColor = .ypWhite
-        }
-    }
-    
     private func setupUI() {
         contentView.backgroundColor = .whiteDay
         
-        [nftImageView, likeButton, nameStackView, priceStackView].forEach {
+        [nftImageView, likeButton, nameStackView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        [nftNameLabel, starsImageView, authorLabel].forEach {
+        [nftNameLabel, starsImageView, priceLabel].forEach {
             nameStackView.addArrangedSubview($0)
-        }
-        
-        [priceLabel, currentPriceLabel].forEach {
-            priceStackView.addArrangedSubview($0)
         }
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            nftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            nftImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            nftImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            nftImageView.widthAnchor.constraint(equalToConstant: 108),
-            nftImageView.heightAnchor.constraint(equalToConstant: 108),
+            nftImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            nftImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nftImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            nftImageView.widthAnchor.constraint(equalToConstant: 80),
+            nftImageView.heightAnchor.constraint(equalToConstant: 80),
             
-            likeButton.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 12),
-            likeButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: -12),
+            likeButton.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 5),
+            likeButton.trailingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: -5),
             
-            nameStackView.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 20),
-            nameStackView.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 23),
-            nameStackView.bottomAnchor.constraint(equalTo: nftImageView.bottomAnchor, constant: -23),
-            nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -153),
-            
-            priceStackView.leadingAnchor.constraint(equalTo: nameStackView.trailingAnchor, constant: 39),
-            priceStackView.topAnchor.constraint(equalTo: nameStackView.topAnchor, constant: 10),
-            priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -39),
-            priceStackView.bottomAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: -10)
+            nameStackView.leadingAnchor.constraint(equalTo: nftImageView.trailingAnchor, constant: 12),
+            nameStackView.topAnchor.constraint(equalTo: nftImageView.topAnchor, constant: 7),
+            nameStackView.bottomAnchor.constraint(equalTo: nftImageView.bottomAnchor, constant: -7),
+            nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 }

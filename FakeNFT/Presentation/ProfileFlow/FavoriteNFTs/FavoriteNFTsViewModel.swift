@@ -10,15 +10,13 @@ import Foundation
 protocol FavoriteNFTsViewModelProtocol {
     var nfts: [NFTModel] { get }
     var nftsObservable: Observable<[NFTModel]> { get }
-    var likes: [String] { get }
-    var likesObservable: Observable<[String]> { get }
     var isLoading: Bool { get }
     var isLoadingObservable: Observable<Bool> { get }
     
-    func setValues(favoriteNFTS: [String])
+    func setValue(favoriteNFTS: [String])
     func updateNFTs()
     func handleLikeButtonTapped(nftIndex: Int)
-    //TODO: - protocol
+    func configureCellModel(nftIndex: Int) -> FavoriteNFTsCellModel
 }
 
 final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
@@ -27,13 +25,9 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     private(set) var nfts: [NFTModel] = []
     
     @Observable
-    private(set) var likes: [String] = []
-    
-    @Observable
     private(set) var isLoading: Bool = false
     
     var nftsObservable: Observable<[NFTModel]> { $nfts }
-    var likesObservable: Observable<[String]> { $likes }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     
     private var nftIDs: [String] = []
@@ -48,9 +42,8 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         self.profileService = profileService
     }
     
-    func setValues(favoriteNFTS: [String]) {
+    func setValue(favoriteNFTS: [String]) {
         nftIDs = favoriteNFTS
-        likes = favoriteNFTS
     }
     
     func updateNFTs() {
@@ -75,12 +68,12 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     func handleLikeButtonTapped(nftIndex: Int) {
         isLoading = true
-        let nft = nfts[nftIndex]
-        profileService.changeNFTLike(like: nft.id) { [weak self] result in
+        let nftToDelete = nfts[nftIndex]
+        profileService.changeNFTLike(like: nftToDelete.id) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let profile):
-                likes = profile.likes
+            case .success:
+                self.nfts.removeAll(where: { $0.id == nftToDelete.id })
             case .failure(let error):
                 print("Ошибка отправки лайка: \(error)")
             }
@@ -88,17 +81,14 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         }
     }
     
-    //TODO: - cell
-    /*func configureCellModel(nftIndex: Int) -> MyNFTsCellModel {
+    func configureCellModel(nftIndex: Int) -> FavoriteNFTsCellModel {
         let nft = nfts[nftIndex]
         
-        return MyNFTsCellModel(
+        return FavoriteNFTsCellModel(
             name: nft.name,
             image: nft.images.first ?? "",
             rating: nft.rating,
-            author: "From".localized().lowercased() + " \(author)",
-            price: "\(nft.price) ETH",
-            isLiked: likes.contains(nft.id)
+            price: "\(nft.price) ETH"
         )
-    }*/
+    }
 }
