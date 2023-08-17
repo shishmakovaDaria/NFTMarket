@@ -142,6 +142,11 @@ final class CollectionViewModel: CollectionViewModelProtocol {
     }
     
     private func sortNFT() {
-        nfts.sort {Int($0.id)! < Int($1.id)!}
+        nfts.sort { (nft1, nft2) -> Bool in
+            if let id1 = Int(nft1.id), let id2 = Int(nft2.id) {
+                return id1 < id2
+            }
+            return false
+        }
     }
 }
