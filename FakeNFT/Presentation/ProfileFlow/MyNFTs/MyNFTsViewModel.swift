@@ -79,9 +79,9 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
                     case .failure(let error):
                         print("Ошибка получения NFT: \(error)")
                     }
-                    getNFTsAuthors()
-                    if nfts.count == nftIDs.count {
-                        isLoading = false
+                    self.getNFTsAuthors()
+                    if self.nfts.count == self.nftIDs.count {
+                        self.isLoading = false
                         self.sort(param: sortingSaveService.savedSorting)
                     }
                 }
@@ -96,11 +96,11 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let profile):
-                likes = profile.likes
+                self.likes = profile.likes
             case .failure(let error):
                 print("Ошибка отправки лайка: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     
@@ -130,7 +130,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
                     case .failure(let error):
                         print("Ошибка получения автора NFT: \(error)")
                     }
-                    isLoading = false
+                    self.isLoading = false
                 }
             }
         }

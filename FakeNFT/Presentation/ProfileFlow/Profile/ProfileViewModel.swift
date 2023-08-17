@@ -63,7 +63,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             case .failure(let error):
                 print("Ошибка получения профиля: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     

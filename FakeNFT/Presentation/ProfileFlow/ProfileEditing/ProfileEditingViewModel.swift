@@ -67,7 +67,7 @@ final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
             case .failure(let error):
                 print("Ошибка изменения имени профиля: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     
@@ -82,7 +82,7 @@ final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
             case .failure(let error):
                 print("Ошибка изменения описания профиля: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     
@@ -97,7 +97,7 @@ final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
             case .failure(let error):
                 print("Ошибка изменения сайта профиля: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     

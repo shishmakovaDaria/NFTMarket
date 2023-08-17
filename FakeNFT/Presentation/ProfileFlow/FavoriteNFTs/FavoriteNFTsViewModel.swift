@@ -58,8 +58,8 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
                     case .failure(let error):
                         print("Ошибка получения NFT: \(error)")
                     }
-                    if nfts.count == nftIDs.count {
-                        isLoading = false
+                    if self.nfts.count == self.nftIDs.count {
+                        self.isLoading = false
                     }
                 }
             }
@@ -77,7 +77,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
             case .failure(let error):
                 print("Ошибка отправки лайка: \(error)")
             }
-            isLoading = false
+            self.isLoading = false
         }
     }
     
