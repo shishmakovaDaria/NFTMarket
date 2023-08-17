@@ -113,7 +113,7 @@ extension StatisticViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as? StatisticCell else { return UITableViewCell() }
         let cellModel = viewModel.getCellModel(at: indexPath)
         cell.configure(model: cellModel)
         return cell
