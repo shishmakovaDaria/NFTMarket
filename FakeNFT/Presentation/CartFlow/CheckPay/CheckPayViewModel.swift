@@ -31,10 +31,14 @@ final class CheckPayViewModel {
     
     // MARK: - Properties
     
-    private let currencyService: CurrencyService
+    private let currencyService: CurrencyServiceProtocol
+    private let cartService: CartServiceProtocol
     
-    init(currencyService: CurrencyService = CurrencyService()) {
+    init(currencyService: CurrencyServiceProtocol = CurrencyService(),
+         cartService: CartServiceProtocol = CartService()
+    ) {
         self.currencyService = currencyService
+        self.cartService = cartService
     }
     
     //   MARK: - Methods
@@ -66,21 +70,35 @@ final class CheckPayViewModel {
     
     func performPayment() {
         guard let id = selectedCurrency?.id else { return }
-        
+        isLoading = true
         currencyService.performPaymentOrder(with: id) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let result):
                     if result.success == true {
-                        self.paymentStatus = .success
-                        // TO DO: - ADD CLEAR CART METHOD
+                       // TO DO: - need call clearOrder()
                     } else {
                         self.paymentStatus = .failure
                     }
                 case .failure(let error):
                     self.paymentStatus = .failure
                     print(error.localizedDescription)
+                }
+            }
+        }
+        isLoading = false
+    }
+    
+    private func clearOrder() {
+        cartService.updateOrder(updatedOrder: []) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .success:
+                        self.paymentStatus = .success
+                    case .failure(let error):
+                        self.paymentStatus = .failure
+                        print(error.localizedDescription)
                 }
             }
         }

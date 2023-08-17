@@ -33,6 +33,7 @@ final class CheckPayViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier)
         collection.backgroundColor = .clear
+        collection.allowsMultipleSelection = false
         
         return collection
     }()
@@ -155,6 +156,7 @@ final class CheckPayViewController: UIViewController {
             
         ])
     }
+    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -191,7 +193,6 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell: CurrencyCell = collectionView.cellForItem(at: indexPath) as! CurrencyCell
-        
         cell.deselect()
     }
     
@@ -222,6 +223,7 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         collectionParams.cellSpacing
     }
+    
 }
 
 // MARK: - PayViewDelegate
@@ -229,11 +231,6 @@ extension CheckPayViewController: UICollectionViewDelegateFlowLayout {
 extension CheckPayViewController: PayViewDelegate {
     func didTapPayButton() {
         viewModel.performPayment()
-        
-        // TO DO - NEED UPDATE WITH VIEWMODEL
-//        let resultPayViewController = ResultPayViewController()
-//        resultPayViewController.isSuccess = true
-//        navigationController?.pushViewController(resultPayViewController, animated: true)
     }
     
     func didTapUserAgreementLink() {

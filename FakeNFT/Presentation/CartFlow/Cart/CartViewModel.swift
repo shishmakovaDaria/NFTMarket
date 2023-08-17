@@ -35,8 +35,8 @@ final class CartViewModel {
     
     // MARK: - Properties
     
-    private let cartService: CartService
-    private let nftService: NFTService
+    private let cartService: CartServiceProtocol
+    private let nftService: NFTServiceProtocol
     var summaryInfo: SummaryInfo {
         let price = nfts.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nfts.count, price: price)
@@ -45,7 +45,9 @@ final class CartViewModel {
     
     // MARK: - LifeCycle
     
-    init(cartService: CartService = CartService(), nftService: NFTService = NFTService()) {
+    init(cartService: CartServiceProtocol = CartService(),
+         nftService: NFTServiceProtocol = NFTService()
+    ) {
         self.cartService = cartService
         self.nftService = nftService
         getOrder()
