@@ -30,12 +30,12 @@ final class StatisticViewController: UIViewController {
     }()
     
     // MARK: - Properties
-
-    private var viewModel: StatisticViewModel
+    
+    private var viewModel: StatisticViewModelProtocol & Sortable
     
     //MARK: - LifeCyle
     
-    init(viewModel: StatisticViewModel = StatisticViewModel()) {
+    init(viewModel: StatisticViewModelProtocol & Sortable = StatisticViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,7 +43,7 @@ final class StatisticViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +86,15 @@ final class StatisticViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.$users.bind { [weak self] _ in
+        viewModel.usersObservable.bind { [weak self] _ in
             self?.statsTableView.reloadData()
         }
-        viewModel.$isLoading.bind { [weak self] isLoading in
+        viewModel.isLoadingObservable.bind { [weak self] isLoading in
             isLoading ? UIBlockingProgressHUD.show() : UIBlockingProgressHUD.dismiss()
         }
     }
 }
+
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
@@ -118,17 +119,17 @@ extension StatisticViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticCell.reuseIdentifier, for: indexPath) as! StatisticCell
         let indexNumber = indexPath.row + 1
-            //TODO: - Отдать создание cellModel в viewModel
+        //MARK: TODO: - Отдать создание cellModel в viewModel
         let userModel = viewModel.users[indexPath.row]
         let cellModel = StatisticCellModel(name: userModel.name,
                                            avatar: userModel.avatar,
                                            rating: userModel.rating,
                                            indexNumber: indexNumber)
-
+        
         cell.configure(model: cellModel)
         return cell
     }
     
-
+    
 }
 

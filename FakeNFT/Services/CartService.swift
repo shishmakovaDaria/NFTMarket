@@ -39,7 +39,6 @@ struct CartService: CartServiceProtocol {
         networkClient.send(request: putOrderRequest, type: OrderModel.self) { result in
             switch result {
                 case .success(let order):
-                print(order)
                 completion(.success(order))
                 case .failure(let error):
                 completion(.failure(error))

@@ -7,22 +7,25 @@
 
 import UIKit
 
-final class StatisticViewModel {
+final class StatisticViewModel: StatisticViewModelProtocol {
+    
     // MARK: - Observables
     @Observable
     private (set) var users: [UserModel] = []
+    var usersObservable: Observable<[UserModel]> {$users}
     @Observable
     private (set) var isLoading = false
+    var isLoadingObservable: Observable<Bool> {$isLoading}
     
     //MARK: - Properties
     
-    private var sortConfig: String? = UserDefaults.standard.string(forKey: "sortConfig")
+    private (set) var sortConfig: String?
     
     //MARK: - Servicies
-    let usersService: UsersService
+    let usersService: UsersServiceProtocol
     
     //MARK: - LifeCycle
-    init(userService: UsersService = UsersService()) {
+    init(userService: UsersServiceProtocol = UsersService()) {
         self.usersService = userService
     }
     
@@ -48,12 +51,14 @@ final class StatisticViewModel {
     }
     
     private func startSort() {
+        sortConfig =  UserDefaults.standard.string(forKey: "sortConfig")
         guard let sortConfig else { return }
         sortConfig == "rating" ? sort(param: .rating) : sort(param: .name)
     }
 }
 
 extension StatisticViewModel: Sortable {
+    
     func sort(param: Sort) {
         if param == .rating {
             UserDefaults.standard.set("rating", forKey: "sortConfig")

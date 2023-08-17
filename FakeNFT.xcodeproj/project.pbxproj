@@ -66,14 +66,15 @@
 		C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */; };
 		C4D08E3F2A7A4C39000B67FB /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */; };
 		C4D18D8C2A7BB9AC00C48F28 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */; };
+		C4D18D8F2A7BBE3F00C48F28 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8E2A7BBE3F00C48F28 /* Sortable.swift */; };
 		E248DE7C2A7BEBF100BB3048 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */; };
 		E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */; };
 		E24D24CB2A7D3381005D75CA /* WebViewVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */; };
 		E24D24CE2A7D50B9005D75CA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */; };
 		E24D24D02A7D5830005D75CA /* NFTCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */; };
-		C4D18D8F2A7BBE3F00C48F28 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18D8E2A7BBE3F00C48F28 /* Sortable.swift */; };
 		E25279A82A829B2200FAE66A /* NFTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279A72A829B2200FAE66A /* NFTService.swift */; };
 		E25279AC2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md in Resources */ = {isa = PBXBuildFile; fileRef = E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */; };
+		E25279AF2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */; };
 		E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43B92A7F503D0044EAD6 /* UsersService.swift */; };
 		E27B43BE2A8274660044EAD6 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */; };
 		E29A5BCF2A76A68600A76D9C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A5BCE2A76A68600A76D9C /* TabBarController.swift */; };
@@ -167,14 +168,15 @@
 		C4D08E3C2A7A4C0E000B67FB /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		C4D08E3E2A7A4C39000B67FB /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		C4D18D8B2A7BB9AC00C48F28 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
+		C4D18D8E2A7BBE3F00C48F28 /* Sortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sortable.swift; sourceTree = "<group>"; };
 		E248DE7B2A7BEBF100BB3048 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E248DE7D2A7BEBFD00BB3048 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E24D24CA2A7D3381005D75CA /* WebViewVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVIewController.swift; sourceTree = "<group>"; };
 		E24D24CD2A7D50B9005D75CA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		E24D24CF2A7D5830005D75CA /* NFTCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTCollectionCell.swift; sourceTree = "<group>"; };
-		C4D18D8E2A7BBE3F00C48F28 /* Sortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sortable.swift; sourceTree = "<group>"; };
 		E25279A72A829B2200FAE66A /* NFTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTService.swift; sourceTree = "<group>"; };
 		E25279AB2A8BB3BC00FAE66A /* StatisticFlowDecomposition.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = StatisticFlowDecomposition.md; sourceTree = "<group>"; };
+		E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModelProtocol.swift; sourceTree = "<group>"; };
 		E27B43B92A7F503D0044EAD6 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		E27B43BD2A8274660044EAD6 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E29A5BCE2A76A68600A76D9C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -468,8 +470,6 @@
 		C4D18D8D2A7BBE1E00C48F28 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-
-
 				C4D18D8E2A7BBE3F00C48F28 /* Sortable.swift */,
 				C4406ACE2A8CE5B0007593E9 /* NFTServiceProtocol.swift */,
 				C4406AD02A8CE669007593E9 /* ProfileServiceProtocol.swift */,
@@ -477,7 +477,7 @@
 				C4406AD42A8CE98F007593E9 /* CurrencyServiceProtocol.swift */,
 				C4406AD62A8CE9E3007593E9 /* UserByIDServiceProtocol.swift */,
 				C4406AD82A8CEA17007593E9 /* UsersServiceProtocol.swift */,
-
+				E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -719,13 +719,11 @@
 				612FE3B62A82C865003273F6 /* ProfileService.swift in Sources */,
 				61DF57E62A7EA8B0006C1211 /* CurrencyModel.swift in Sources */,
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
-
 				E29A5BD72A76A92C00A76D9C /* CartViewController.swift in Sources */,
 				E248DE7E2A7BEBFD00BB3048 /* UserViewModel.swift in Sources */,
+				E25279AF2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift in Sources */,
 				E29A5BE02A76BB9600A76D9C /* StatisticViewController.swift in Sources */,
-
 				C4406ABF2A8CC45F007593E9 /* CurrencyService.swift in Sources */,
-
 				E29A5BD92A76B53200A76D9C /* ReuseIdentifier.swift in Sources */,
 				C452BA182A7825BE00862092 /* Observable.swift in Sources */,
 				3F68069929CBBAF100B4F915 /* SceneDelegate.swift in Sources */,
@@ -737,21 +735,17 @@
 				61DF57DE2A7EA59E006C1211 /* NFTModel.swift in Sources */,
 				C4D08E3D2A7A4C0E000B67FB /* StatisticViewModel.swift in Sources */,
 				61DF57E82A7EA948006C1211 /* PaymentCurrencyModel.swift in Sources */,
-
 				E27B43BA2A7F503D0044EAD6 /* UsersService.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
-
 				C4406AC52A8CC5CE007593E9 /* UserByIDService.swift in Sources */,
 				C4406AD12A8CE669007593E9 /* ProfileServiceProtocol.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				C4406AD32A8CE8A4007593E9 /* CartServiceProtocol.swift in Sources */,
 				C4406AC92A8CC700007593E9 /* UsersService.swift in Sources */,
-				E29A5BD12A76A84900A76D9C /* StatisticViewController.swift in Sources */,
 				C4406AC12A8CC495007593E9 /* GetCurrenciesRequest.swift in Sources */,
 				C4406AC32A8CC4AB007593E9 /* PaymentOrderRequest.swift in Sources */,
-
 				3F6806D129CBBE6B00B4F915 /* NetworkClient.swift in Sources */,
 				E24D24CB2A7D3381005D75CA /* WebViewVIewController.swift in Sources */,
 				611EEBD92A840B21001C7954 /* UIBlockingProgressHUD.swift in Sources */,

@@ -93,18 +93,20 @@ final class CollectionViewModel {
     }
     
     private func getNFTModel() {
-        self.isLoading = true
-        nftCollection.forEach { nftID in
-            nftService.getNFT(with: nftID) { [ weak self ] result in
-                guard let self else { return }
-                switch result {
-                case .success(let nft):
-                    self.nfts.append(nft)
-                    self.sortNFT()
-                    self.isLoading = false
-                case .failure(let error):
-                    print("Ошибка получения NFT: \(error)")
-                    self.isLoading = false
+        if !nftCollection.isEmpty {
+            self.isLoading = true
+            nftCollection.forEach { nftID in
+                nftService.getNFT(with: nftID) { [ weak self ] result in
+                    guard let self else { return }
+                    switch result {
+                    case .success(let nft):
+                        self.nfts.append(nft)
+                        self.sortNFT()
+                        self.isLoading = false
+                    case .failure(let error):
+                        print("Ошибка получения NFT: \(error)")
+                        self.isLoading = false
+                    }
                 }
             }
         }
