@@ -37,6 +37,8 @@ final class CartViewModel {
     
     private let cartService: CartServiceProtocol
     private let nftService: NFTServiceProtocol
+    private let sortingSaveService: SortingSaveServiceProtocol
+    
     var summaryInfo: SummaryInfo {
         let price = nfts.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nfts.count, price: price)
@@ -46,10 +48,12 @@ final class CartViewModel {
     // MARK: - LifeCycle
     
     init(cartService: CartServiceProtocol = CartService(),
-         nftService: NFTServiceProtocol = NFTService()
+         nftService: NFTServiceProtocol = NFTService(),
+         sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .cart)
     ) {
         self.cartService = cartService
         self.nftService = nftService
+        self.sortingSaveService = sortingSaveService
         getOrder()
     }
     
@@ -75,6 +79,7 @@ final class CartViewModel {
                     }
                 }
             }
+            sort(param: sortingSaveService.savedSorting)
             isLoading = false
         }
     }
@@ -134,17 +139,18 @@ final class CartViewModel {
 
 extension CartViewModel: Sortable {
     func sort(param: Sort) {
+        sortingSaveService.saveSorting(param: param)
         switch param {
             case .price:
-            nfts = nfts.sorted(by: {$0.price > $1.price} )
+                nfts = nfts.sorted(by: {$0.price > $1.price} )
             case .rating:
-            nfts = nfts.sorted(by: {$0.rating > $1.rating} )
+                nfts = nfts.sorted(by: {$0.rating > $1.rating} )
             case .name:
-            nfts = nfts.sorted(by: {$0.name < $1.name} )
+                nfts = nfts.sorted(by: {$0.name < $1.name} )
             case .NFTCount:
-            break
+                break
             case .NFTName:
-            break
+                break
         }
     }
 }
