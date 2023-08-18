@@ -46,7 +46,7 @@ final class CheckPayViewController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: CheckPayViewModel
+    var viewModel: CheckPayViewModelProtocol
     private let collectionParams = UICollectionView.CollectionParams(
         cellCount: 2,
         leftInset: 16,
@@ -59,7 +59,7 @@ final class CheckPayViewController: UIViewController {
     
     //MARK: - LifeCycle
     
-    init(viewModel: CheckPayViewModel) {
+    init(viewModel: CheckPayViewModelProtocol = CheckPayViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -94,7 +94,7 @@ final class CheckPayViewController: UIViewController {
     
     private func bind() {
         
-        viewModel.$isLoading.bind { isLoading in
+        viewModel.isLoadingObservable.bind { isLoading in
             if isLoading {
                 ProgressHUD.show()
             } else {
@@ -102,11 +102,11 @@ final class CheckPayViewController: UIViewController {
             }
         }
         
-        viewModel.$currencies.bind { [weak self] _ in
+        viewModel.currenciesObservable.bind { [weak self] _ in
             self?.currenciesCollection.reloadData()
         }
         
-        viewModel.$paymentStatus.bind { [weak self] status in
+        viewModel.paymentStatusObservable.bind { [weak self] status in
             
             let resultPayViewController = ResultPayViewController()
                   

@@ -7,21 +7,18 @@
 
 import UIKit
 
-final class CheckPayViewModel {
-    
-    enum PaymentStatus {
-        case notPay
-        case success
-        case failure
-    }
+enum PaymentStatus {
+    case notPay
+    case success
+    case failure
+}
+
+final class CheckPayViewModel: CheckPayViewModelProtocol {
     
     // MARK: - Observables
     
     @Observable
     private (set) var currencies: [CurrencyModel] = []
-    
-    @Observable
-    private (set) var selectedCurrency: CurrencyModel?
     
     @Observable
     private (set) var isLoading: Bool = true
@@ -33,6 +30,12 @@ final class CheckPayViewModel {
     
     private let currencyService: CurrencyServiceProtocol
     private let cartService: CartServiceProtocol
+    
+    var currenciesObservable: Observable<[CurrencyModel]> { $currencies }
+    var isLoadingObservable: Observable<Bool> { $isLoading }
+    var paymentStatusObservable: Observable<PaymentStatus> { $paymentStatus }
+    
+    var selectedCurrency: CurrencyModel?
     
     init(currencyService: CurrencyServiceProtocol = CurrencyService(),
          cartService: CartServiceProtocol = CartService()

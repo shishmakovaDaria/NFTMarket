@@ -63,7 +63,7 @@ final class CartViewModel: CartViewModelProtocol {
     
     //   MARK: - Methods
     
-    func observeNFT() {
+    private func observeNFT() {
         isLoading = true
         nfts.removeAll()
         if order.isEmpty {
@@ -88,7 +88,7 @@ final class CartViewModel: CartViewModelProtocol {
         }
     }
     
-    func checkIsCartEmpty() {
+    private func checkIsCartEmpty() {
         if order.isEmpty {
             isCartEmpty = true
         } else {

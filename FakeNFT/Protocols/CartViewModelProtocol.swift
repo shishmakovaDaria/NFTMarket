@@ -12,15 +12,13 @@ protocol CartViewModelProtocol {
     var nfts: [NFTModel] { get }
     var isCartEmpty: Bool { get }
     var isLoading: Bool { get }
-    var summaryInfo: SummaryInfo { get set }
+    var summaryInfo: SummaryInfo { get }
     
     var nftsObservable: Observable<[NFTModel]> { get }
     var isCartEmptyObservable: Observable<Bool> { get }
     var isLoadingObservable: Observable<Bool> { get }
     
-
-    func checkIsCartEmpty()
-    func observeNFT()
     func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void)
     func startObserve()
+    func getOrder()
 }
