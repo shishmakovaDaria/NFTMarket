@@ -16,22 +16,20 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     @Observable
     private (set) var isLoading = false
     var isLoadingObservable: Observable<Bool> { $isLoading }
-    
-    //MARK: - Properties
-    
-    private (set) var sortConfig: String?
-    
+     
     //MARK: - Servicies
-    let usersService: UsersServiceProtocol
+    private let usersService: UsersServiceProtocol
+    private let sortingSaveService: SortingSaveServiceProtocol
     
     //MARK: - LifeCycle
-    init(userService: UsersServiceProtocol = UsersService()) {
+    init(userService: UsersServiceProtocol = UsersService(), sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .statistic)) {
         self.usersService = userService
+        self.sortingSaveService = sortingSaveService
     }
     
     // MARK: - Methods
     func startObserve() {
-        startSort()
+        sort(param: sortingSaveService.savedSorting)
         users.isEmpty ? getUsers() : ()
     }
     
@@ -50,7 +48,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             switch result {
             case let .success(users):
                 self.users = users
-                self.startSort()
+                self.sort(param: self.sortingSaveService.savedSorting)
                 self.isLoading = false
             case let .failure(error):
                 print("Ошибка получения списка рейтинга юзеров: \(error)")
@@ -58,26 +56,18 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             }
         }
     }
-    
-    private func startSort() {
-        sortConfig =  UserDefaults.standard.string(forKey: "sortConfig")
-        guard let sortConfig else { return }
-        sortConfig == "rating" ? sort(param: .rating) : sort(param: .name)
-    }
 }
 
 extension StatisticViewModel: Sortable {
-    
     func sort(param: Sort) {
+        sortingSaveService.saveSorting(param: param)
         if param == .rating {
-            UserDefaults.standard.set("rating", forKey: "sortConfig")
             users.sort { if let ratingOne = Int($0.rating), let ratingTwo = Int($1.rating) {
                 return ratingOne > ratingTwo
             }
                 return false
             }
         } else if param == .name {
-            UserDefaults.standard.set("name", forKey: "sortConfig")
             users.sort { $0.name < $1.name }
         }
     }

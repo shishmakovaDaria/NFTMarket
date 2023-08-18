@@ -16,9 +16,6 @@ protocol CollectionViewModelProtocol {
     var cartNFTsObservable: Observable<[String]> { get }
     var isLoading: Bool { get }
     var isLoadingObservable: Observable<Bool> { get }
-    var nftService: NFTServiceProtocol { get }
-    var profileService: ProfileServiceProtocol { get }
-    var  cartService: CartServiceProtocol { get }
     init(nfts: [String],
          nftService: NFTServiceProtocol,
          profileService: ProfileServiceProtocol,

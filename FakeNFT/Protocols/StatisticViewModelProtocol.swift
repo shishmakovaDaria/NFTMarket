@@ -12,8 +12,6 @@ protocol StatisticViewModelProtocol {
     var usersObservable: Observable<[UserModel]> { get }
     var isLoading: Bool { get }
     var isLoadingObservable: Observable<Bool> { get }
-    var sortConfig: String? { get }
-    var usersService: UsersServiceProtocol { get }
     func startObserve()
     func getCellModel(at indexPath: IndexPath) -> StatisticCellModel
 }
