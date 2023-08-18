@@ -73,11 +73,6 @@ final class CartViewController: UIViewController {
         viewModel.startObserve()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
     //MARK: - Actions
     
     @objc
@@ -170,9 +165,7 @@ final class CartViewController: UIViewController {
 
 extension CartViewController: SummaryViewDelegate {
     func didTapToPayButton() {
-        let model = CheckPayViewModel()
-        let checkPayVC = CheckPayViewController(viewModel: model)
-        
+        let checkPayVC = CheckPayViewController()
         checkPayVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(checkPayVC, animated: true)
     }

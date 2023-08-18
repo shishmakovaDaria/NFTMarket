@@ -30,12 +30,11 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
     
     private let currencyService: CurrencyServiceProtocol
     private let cartService: CartServiceProtocol
+    private var selectedCurrency: CurrencyModel?
     
     var currenciesObservable: Observable<[CurrencyModel]> { $currencies }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     var paymentStatusObservable: Observable<PaymentStatus> { $paymentStatus }
-    
-    var selectedCurrency: CurrencyModel?
     
     init(currencyService: CurrencyServiceProtocol = CurrencyService(),
          cartService: CartServiceProtocol = CartService()
@@ -56,6 +55,22 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
                     self.currencies = currencies
                 case .failure(let error):
                     print(error.localizedDescription)
+                }
+            }
+        }
+        isLoading = false
+    }
+    
+    private func clearOrder() {
+        isLoading = true
+        cartService.updateOrder(updatedOrder: []) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .success(let order):
+                        if order.nfts.isEmpty { print("order is empty")}
+                    case .failure(let error):
+                        self.paymentStatus = .failure
+                        print(error.localizedDescription)
                 }
             }
         }
@@ -88,22 +103,6 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
                 case .failure(let error):
                     self.paymentStatus = .failure
                     print(error.localizedDescription)
-                }
-            }
-        }
-        isLoading = false
-    }
-    
-    private func clearOrder() {
-        isLoading = true
-        cartService.updateOrder(updatedOrder: []) { result in
-            DispatchQueue.main.async {
-                switch result {
-                    case .success(let order):
-                        if order.nfts.isEmpty { print("order is empty")}
-                    case .failure(let error):
-                        self.paymentStatus = .failure
-                        print(error.localizedDescription)
                 }
             }
         }

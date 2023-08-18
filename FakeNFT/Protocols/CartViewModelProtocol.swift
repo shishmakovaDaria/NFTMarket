@@ -20,5 +20,4 @@ protocol CartViewModelProtocol {
     
     func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void)
     func startObserve()
-    func getOrder()
 }

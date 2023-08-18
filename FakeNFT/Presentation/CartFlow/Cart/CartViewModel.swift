@@ -47,7 +47,7 @@ final class CartViewModel: CartViewModelProtocol {
         let price = nfts.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nfts.count, price: price)
     }
-    var order: [String] = [] {
+    private var order: [String] = [] {
         didSet {
             observeNFT()
         }
@@ -66,6 +66,23 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     //   MARK: - Methods
+    
+    private func getOrder() {
+        isLoading = true
+        nfts = []
+        cartService.getOrder { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                    case .success(let order):
+                        self.order = order
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
+            }
+        }
+        isLoading = false
+    }
     
     private func observeNFT() {
         isLoading = true
@@ -104,23 +121,6 @@ final class CartViewModel: CartViewModelProtocol {
         checkIsCartEmpty()
     }
     
-    func getOrder() {
-        isLoading = true
-        nfts = []
-        cartService.getOrder { [weak self] result in
-            guard let self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                    case .success(let order):
-                    self.order = order
-                    case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
-        isLoading = false
-    }
-    
     func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void) {
         isLoading = true
         let updatedOrder = order.filter { $0 != nft.id }
@@ -130,10 +130,10 @@ final class CartViewModel: CartViewModelProtocol {
             DispatchQueue.main.async {
                 switch result {
                     case .success(let order):
-                    self.order = order.nfts
-                    self.nfts.removeAll { !order.nfts.contains($0.id) }
+                        self.order = order.nfts
+                        self.nfts.removeAll { !order.nfts.contains($0.id) }
                     case .failure(let error):
-                    print(error.localizedDescription)
+                        print(error.localizedDescription)
                 }
             }
         }
