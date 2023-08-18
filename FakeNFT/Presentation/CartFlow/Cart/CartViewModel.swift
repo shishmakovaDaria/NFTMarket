@@ -65,7 +65,6 @@ final class CartViewModel: CartViewModelProtocol {
     
     private func observeNFT() {
         isLoading = true
-        nfts.removeAll()
         if order.isEmpty {
             isCartEmpty = true
             isLoading = false
@@ -97,12 +96,14 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func startObserve() {
+        getOrder()
         checkIsCartEmpty()
         observeNFT()
     }
     
     func getOrder() {
         isLoading = true
+        nfts = []
         cartService.getOrder { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {

@@ -107,7 +107,6 @@ final class CheckPayViewController: UIViewController {
         }
         
         viewModel.paymentStatusObservable.bind { [weak self] status in
-            
             let resultPayViewController = ResultPayViewController()
                   
             switch status {

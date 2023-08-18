@@ -96,17 +96,19 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
     }
     
     private func clearOrder() {
+        isLoading = true
         cartService.updateOrder(updatedOrder: []) { result in
             DispatchQueue.main.async {
                 switch result {
-                    case .success:
-                        self.paymentStatus = .success
+                    case .success(let order):
+                        if order.nfts.isEmpty { print("order is empty")}
                     case .failure(let error):
                         self.paymentStatus = .failure
                         print(error.localizedDescription)
                 }
             }
         }
+        isLoading = false
     }
     
 }
