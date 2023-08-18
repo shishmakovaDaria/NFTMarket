@@ -20,7 +20,7 @@ struct SummaryInfo {
     var price: Float
 }
 
-final class CartViewModel {
+final class CartViewModel: CartViewModelProtocol {
     
     // MARK: - Observables
     
@@ -38,6 +38,10 @@ final class CartViewModel {
     private let cartService: CartServiceProtocol
     private let nftService: NFTServiceProtocol
     private let sortingSaveService: SortingSaveServiceProtocol
+    
+    var nftsObservable: Observable<[NFTModel]> { $nfts }
+    var isCartEmptyObservable: Observable<Bool> { $isCartEmpty }
+    var isLoadingObservable: Observable<Bool> { $isLoading }
     
     var summaryInfo: SummaryInfo {
         let price = nfts.reduce(0.0) { $0 + $1.price }
@@ -59,7 +63,7 @@ final class CartViewModel {
     
     //   MARK: - Methods
     
-    private func observeNFT() {
+    func observeNFT() {
         isLoading = true
         nfts.removeAll()
         if order.isEmpty {
@@ -84,7 +88,7 @@ final class CartViewModel {
         }
     }
     
-    private func checkIsCartEmpty() {
+    func checkIsCartEmpty() {
         if order.isEmpty {
             isCartEmpty = true
         } else {

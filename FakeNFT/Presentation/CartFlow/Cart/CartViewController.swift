@@ -45,11 +45,11 @@ final class CartViewController: UIViewController {
         
     // MARK: - Properties
     
-    private var viewModel: CartViewModel
+    private var viewModel: CartViewModelProtocol
     
     //MARK: - LifeCycle
     
-    init(viewModel: CartViewModel = CartViewModel()) {
+    init(viewModel: CartViewModelProtocol = CartViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -82,7 +82,7 @@ final class CartViewController: UIViewController {
     
     @objc
     private func didTapSortButton() {
-        showAlertSort(viewModel: viewModel, valueSort: .cart)
+        showAlertSort(viewModel: viewModel as! Sortable, valueSort: .cart)
         cartTableView.reloadData()
     }
         
@@ -90,7 +90,7 @@ final class CartViewController: UIViewController {
     
     private func bind() {
 
-        viewModel.$isLoading.bind { isLoading in
+        viewModel.isLoadingObservable.bind { isLoading in
             if isLoading {
                 ProgressHUD.show()
             } else {
@@ -98,7 +98,7 @@ final class CartViewController: UIViewController {
             }
         }
         
-        viewModel.$isCartEmpty.bind { [weak self] isCartEmpry in
+        viewModel.isCartEmptyObservable.bind { [weak self] isCartEmpry in
             if isCartEmpry {
                 self?.showEmptyCartPlaceholder()
             } else {
@@ -106,7 +106,7 @@ final class CartViewController: UIViewController {
             }
         }
         
-        viewModel.$nfts.bind { [weak self] _ in
+        viewModel.nftsObservable.bind { [weak self] _ in
             guard let self else { return }
             UIView.animate(withDuration: 0.3) {
                 self.summaryView.configureSummary(with: self.viewModel.summaryInfo)
