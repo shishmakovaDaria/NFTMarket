@@ -77,9 +77,11 @@ final class CheckPayViewModel {
                 switch result {
                 case .success(let result):
                     if result.success == true {
-                       // TO DO: - need call clearOrder()
+                        self.paymentStatus = .success
+                        self.clearOrder()
                     } else {
                         self.paymentStatus = .failure
+                        self.selectedCurrency = nil
                     }
                 case .failure(let error):
                     self.paymentStatus = .failure

@@ -57,12 +57,12 @@ final class CartViewModel {
     
     private func observeNFT() {
         isLoading = true
+        nfts.removeAll()
         if order.isEmpty {
             isCartEmpty = true
             isLoading = false
         } else {
             order.forEach {
-                nfts = []
                 nftService.getNFT(with: $0) { [weak self] result in
                     guard let self else { return }
                     DispatchQueue.main.async {

@@ -67,6 +67,10 @@ final class CartNFTCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     //MARK: - Actions
     
     @objc

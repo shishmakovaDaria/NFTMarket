@@ -112,13 +112,13 @@ final class CheckPayViewController: UIViewController {
                   
             switch status {
                 case .success:
-                resultPayViewController.isSuccess = true
-                self?.navigationController?.pushViewController(resultPayViewController, animated: true)
+                    resultPayViewController.isSuccess = true
+                    self?.navigationController?.pushViewController(resultPayViewController, animated: true)
                 case .failure: 
-                resultPayViewController.isSuccess = false
-                self?.navigationController?.pushViewController(resultPayViewController, animated: true)
+                    resultPayViewController.isSuccess = false
+                    self?.navigationController?.pushViewController(resultPayViewController, animated: true)
                 default:
-                break
+                    break
             }
         }
         
@@ -141,6 +141,7 @@ final class CheckPayViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         navigationController?.navigationBar.tintColor = .blackDay
         navigationController?.navigationBar.backgroundColor = .whiteDay
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setConstraints() {

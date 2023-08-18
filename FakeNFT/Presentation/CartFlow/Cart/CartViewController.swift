@@ -73,6 +73,11 @@ final class CartViewController: UIViewController {
         viewModel.startObserve()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
+    
     //MARK: - Actions
     
     @objc
@@ -141,6 +146,7 @@ final class CartViewController: UIViewController {
         navigationItem.rightBarButtonItem = sortButton
         navigationController?.navigationBar.tintColor = .blackDay
         navigationController?.navigationBar.backgroundColor = .whiteDay
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setConstraints() {

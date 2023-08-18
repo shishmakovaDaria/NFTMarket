@@ -59,6 +59,11 @@ final class CurrencyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        deselect()
+    }
+    
     // MARK: - Methods
     
     func configure(with model: CurrencyModel) {
