@@ -30,6 +30,8 @@
 		6108DCD42A78522B00AAEB34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6108DCD62A78522B00AAEB34 /* Localizable.strings */; };
 		611EEBD92A840B21001C7954 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611EEBD82A840B21001C7954 /* UIBlockingProgressHUD.swift */; };
 		611EEBDB2A840C02001C7954 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611EEBDA2A840C02001C7954 /* Constants.swift */; };
+		6125271D2A8EBF030016EE71 /* SortingSaveServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125271C2A8EBF030016EE71 /* SortingSaveServiceProtocol.swift */; };
+		6125271F2A8EBF1D0016EE71 /* SortingSaveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125271E2A8EBF1D0016EE71 /* SortingSaveService.swift */; };
 		612FE3B62A82C865003273F6 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612FE3B52A82C865003273F6 /* ProfileService.swift */; };
 		61DF57DC2A7EA546006C1211 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF57DB2A7EA546006C1211 /* ProfileModel.swift */; };
 		61DF57DE2A7EA59E006C1211 /* NFTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DF57DD2A7EA59E006C1211 /* NFTModel.swift */; };
@@ -134,6 +136,8 @@
 		6108DCD72A78524800AAEB34 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		611EEBD82A840B21001C7954 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		611EEBDA2A840C02001C7954 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6125271C2A8EBF030016EE71 /* SortingSaveServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSaveServiceProtocol.swift; sourceTree = "<group>"; };
+		6125271E2A8EBF1D0016EE71 /* SortingSaveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSaveService.swift; sourceTree = "<group>"; };
 		612FE3B52A82C865003273F6 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		61DF57DB2A7EA546006C1211 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		61DF57DD2A7EA59E006C1211 /* NFTModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFTModel.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				C4406ABE2A8CC45F007593E9 /* CurrencyService.swift */,
 				C4406AC42A8CC5CE007593E9 /* UserByIDService.swift */,
 				C4406AC82A8CC700007593E9 /* UsersService.swift */,
+				6125271E2A8EBF1D0016EE71 /* SortingSaveService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				E25279AE2A8E4ED800FAE66A /* StatisticViewModelProtocol.swift */,
 				E25279B02A8E69E700FAE66A /* UserViewModelProtocol.swift */,
 				E25279B22A8E6E4100FAE66A /* CollectionViewModelProtocol.swift */,
+				6125271C2A8EBF030016EE71 /* SortingSaveServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -748,9 +754,11 @@
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				C4406AC52A8CC5CE007593E9 /* UserByIDService.swift in Sources */,
 				C4406AD12A8CE669007593E9 /* ProfileServiceProtocol.swift in Sources */,
+				6125271D2A8EBF030016EE71 /* SortingSaveServiceProtocol.swift in Sources */,
 				3F6806D329CBBE9600B4F915 /* NetworkRequest.swift in Sources */,
 				3F6806CB29CBBCC700B4F915 /* ExampleNetworkModel.swift in Sources */,
 				C4406AD32A8CE8A4007593E9 /* CartServiceProtocol.swift in Sources */,
+				6125271F2A8EBF1D0016EE71 /* SortingSaveService.swift in Sources */,
 				C4406AC92A8CC700007593E9 /* UsersService.swift in Sources */,
 				C4406AC12A8CC495007593E9 /* GetCurrenciesRequest.swift in Sources */,
 				C4406AC32A8CC4AB007593E9 /* PaymentOrderRequest.swift in Sources */,
