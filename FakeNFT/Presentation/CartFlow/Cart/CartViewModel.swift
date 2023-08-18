@@ -80,15 +80,15 @@ final class CartViewModel: CartViewModelProtocol {
                         switch result {
                         case .success(let nfts):
                             self.nfts.append(nfts)
+                            self.sort(param: self.sortingSaveService.savedSorting)
                         case .failure(let error):
                             print(error.localizedDescription)
                         }
                     }
                 }
             }
+            isLoading = false
         }
-        sort(param: sortingSaveService.savedSorting)
-        isLoading = false
     }
     
     private func checkIsCartEmpty() {
@@ -102,7 +102,6 @@ final class CartViewModel: CartViewModelProtocol {
     func startObserve() {
         getOrder()
         checkIsCartEmpty()
-        observeNFT()
     }
     
     func getOrder() {

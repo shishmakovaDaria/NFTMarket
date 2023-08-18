@@ -68,7 +68,6 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
     
     func selectCurrency(with id: String) {
         self.selectedCurrency = currencies.first(where: { $0.id == id } )
-        print("\(String(describing: selectedCurrency?.name)) was selected")
     }
     
     func performPayment() {

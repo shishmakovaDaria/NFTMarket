@@ -31,7 +31,7 @@ final class SortingSaveService: SortingSaveServiceProtocol {
             case .profile:
                 sorting = .rating
             case .cart:
-                sorting = .name
+                sorting = .NFTName
             case .statistic:
                 sorting = .rating
             }
