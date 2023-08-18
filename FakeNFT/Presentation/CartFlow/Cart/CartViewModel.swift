@@ -47,7 +47,11 @@ final class CartViewModel: CartViewModelProtocol {
         let price = nfts.reduce(0.0) { $0 + $1.price }
         return SummaryInfo(countNFT: nfts.count, price: price)
     }
-    var order: [String] = []
+    var order: [String] = [] {
+        didSet {
+            observeNFT()
+        }
+    }
     
     // MARK: - LifeCycle
     
@@ -82,9 +86,9 @@ final class CartViewModel: CartViewModelProtocol {
                     }
                 }
             }
-            sort(param: sortingSaveService.savedSorting)
-            isLoading = false
         }
+        sort(param: sortingSaveService.savedSorting)
+        isLoading = false
     }
     
     private func checkIsCartEmpty() {
