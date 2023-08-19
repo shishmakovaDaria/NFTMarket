@@ -54,6 +54,7 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
                 case .success(let currencies):
                     self.currencies = currencies
                 case .failure(let error):
+                    self.isLoading = false
                     print(error.localizedDescription)
                 }
             }
@@ -70,6 +71,7 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
                         if order.nfts.isEmpty { print("order is empty")}
                     case .failure(let error):
                         self.paymentStatus = .failure
+                        self.isLoading = false
                         print(error.localizedDescription)
                 }
             }
@@ -102,6 +104,7 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
                     }
                 case .failure(let error):
                     self.paymentStatus = .failure
+                    self.isLoading = false
                     print(error.localizedDescription)
                 }
             }

@@ -87,9 +87,9 @@ final class CartViewController: UIViewController {
 
         viewModel.isLoadingObservable.bind { isLoading in
             if isLoading {
-                ProgressHUD.show()
+                UIBlockingProgressHUD.show()
             } else {
-                ProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
             }
         }
         

@@ -77,6 +77,7 @@ final class CartViewModel: CartViewModelProtocol {
                     case .success(let order):
                         self.order = order
                     case .failure(let error):
+                        self.isLoading = false
                         print(error.localizedDescription)
                 }
             }
@@ -99,6 +100,7 @@ final class CartViewModel: CartViewModelProtocol {
                             self.nfts.append(nfts)
                             self.sort(param: self.sortingSaveService.savedSorting)
                         case .failure(let error):
+                            self.isLoading = false
                             print(error.localizedDescription)
                         }
                     }
@@ -153,11 +155,11 @@ extension CartViewModel: Sortable {
                 nfts = nfts.sorted(by: {$0.price > $1.price} )
             case .rating:
                 nfts = nfts.sorted(by: {$0.rating > $1.rating} )
-            case .name:
+            case .NFTName:
                 nfts = nfts.sorted(by: {$0.name < $1.name} )
             case .NFTCount:
                 break
-            case .NFTName:
+            case .name:
                 break
         }
     }
