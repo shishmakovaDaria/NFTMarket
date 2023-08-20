@@ -33,11 +33,8 @@ final class WebViewViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         webView.stopLoading()
     }
     

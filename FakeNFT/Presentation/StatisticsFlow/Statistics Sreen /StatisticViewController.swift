@@ -86,7 +86,7 @@ final class StatisticViewController: UIViewController {
         viewModel.usersObservable.bind { [weak self] _ in
             self?.statsTableView.reloadData()
         }
-        viewModel.isLoadingObservable.bind { [weak self] isLoading in
+        viewModel.isLoadingObservable.bind { isLoading in
             isLoading ? UIBlockingProgressHUD.show() : UIBlockingProgressHUD.dismiss()
         }
     }
