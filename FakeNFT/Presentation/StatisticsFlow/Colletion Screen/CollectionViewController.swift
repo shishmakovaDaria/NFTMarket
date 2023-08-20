@@ -49,6 +49,7 @@ final class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        viewModel.viewDidLoad()
     }
     
         //MARK: - Actions
@@ -81,7 +82,6 @@ final class CollectionViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.isLoading ? UIBlockingProgressHUD.show() : ()
         viewModel.nftsObservable.bind { [weak self] _ in
             self?.nftCollectionView.reloadData()
         }

@@ -161,6 +161,7 @@ final class UserViewController: UIViewController {
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = viewModel.user
+        guard !user.nfts.isEmpty else { return }
         let collectionViewModel: CollectionViewModelProtocol = CollectionViewModel(nfts: user.nfts)
         let collectionViewController = CollectionViewController(viewModel: collectionViewModel)
         navigationController?.pushViewController(collectionViewController, animated: true)
@@ -178,10 +179,12 @@ extension UserViewController: UITableViewDataSource {
         cell.textLabel?.text = "\("My NFTs".localized()) (\(user.nfts.count))"
         cell.textLabel?.textColor = .blackDay
         cell.textLabel?.font = .boldSystemFont(ofSize: 17)
-        cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
-        cell.accessoryView?.tintColor = .blackDay
         cell.backgroundColor = .whiteDay
         cell.selectionStyle = .none
+        if !user.nfts.isEmpty {
+            cell.accessoryView = UIImageView(image: UIImage.Icons.forward)
+            cell.accessoryView?.tintColor = .blackDay
+        }
         return cell
     }
 }

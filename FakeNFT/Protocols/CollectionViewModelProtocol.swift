@@ -20,6 +20,7 @@ protocol CollectionViewModelProtocol {
          nftService: NFTServiceProtocol,
          profileService: ProfileServiceProtocol,
          cartService: CartServiceProtocol)
+    func viewDidLoad()
     func likeButtonTapped(at indexPath: IndexPath)
     func cartButtonTapped(at indexPath: IndexPath)
     func getCellModel(at indexPath: IndexPath) ->  NFTCollectionCellModel

@@ -39,9 +39,6 @@ final class CollectionViewModel: CollectionViewModelProtocol {
         self.nftService = nftService
         self.profileService = profileService
         self.cartService = cartService
-        self.getOrder()
-        self.getLikesFromProfile()
-        self.getNFTModel()
     }
     
     //MARK: - Actions:
@@ -88,6 +85,12 @@ final class CollectionViewModel: CollectionViewModelProtocol {
     }
     
     //MARK: - Methods
+    
+    func viewDidLoad() {
+        getOrder()
+        getLikesFromProfile()
+        getNFTModel()
+    }
     
     func getCellModel(at indexPath: IndexPath) ->  NFTCollectionCellModel {
         let nftModel = nfts[indexPath.row]
