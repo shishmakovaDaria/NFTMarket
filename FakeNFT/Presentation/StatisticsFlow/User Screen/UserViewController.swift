@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class UserViewController: UIViewController {
     
@@ -103,17 +102,7 @@ final class UserViewController: UIViewController {
     }
     
     private func updateAvatar() {
-        let urlString = viewModel.user.avatar
-        guard let url = URL(string: urlString) else { return }
-        let cache = ImageCache.default
-        cache.diskStorage.config.expiration = .seconds(1)
-        
-        let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
-        profilePhoto.kf.indicatorType = .activity
-        profilePhoto.kf.setImage(with: url,
-                                 placeholder: nil,
-                                 options: [.processor(processor),
-                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+        viewModel.updateAvatar(for: profilePhoto)
     }
     
     private func setupUI() {

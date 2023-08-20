@@ -30,8 +30,6 @@ final class StatisticCell: UITableViewCell {
     private lazy var avatarImageView: UIImageView = {
         let view = UIImageView()
         view.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
-        view.image = UIImage.Icons.dogecoin
-        view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -74,11 +72,24 @@ final class StatisticCell: UITableViewCell {
     //MARK: - Methods
     
     func configure(model: StatisticCellModel) {
+        nameLabel.text = model.name
+        countLabel.text = "\(model.rating)"
+        numberOfCell.text = "\(model.indexNumber)"
+        setAvatarImage(model: model)
+    }
+    
+    private func setAvatarImage(model: StatisticCellModel) {
         let avatarUrl = URL(string: model.avatar)
-        self.avatarImageView.kf.setImage(with: avatarUrl)
-        self.nameLabel.text = model.name
-        self.countLabel.text = "\(model.rating)"
-        self.numberOfCell.text = "\(model.indexNumber)"
+        
+        let cache = ImageCache.default
+        cache.diskStorage.config.expiration = .seconds(1)
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(with: avatarUrl,
+                                 placeholder: nil,
+                                 options: [.processor(processor),
+                                           .cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
     private func setupUI() {
