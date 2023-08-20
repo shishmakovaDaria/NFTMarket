@@ -53,7 +53,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
                 self.likes = profile.likes
                 isLoading = false
             case .failure(let error):
-                print("Ошибка обновления лайка: \(error)")
+                print(error.localizedDescription)
                 isLoading = false
             }
         }
@@ -77,7 +77,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
                     self.cartNFTs = order.nfts
                     self.isLoading = false
                 case .failure(let error):
-                    print("Ошибка обновления корзины: \(error)")
+                    print(error.localizedDescription)
                     self.isLoading = false
                 }
             }
@@ -112,7 +112,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
                         self.sortNFT()
                         self.isLoading = false
                     case .failure(let error):
-                        print("Ошибка получения NFT: \(error)")
+                        print(error.localizedDescription)
                         self.isLoading = false
                     }
                 }
@@ -127,7 +127,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
             case .success(let profile):
                 self.likes = profile.likes
             case .failure(let error):
-                print("Ошибка получения лайков из профиля \(error)")
+                print(error.localizedDescription)
             }
         }
     }
@@ -139,7 +139,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
             case .success(let order):
                 self.cartNFTs = order
             case .failure(let error):
-                print("Ошибка получения корзины из ордера \(error)")
+                print(error.localizedDescription)
             }
         }
     }

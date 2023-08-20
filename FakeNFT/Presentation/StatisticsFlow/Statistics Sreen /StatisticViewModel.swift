@@ -51,7 +51,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
                 self.sort(param: self.sortingSaveService.savedSorting)
                 self.isLoading = false
             case let .failure(error):
-                print("Ошибка получения списка рейтинга юзеров: \(error)")
+                print(error.localizedDescription)
                 self.isLoading = false
             }
         }
