@@ -73,7 +73,7 @@ final class CollectionViewController: UIViewController {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            nftCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            nftCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             nftCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             nftCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nftCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
