@@ -100,35 +100,38 @@ final class NFTCollectionCell: UICollectionViewCell {
         if let NFTImageUrl = URL(string: model.image) {
             updateNFTImage(with: NFTImageUrl) }
         let starsImage = getStarsImage(for: model.rating)
-        self.starsImageView.image = starsImage
-        self.nftNameLabel.text = model.name
-        self.nftPriceLabel.text = "\(model.price) ETH"
-        let likeImage: UIImage = {
-            if let heartFillImage = UIImage.Icons.heartFill, let whiteDay: UIColor = .whiteDay {
-                    if model.isLiked {
-                        return heartFillImage.withTintColor(.red, renderingMode: .alwaysOriginal)
-                    } else {
-                        return heartFillImage.withTintColor(whiteDay, renderingMode: .alwaysOriginal)
-                    }
-                }
-                return UIImage()
-        }()
-        let cartImage: UIImage =  {
-            if let addToCartImage = UIImage.Icons.addToCart, let deleteFromCartImage = UIImage.Icons.deleteFromCart, let blackDay = UIColor.blackDay {
-                if model.isInCart {
-                    return deleteFromCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
-                } else {
-                    return addToCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
-                }
-            }
-            return UIImage()
-        }()
-        self.likeButton.setImage(likeImage, for: .normal)
-        self.cartButton.setImage(cartImage, for: .normal)
-        
+        let likeImage = createLikeImage(isLiked: model.isLiked)
+        let cartImage = createCartImage(isInCart: model.isInCart)
+        starsImageView.image = starsImage
+        nftNameLabel.text = model.name
+        nftPriceLabel.text = "\(model.price) ETH"
+        likeButton.setImage(likeImage, for: .normal)
+        cartButton.setImage(cartImage, for: .normal)
     }
     
+    private func createLikeImage(isLiked: Bool) -> UIImage {
+        guard let heartFillImage = UIImage.Icons.heartFill, let whiteDay: UIColor = .whiteDay else {
+            return UIImage()
+        }
+        if isLiked {
+            return heartFillImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+        } else {
+            return heartFillImage.withTintColor(whiteDay, renderingMode: .alwaysOriginal)
+        }
+    }
     
+    private func createCartImage(isInCart: Bool) -> UIImage {
+        guard let addToCartImage = UIImage.Icons.addToCart,
+                  let deleteFromCartImage = UIImage.Icons.deleteFromCart,
+                  let blackDay = UIColor.blackDay else {
+                return UIImage()
+            }
+            if isInCart {
+                return deleteFromCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+            } else {
+                return addToCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+            }
+    }
     
     private func updateNFTImage(with url: URL) {
         let cache = ImageCache.default
