@@ -30,7 +30,10 @@ final class CartViewController: UIViewController {
     
     private lazy var cartTableView: UITableView = {
         let table = UITableView()
-        table.register(CartNFTCell.self, forCellReuseIdentifier: CartNFTCell.reuseIdentifier)
+        table.register(
+            CartNFTCell.self,
+            forCellReuseIdentifier: CartNFTCell.reuseIdentifier
+        )
         table.separatorStyle = .none
         table.backgroundColor = .clear
         table.allowsSelection = false

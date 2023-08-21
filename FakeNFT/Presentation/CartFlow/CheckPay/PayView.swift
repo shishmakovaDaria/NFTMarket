@@ -29,9 +29,20 @@ final class PayView: UIView, UITextViewDelegate {
         let agreementRange = (fullText as NSString).range(of: "User Agreement".localized())
         
         // атрибуты для гиперссылки
-        attributedString.addAttribute(.foregroundColor, value: UIColor.ypBlue!, range: agreementRange)
-        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapUserAgreementLink)))
+        attributedString.addAttribute(
+            .foregroundColor,
+            value: UIColor.ypBlue!,
+            range: agreementRange
+        )
+        attributedString.addAttribute(
+            .paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        textView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(didTapUserAgreementLink))
+        )
         
         textView.attributedText = attributedString
         textView.isUserInteractionEnabled = true
@@ -49,7 +60,10 @@ final class PayView: UIView, UITextViewDelegate {
         button.setTitle("Pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
         button.isEnabled = false
-        button.addTarget(self, action: #selector(didTapPayButton), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapPayButton), for: .touchUpInside
+        )
         return button
     }()
     

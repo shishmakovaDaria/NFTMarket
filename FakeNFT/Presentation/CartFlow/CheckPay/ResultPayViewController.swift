@@ -42,7 +42,11 @@ final class ResultPayViewController: UIViewController {
         button.backgroundColor = .blackDay
         button.setTitleColor(.whiteDay, for: .normal)
         button.titleLabel?.font = .bodyBold
-        button.addTarget(self, action: #selector(didTapReturnButton), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapReturnButton),
+            for: .touchUpInside
+        )
         return button
     }()
     

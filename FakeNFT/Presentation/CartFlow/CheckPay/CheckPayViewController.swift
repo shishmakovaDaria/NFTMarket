@@ -30,11 +30,16 @@ final class CheckPayViewController: UIViewController {
     )
     
     private lazy var currenciesCollection: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collection.register(CurrencyCell.self, forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier)
+        let collection = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
+        collection.register(
+            CurrencyCell.self,
+            forCellWithReuseIdentifier: CurrencyCell.reuseIdentifier
+        )
         collection.backgroundColor = .clear
         collection.allowsMultipleSelection = false
-        
         return collection
     }()
     

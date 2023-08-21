@@ -55,9 +55,10 @@ final class CartViewModel: CartViewModelProtocol {
     
     // MARK: - LifeCycle
     
-    init(cartService: CartServiceProtocol = CartService(),
-         nftService: NFTServiceProtocol = NFTService(),
-         sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .cart)
+    init(
+        cartService: CartServiceProtocol = CartService(),
+        nftService: NFTServiceProtocol = NFTService(),
+        sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .cart)
     ) {
         self.cartService = cartService
         self.nftService = nftService

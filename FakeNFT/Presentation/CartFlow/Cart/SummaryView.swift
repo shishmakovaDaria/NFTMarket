@@ -43,7 +43,11 @@ final class SummaryView: UIView {
         button.setTitleColor(.whiteDay, for: .normal)
         button.setTitle("To pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
-        button.addTarget(self, action: #selector(didTapToPayButton), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapToPayButton),
+            for: .touchUpInside
+        )
         return button
     }()
     

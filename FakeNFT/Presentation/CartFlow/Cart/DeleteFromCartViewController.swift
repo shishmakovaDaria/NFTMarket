@@ -54,7 +54,11 @@ final class DeleteFromCartViewController: UIViewController {
         button.setTitleColor(.ypRed, for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
-        button.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapDeleteButton),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -67,7 +71,11 @@ final class DeleteFromCartViewController: UIViewController {
         button.titleLabel?.font = .bodyRegular
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
-        button.addTarget(self, action: #selector(didTapReturnButton), for: .touchUpInside)
+        button.addTarget(
+            self,
+            action: #selector(didTapReturnButton),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -100,7 +108,8 @@ final class DeleteFromCartViewController: UIViewController {
     //MARK: - Methods
     
     private func setView() {
-        [blurView, nftImageView, alertLabel, buttonsStackView].forEach {
+        [blurView, nftImageView, alertLabel, buttonsStackView]
+            .forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
