@@ -29,10 +29,15 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
     var isLoadingObservable: Observable<Bool> { $isLoading }
     
     private let collectionsService: CollectionsServiceProtocol
+    private let sortingSaveService: SortingSaveServiceProtocol
         
-        init(collectionsService: CollectionsServiceProtocol = CollectionsService()) {
-            self.collectionsService = collectionsService
-        }
+    init(
+        collectionsService: CollectionsServiceProtocol = CollectionsService(),
+        sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .catalogue)
+    ) {
+        self.collectionsService = collectionsService
+        self.sortingSaveService = sortingSaveService
+    }
     
     func updateCollections() {
         isLoading = true
@@ -41,6 +46,7 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
             switch result {
             case .success(let body):
                 self.collections = body
+                self.sort(param: sortingSaveService.savedSorting)
             case .failure(let error):
                 print("Ошибка получения коллекций: \(error)")
             }
@@ -61,6 +67,18 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
 //MARK: - UITableViewDelegate
 extension CatalogueViewModel: Sortable {
     func sort(param: Sort) {
-        //TODO: -
+        sortingSaveService.saveSorting(param: param)
+        switch param {
+        case .price:
+            break
+        case .rating:
+            break
+        case .name:
+            break
+        case .NFTCount:
+            collections = collections.sorted(by: { $0.nfts.count > $1.nfts.count })
+        case .NFTName:
+            collections = collections.sorted(by: { $0.name < $1.name })
+        }
     }
 }
