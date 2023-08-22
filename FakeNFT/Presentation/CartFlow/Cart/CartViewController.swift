@@ -129,16 +129,6 @@ final class CartViewController: UIViewController {
         summaryView.isHidden = false
     }
     
-    private func updateTableViewAnimated() {
-        // Создаем индексы для удаления ячеек
-        let indexPathsToRemove = cartTableView.indexPathsForVisibleRows?.filter { indexPath in
-            let model = viewModel.nfts[indexPath.row]
-            return !viewModel.nfts.contains { $0.id == model.id }
-        } ?? []
-        // Удаляем ячейки, которые не соответствуют обновленным данным
-        cartTableView.deleteRows(at: indexPathsToRemove, with: .automatic)
-    }
-    
     private func setLayout() {
         view.backgroundColor = .whiteDay
         
@@ -230,7 +220,6 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
         viewModel.deleteNFT(model) { [weak self] in
             self?.dismiss(animated: true)
         }
-        cartTableView.reloadData()
     }
     
 }

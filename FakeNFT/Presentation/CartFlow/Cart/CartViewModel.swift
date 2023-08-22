@@ -49,6 +49,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
      var order: [String] = [] {
         didSet {
+            self.nfts = []
             observeNFT()
         }
     }
@@ -83,11 +84,9 @@ final class CartViewModel: CartViewModelProtocol {
                 }
             }
         }
-        isLoading = false
     }
     
     private func observeNFT() {
-        print("GO OBSERVE NFT")
         isLoading = true
         if order.isEmpty {
             isCartEmpty = true
@@ -121,7 +120,6 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func startObserve() {
-        print("startObserve")
         getOrder()
         checkIsCartEmpty()
     }
@@ -129,16 +127,13 @@ final class CartViewModel: CartViewModelProtocol {
     func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void) {
         isLoading = true
         let updatedOrder = order.filter { $0 != nft.id }
-        print("updatedOrder is \(updatedOrder)")
         cartService.updateOrder(updatedOrder: updatedOrder) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                     case .success(let order):
                         self.order = order.nfts
-                        print("self.order is \(self.order)")
                         self.nfts = self.nfts.filter { updatedOrder.contains($0.id) }
-                        print("self.nfts is \(self.nfts.count)")
                         completion()
                     case .failure(let error):
                         print(error.localizedDescription)
@@ -146,7 +141,6 @@ final class CartViewModel: CartViewModelProtocol {
             }
         }
         isLoading = false
-       
     }
     
 }
