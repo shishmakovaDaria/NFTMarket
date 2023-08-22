@@ -28,28 +28,24 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
     var collectionsObservable: Observable<[CollectionModel]> { $collections }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     
+    private let collectionsService: CollectionsServiceProtocol
+        
+        init(collectionsService: CollectionsServiceProtocol = CollectionsService()) {
+            self.collectionsService = collectionsService
+        }
+    
     func updateCollections() {
-        //потом заменить
-        collections = [
-            CollectionModel(
-                createdAt: "",
-                name: "Peach",
-                cover: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ryan_Gosling_by_Gage_Skidmore.jpg",
-                nfts: ["1", "2", "3"],
-                description: "",
-                author: "",
-                id: "1"),
-            CollectionModel(
-                createdAt: "",
-                name: "Blue",
-                cover: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ryan_Gosling_by_Gage_Skidmore.jpg",
-                nfts: ["5", "6"],
-                description: "",
-                author: "",
-                id: "2"
-            )
-                       
-        ]
+        isLoading = true
+        collectionsService.getCollections { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let body):
+                self.collections = body
+            case .failure(let error):
+                print("Ошибка получения коллекций: \(error)")
+            }
+            self.isLoading = false
+        }
     }
     
     func configureCellModel(nftIndex: Int) -> CatalogCellModel {

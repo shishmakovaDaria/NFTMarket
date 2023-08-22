@@ -21,7 +21,7 @@ final class CatalogCell: UITableViewCell {
         coverImageView.layer.masksToBounds = true
         coverImageView.layer.cornerRadius = 12
         coverImageView.backgroundColor = .blackDay
-        coverImageView.contentMode = .scaleAspectFill
+        coverImageView.contentMode = .top
         return coverImageView
     }()
     
@@ -37,6 +37,13 @@ final class CatalogCell: UITableViewCell {
         setupUI()
         setupConstraints()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = nil
+        coverImageView.image = nil
+        coverImageView.kf.cancelDownloadTask()
+    }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,18 +51,29 @@ final class CatalogCell: UITableViewCell {
     
     func configureCell(cellModel: CatalogCellModel) {
         nameLabel.text = cellModel.name
-        updateNFTImage(url: cellModel.image)
+        updateCollectionImage(url: cellModel.image.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "")
     }
         
-    private func updateNFTImage(url: String?) {
-        guard let nftURL = URL(string: url ?? "") else { return }
+    private func updateCollectionImage(url: String) {
+        guard let collectionURL = URL(string: url) else { return }
         let cache = ImageCache.default
         cache.diskStorage.config.expiration = .days(1)
             
         coverImageView.kf.indicatorType = .activity
-        coverImageView.kf.setImage(with: nftURL,
-                                 placeholder: nil,
-                                 options: [.cacheSerializer(FormatIndicatedCacheSerializer.png)])
+        coverImageView.kf.setImage(
+            with: collectionURL,
+            placeholder: nil,
+            options: [
+                .cacheSerializer(FormatIndicatedCacheSerializer.png)]) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let downloadedImage):
+                        self.coverImageView.image = downloadedImage.image.kf.resize(
+                            to: CGSize(width: self.contentView.frame.width, height: 140), for: .aspectFill)
+                    case .failure(let error):
+                        print("Ошибка обложки коллекции: \(error)")
+                    }
+                }
     }
     
     private func setupUI() {
