@@ -69,6 +69,7 @@ final class CartNFTCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        nftImageView.kf.cancelDownloadTask()
     }
     
     //MARK: - Actions

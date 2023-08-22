@@ -13,6 +13,7 @@ protocol CartViewModelProtocol {
     var isCartEmpty: Bool { get }
     var isLoading: Bool { get }
     var summaryInfo: SummaryInfo { get }
+    var order: [String] { get }
     
     var nftsObservable: Observable<[NFTModel]> { get }
     var isCartEmptyObservable: Observable<Bool> { get }

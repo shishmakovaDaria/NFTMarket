@@ -88,11 +88,12 @@ final class CartViewController: UIViewController {
     
     private func bind() {
 
-        viewModel.isLoadingObservable.bind { isLoading in
+        viewModel.isLoadingObservable.bind { [weak self] isLoading in
             if isLoading {
                 UIBlockingProgressHUD.show()
             } else {
                 UIBlockingProgressHUD.dismiss()
+                self?.cartTableView.reloadData()
             }
         }
         
@@ -108,8 +109,8 @@ final class CartViewController: UIViewController {
             guard let self else { return }
             UIView.animate(withDuration: 0.3) {
                 self.summaryView.configureSummary(with: self.viewModel.summaryInfo)
-                self.cartTableView.reloadData()
             }
+            self.cartTableView.reloadData()
         }
         
     }
@@ -126,6 +127,16 @@ final class CartViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         cartTableView.isHidden = false
         summaryView.isHidden = false
+    }
+    
+    private func updateTableViewAnimated() {
+        // Создаем индексы для удаления ячеек
+        let indexPathsToRemove = cartTableView.indexPathsForVisibleRows?.filter { indexPath in
+            let model = viewModel.nfts[indexPath.row]
+            return !viewModel.nfts.contains { $0.id == model.id }
+        } ?? []
+        // Удаляем ячейки, которые не соответствуют обновленным данным
+        cartTableView.deleteRows(at: indexPathsToRemove, with: .automatic)
     }
     
     private func setLayout() {
