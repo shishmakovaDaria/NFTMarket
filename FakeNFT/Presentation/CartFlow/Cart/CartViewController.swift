@@ -219,6 +219,7 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
         viewModel.deleteNFT(model) { [weak self] in
             self?.dismiss(animated: true)
         }
+        cartTableView.reloadData()
     }
     
 }

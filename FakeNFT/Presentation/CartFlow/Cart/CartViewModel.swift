@@ -127,14 +127,16 @@ final class CartViewModel: CartViewModelProtocol {
     func deleteNFT(_ nft: NFTModel, completion: @escaping () -> Void) {
         isLoading = true
         let updatedOrder = order.filter { $0 != nft.id }
-        
+        print("updatedOrder is \(updatedOrder)")
         cartService.updateOrder(updatedOrder: updatedOrder) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                     case .success(let order):
                         self.order = order.nfts
-                        self.nfts.removeAll { !order.nfts.contains($0.id) }
+                    print("self.order is \(self.order)")
+                    self.nfts = self.nfts.filter { updatedOrder.contains($0.id) }
+                    print("self.nfts is \(self.nfts.count)")
                     case .failure(let error):
                         print(error.localizedDescription)
                 }
