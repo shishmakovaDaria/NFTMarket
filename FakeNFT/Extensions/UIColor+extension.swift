@@ -19,4 +19,5 @@ extension UIColor {
     static var whiteDay = UIColor(named: "whiteDay")
     static var lightGrayDay = UIColor(named: "lightGrayDay")
     static var ypBackground = UIColor(named: "ypBackground")
+    static var redUniversal = UIColor(named: "redUniversal")
 }
