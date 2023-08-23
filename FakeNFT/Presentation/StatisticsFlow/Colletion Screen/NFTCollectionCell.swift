@@ -114,7 +114,8 @@ final class NFTCollectionCell: UICollectionViewCell {
             return UIImage()
         }
         if isLiked {
-            return heartFillImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+            let universalRedColor = UIColor.redUniversal ?? .red
+            return heartFillImage.withTintColor(universalRedColor, renderingMode: .alwaysOriginal)
         } else {
             return heartFillImage.withTintColor(whiteDay, renderingMode: .alwaysOriginal)
         }
