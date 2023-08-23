@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by Дарья Шишмакова on 31.07.2023.
+  
+*/
+"Profile" = "Профиль";
+"Catalog" = "Каталог";
+"Cart" = "Корзина";
+"Statistics" = "Статистика";
+"To pay" = "К оплате";
+"Delete" = "Удалить";
+"Back" = "Вернуться";
+"Pay" = "Оплатить";
+"Select a Payment Method" = "Выберите способ оплаты";
+"Sorting" = "Сортировка";
+"By price" = "По цене";
+"By rating" = "По рейтингу";
+"By name" = "По имени";
+"By NFT name" = "По названию";
+"By NFT count" = "По количеству NFT";
+"Close" = "Закрыть";
+"Back to catalog" = "Вернуться в каталог";
+"Success! Payment completed, congratulations on your purchase!" = "Успех! Оплата прошла, поздравляем с покупкой!";
+"Try again" = "Попробовать еще раз";
+"Oops! Something went wrong :( Try again!" = "Упс! Что-то пошло не так :( Попробуйте ещё раз!";
+"Cart is empty" = "Корзина пуста";
+"My NFTs" = "Мои NFT";
+"Favorite NFTs" = "Избранные NFT";
+"About the developer" = "О разработчике";
+"Name" = "Имя";
+"Description" = "Описание";
+"Website" = "Сайт";
+"You don't have NFT yet" = "У Вас ещё нет NFT";
+"You don't have any favorite NFTs yet" = "У Вас ещё нет избранных NFT";
+"NFT Collection" = "Коллекция NFT";
+"NFT Delete" = "Вы уверены, что хотите удалить объект из корзины?";
+"Go to user site" = "Перейти на сайт пользователя";
+"Agree purchase" = "Совершая покупку, вы соглашаетесь с условиями";
+"User Agreement" = "Пользовательского соглашения";
+"Change photo" = "Сменить фото";
+"Download image" = "Загрузить изображение";
+"Price" = "Цена";
+"From" = "От";
