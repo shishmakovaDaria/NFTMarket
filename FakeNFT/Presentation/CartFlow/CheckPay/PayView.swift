@@ -62,7 +62,8 @@ final class PayView: UIView, UITextViewDelegate {
         button.isEnabled = false
         button.addTarget(
             self,
-            action: #selector(didTapPayButton), for: .touchUpInside
+            action: #selector(didTapPayButton),
+            for: .touchUpInside
         )
         return button
     }()
