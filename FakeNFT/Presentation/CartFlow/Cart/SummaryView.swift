@@ -44,7 +44,7 @@ final class SummaryView: UIView {
         button.setTitle("To pay".localized(), for: .normal)
         button.titleLabel?.font = .bodyBold
         button.addTarget(
-            self,
+            SummaryView.self,
             action: #selector(didTapToPayButton),
             for: .touchUpInside
         )
