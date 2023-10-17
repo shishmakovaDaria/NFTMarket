@@ -119,4 +119,3 @@ extension StatisticViewController: UITableViewDataSource {
         return cell
     }
 }
-

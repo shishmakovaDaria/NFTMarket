@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol CurrencyServiceProtocol {
     var networkClient: NetworkClient { get }
     func getCurrencies(completion: @escaping (Result<[CurrencyModel], Error>) -> Void)

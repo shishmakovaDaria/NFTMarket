@@ -7,26 +7,16 @@
 
 import Foundation
 
-protocol FavoriteNFTsViewModelProtocol {
-    var nfts: [NFTModel] { get }
-    var nftsObservable: Observable<[NFTModel]> { get }
-    var isLoading: Bool { get }
-    var isLoadingObservable: Observable<Bool> { get }
-    
-    func setValue(favoriteNFTS: [String])
-    func updateNFTs()
-    func handleLikeButtonTapped(nftIndex: Int)
-    func configureCellModel(nftIndex: Int) -> FavoriteNFTsCellModel
-}
-
 final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
+    //MARK: - Observables
     @Observable
     private(set) var nfts: [NFTModel] = []
     
     @Observable
     private(set) var isLoading: Bool = false
     
+    //MARK: - Properties
     var nftsObservable: Observable<[NFTModel]> { $nfts }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     
@@ -34,6 +24,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     private let nftService: NFTServiceProtocol
     private let profileService: ProfileServiceProtocol
     
+    //MARK: - LifeCycle
     init(
         nftService: NFTServiceProtocol = NFTService(),
         profileService: ProfileServiceProtocol = ProfileService()
@@ -42,6 +33,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         self.profileService = profileService
     }
     
+    //MARK: - Methods
     func setValue(favoriteNFTS: [String]) {
         nftIDs = favoriteNFTS
     }

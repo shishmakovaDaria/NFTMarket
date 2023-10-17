@@ -80,7 +80,6 @@ final class NFTCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     //MARK: - Actions:
     
     var likeButtonTappedHandler: (() -> Void)?
@@ -123,15 +122,16 @@ final class NFTCollectionCell: UICollectionViewCell {
     
     private func createCartImage(isInCart: Bool) -> UIImage {
         guard let addToCartImage = UIImage.Icons.addToCart,
-                  let deleteFromCartImage = UIImage.Icons.deleteFromCart,
-                  let blackDay = UIColor.blackDay else {
-                return UIImage()
-            }
-            if isInCart {
-                return deleteFromCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
-            } else {
-                return addToCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
-            }
+              let deleteFromCartImage = UIImage.Icons.deleteFromCart,
+              let blackDay = UIColor.blackDay else {
+            return UIImage()
+        }
+        
+        if isInCart {
+            return deleteFromCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+        } else {
+            return addToCartImage.withTintColor(blackDay, renderingMode: .alwaysOriginal)
+        }
     }
     
     private func updateNFTImage(with url: URL) {

@@ -11,17 +11,7 @@ import ProgressHUD
 
 final class ProfileViewController: UIViewController {
     
-    private var viewModel: ProfileViewModelProtocol
-    
-    init(viewModel: ProfileViewModelProtocol = ProfileViewModel()) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - Layout properties
     private lazy var editButton: UIButton = {
         let editButton = UIButton(type: .system)
         editButton.setBackgroundImage(UIImage.Icons.edit, for: .normal)
@@ -56,7 +46,8 @@ final class ProfileViewController: UIViewController {
         nameLabel.text = viewModel.profile.name
         nameLabel.textColor = .blackDay
         nameLabel.font = .headline3
-        nameLabel.minimumScaleFactor = 15
+        nameLabel.minimumScaleFactor = 0.5
+        nameLabel.adjustsFontSizeToFitWidth = true
         return nameLabel
     }()
     
@@ -74,6 +65,8 @@ final class ProfileViewController: UIViewController {
         profileWebsite.text = viewModel.profile.website
         profileWebsite.textColor = .ypBlue
         profileWebsite.font = .caption1
+        profileWebsite.minimumScaleFactor = 0.8
+        profileWebsite.adjustsFontSizeToFitWidth = true
         return profileWebsite
     }()
     
@@ -86,6 +79,19 @@ final class ProfileViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
+    
+    //MARK: - Properties
+    private var viewModel: ProfileViewModelProtocol
+    
+    //MARK: - LifeCycle
+    init(viewModel: ProfileViewModelProtocol = ProfileViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +108,7 @@ final class ProfileViewController: UIViewController {
         viewModel.updateProfile()
     }
     
+    //MARK: - Actions
     @objc private func editButtonDidTap(_ sender: Any?) {
         let profileEditingViewModel = ProfileEditingViewModel()
         profileEditingViewModel.updateProfile(profileToSet: viewModel.profile)
@@ -111,6 +118,7 @@ final class ProfileViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    //MARK: - Methods
     private func updateAvatar() {
         guard let url = viewModel.provideAvatarURL() else { return }
         let cache = ImageCache.default
@@ -179,6 +187,7 @@ final class ProfileViewController: UIViewController {
             
             nameLabel.leadingAnchor.constraint(equalTo: profilePhoto.trailingAnchor, constant: 16),
             nameLabel.centerYAnchor.constraint(equalTo: profilePhoto.centerYAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -16),
             
             descriptionLabel.leadingAnchor.constraint(equalTo: profilePhoto.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: profilePhoto.bottomAnchor, constant: 20),
@@ -186,6 +195,7 @@ final class ProfileViewController: UIViewController {
             
             profileWebsite.leadingAnchor.constraint(equalTo: profilePhoto.leadingAnchor),
             profileWebsite.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 12),
+            profileWebsite.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
             
             tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),

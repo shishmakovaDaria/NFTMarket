@@ -1,5 +1,5 @@
 //
-//  CatalogueViewModel.swift
+//  CatalogViewModel.swift
 //  FakeNFT
 //
 //  Created by Vitaly Anpilov on 02.08.2023.
@@ -7,38 +7,32 @@
 
 import Foundation
 
-protocol CatalogueViewModelProtocol: Sortable {
-    var collections: [CollectionModel] { get }
-    var collectionsObservable: Observable<[CollectionModel]> { get }
-    var isLoading: Bool { get }
-    var isLoadingObservable: Observable<Bool> { get }
+final class CatalogViewModel: CatalogViewModelProtocol {
     
-    func updateCollections()
-    func configureCellModel(nftIndex: Int) -> CatalogCellModel
-}
-
-final class CatalogueViewModel: CatalogueViewModelProtocol {
-    
+    //MARK: - Observables
     @Observable
     private(set) var collections: [CollectionModel] = []
     
     @Observable
     private(set) var isLoading: Bool = false
     
+    //MARK: - Properties
     var collectionsObservable: Observable<[CollectionModel]> { $collections }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     
     private let collectionsService: CollectionsServiceProtocol
     private let sortingSaveService: SortingSaveServiceProtocol
-        
+    
+    //MARK: - LifeCycle
     init(
         collectionsService: CollectionsServiceProtocol = CollectionsService(),
-        sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .catalogue)
+        sortingSaveService: SortingSaveServiceProtocol = SortingSaveService(screen: .catalog)
     ) {
         self.collectionsService = collectionsService
         self.sortingSaveService = sortingSaveService
     }
     
+    //MARK: - Methods
     func updateCollections() {
         isLoading = true
         collectionsService.getCollections { [weak self] result in
@@ -65,7 +59,7 @@ final class CatalogueViewModel: CatalogueViewModelProtocol {
 }
 
 //MARK: - UITableViewDelegate
-extension CatalogueViewModel: Sortable {
+extension CatalogViewModel: Sortable {
     func sort(param: Sort) {
         sortingSaveService.saveSorting(param: param)
         switch param {

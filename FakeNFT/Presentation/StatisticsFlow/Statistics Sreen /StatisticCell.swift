@@ -122,12 +122,10 @@ final class StatisticCell: UITableViewCell {
             
             countLabel.centerYAnchor.constraint(equalTo: backgroundColorView.centerYAnchor),
             countLabel.trailingAnchor.constraint(equalTo: backgroundColorView.trailingAnchor, constant: -16)
-        ]
-        )
+        ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

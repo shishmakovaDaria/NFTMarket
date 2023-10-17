@@ -52,7 +52,8 @@ final class CollectionViewController: UIViewController {
         viewModel.viewDidLoad()
     }
     
-        //MARK: - Actions
+    //MARK: - Actions
+    
     private func handleLikeButtonTapped(at indexPath: IndexPath) {
         viewModel.likeButtonTapped(at: indexPath)
     }
@@ -60,8 +61,6 @@ final class CollectionViewController: UIViewController {
     private func handleCartButtonTapped(at indexPath: IndexPath) {
         viewModel.cartButtonTapped(at: indexPath)
     }
-    
-    
     
     // MARK: - Methods
     
@@ -99,7 +98,6 @@ final class CollectionViewController: UIViewController {
 
 //MARK: - UICollectionViewDelegateFlowLayout & UICollectionViewDataSource
 
-
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.nfts.count
@@ -119,7 +117,6 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
 }
 
-
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (nftCollectionView.bounds.width - 20) / 3
@@ -127,4 +124,3 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 }
-

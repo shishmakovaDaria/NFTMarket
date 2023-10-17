@@ -9,6 +9,5 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = TabBarController()
         self.window = window
         window.makeKeyAndVisible()
-
     }
 }

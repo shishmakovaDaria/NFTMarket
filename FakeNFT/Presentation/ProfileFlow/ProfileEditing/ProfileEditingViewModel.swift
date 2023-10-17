@@ -7,27 +7,9 @@
 
 import Foundation
 
-protocol ProfileEditingDelegate: AnyObject {
-    func updateProfileFields()
-}
-
-protocol ProfileEditingViewModelProtocol {
-    var profile: ProfileModel { get }
-    var profileObservable: Observable<ProfileModel> { get }
-    var isLoading: Bool { get }
-    var isLoadingObservable: Observable<Bool> { get }
-    var delegate: ProfileEditingDelegate? { get }
-    
-    func updateProfile(profileToSet: ProfileModel)
-    func changeProfileName(nameToSet: String)
-    func changeProfileDescription(descriptionToSet: String)
-    func changeProfileWebsite(websiteToSet: String)
-    func changeProfileAvatar()
-    func provideAvatarURL() -> URL?
-}
-
 final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
     
+    //MARK: - Observables
     @Observable
     private(set) var profile = ProfileModel(
         name: "",
@@ -42,16 +24,19 @@ final class ProfileEditingViewModel: ProfileEditingViewModelProtocol {
     @Observable
     private(set) var isLoading: Bool = false
     
+    //MARK: - Properties
     var profileObservable: Observable<ProfileModel> { $profile }
     var isLoadingObservable: Observable<Bool> { $isLoading }
     var delegate: ProfileEditingDelegate?
     
     private let profileService: ProfileServiceProtocol
     
+    //MARK: - LifeCycle
     init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
+    //MARK: - Methods
     func updateProfile(profileToSet: ProfileModel) {
         profile = profileToSet
     }

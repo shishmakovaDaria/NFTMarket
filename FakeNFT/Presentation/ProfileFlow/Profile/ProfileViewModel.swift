@@ -7,20 +7,9 @@
 
 import Foundation
 
-protocol ProfileViewModelProtocol: ProfileEditingDelegate {
-    var profile: ProfileModel { get }
-    var profileObservable: Observable<ProfileModel> { get }
-    var isLoading: Bool { get }
-    var isLoadingObservable: Observable<Bool> { get }
-    var tableHeaders: [String] { get }
-    
-    func updateProfile()
-    func provideAvatarURL() -> URL?
-    func provideWebsiteURL() -> URL?
-}
-
 final class ProfileViewModel: ProfileViewModelProtocol {
     
+    //MARK: - Observables
     @Observable
     private(set) var profile = ProfileModel(
         name: "",
@@ -35,6 +24,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     @Observable
     private(set) var isLoading: Bool = false
     
+    //MARK: - Properties
     var tableHeaders: [String] {
         let tableHeaders: [String] = [
             "\("My NFTs".localized()) (\(profile.nfts.count))",
@@ -49,10 +39,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let profileService: ProfileServiceProtocol
     
+    //MARK: - LifeCycle
     init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
+    //MARK: - Methods
     func updateProfile() {
         isLoading = true
         profileService.getProfile { [weak self] result in

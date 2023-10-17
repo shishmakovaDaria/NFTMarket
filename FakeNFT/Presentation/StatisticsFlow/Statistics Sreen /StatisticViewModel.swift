@@ -58,6 +58,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     }
 }
 
+//MARK: - Sortable
 extension StatisticViewModel: Sortable {
     func sort(param: Sort) {
         sortingSaveService.saveSorting(param: param)

@@ -111,6 +111,4 @@ final class CheckPayViewModel: CheckPayViewModelProtocol {
         }
         isLoading = false
     }
-    
 }
-

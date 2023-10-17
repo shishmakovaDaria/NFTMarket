@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol NFTServiceProtocol {
     var networkClient: NetworkClient { get }
     func getNFT(with NFTID: String, completion: @escaping (Result<NFTModel, Error>) -> Void)

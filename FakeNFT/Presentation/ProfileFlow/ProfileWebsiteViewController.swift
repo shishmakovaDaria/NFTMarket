@@ -10,14 +10,17 @@ import WebKit
 
 final class ProfileWebsiteViewController: UIViewController {
     
+    //MARK: - Layout properties
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
     
+    //MARK: - Properties
     private let url: URL
     
+    //MARK: - LifeCycle
     init(url: URL) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
@@ -34,6 +37,7 @@ final class ProfileWebsiteViewController: UIViewController {
         webView.load(URLRequest(url: url))
     }
     
+    //MARK: - Methods
     private func setupUI() {
         view.backgroundColor = .whiteDay
         navigationController?.navigationBar.topItem?.title = ""

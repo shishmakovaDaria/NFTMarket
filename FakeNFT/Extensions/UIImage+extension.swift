@@ -12,7 +12,7 @@ extension UIImage {
     enum Icons {
         // TabBar Icons
         static let profileTab = UIImage(systemName: "person.crop.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
-        static let catalogueTab = UIImage(systemName: "rectangle.stack.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
+        static let catalogTab = UIImage(systemName: "rectangle.stack.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
         static let cartTab = UIImage(named: "cartTab")
         static let statisticsTab = UIImage(systemName: "flag.2.crossed.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 15))
         

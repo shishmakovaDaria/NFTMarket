@@ -20,6 +20,7 @@ struct MyNFTsCellModel {
 
 final class MyNFTsCell: UITableViewCell {
     
+    //MARK: - Layout properties
     private lazy var nftImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
@@ -89,6 +90,7 @@ final class MyNFTsCell: UITableViewCell {
         return currentPriceLabel
     }()
     
+    //MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -99,12 +101,14 @@ final class MyNFTsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Actions
     var likeButtonTappedHandler: (() -> Void)?
     
     @objc private func likeButtonDidTap(_ sender: Any?) {
         likeButtonTappedHandler?()
     }
     
+    //MARK: - Methods
     func configureCell(cellModel: MyNFTsCellModel) {
         nftNameLabel.text = cellModel.name
         updateNFTImage(url: cellModel.image)

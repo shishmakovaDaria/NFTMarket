@@ -7,24 +7,9 @@
 
 import Foundation
 
-protocol MyNFTsViewModelProtocol: Sortable {
-    var nfts: [NFTModel] { get }
-    var nftsObservable: Observable<[NFTModel]> { get }
-    var likes: [String] { get }
-    var likesObservable: Observable<[String]> { get }
-    var nftsAuthors: [UserModel] { get }
-    var nftsAuthorsObservable: Observable<[UserModel]> { get }
-    var isLoading: Bool { get }
-    var isLoadingObservable: Observable<Bool> { get }
-    
-    func setValues(myNFTS: [String], myLikedNFTs: [String])
-    func updateNFTs()
-    func handleLikeButtonTapped(nftIndex: Int)
-    func configureCellModel(nftIndex: Int) -> MyNFTsCellModel
-}
-
 final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     
+    //MARK: - Observables
     @Observable
     private(set) var nfts: [NFTModel] = []
     
@@ -37,6 +22,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     @Observable
     private(set) var isLoading: Bool = false
     
+    //MARK: - Properties
     var nftsObservable: Observable<[NFTModel]> { $nfts }
     var likesObservable: Observable<[String]> { $likes }
     var nftsAuthorsObservable: Observable<[UserModel]> { $nftsAuthors }
@@ -49,6 +35,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     private let profileService: ProfileServiceProtocol
     private let sortingSaveService: SortingSaveServiceProtocol
     
+    //MARK: - LifeCycle
     init(
         nftService: NFTServiceProtocol = NFTService(),
         userByIDService: UserByIDServiceProtocol = UserByIDService(),
@@ -61,6 +48,7 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
         self.sortingSaveService = sortingSaveService
     }
     
+    //MARK: - Methods
     func setValues(myNFTS: [String], myLikedNFTs: [String]) {
         nftIDs = myNFTS
         likes = myLikedNFTs

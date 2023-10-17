@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol CheckPayViewModelProtocol {
     var currencies: [CurrencyModel] { get }
     var isLoading: Bool { get }

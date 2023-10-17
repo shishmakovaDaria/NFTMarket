@@ -69,7 +69,6 @@ final class UserAgreementViewController: UIViewController {
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
 }
 
 // MARK: - UIGestureRecognizerDelegate

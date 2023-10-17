@@ -158,10 +158,8 @@ final class CheckPayViewController: UIViewController {
             currenciesCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             currenciesCollection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             currenciesCollection.bottomAnchor.constraint(equalTo: payView.topAnchor)
-            
         ])
     }
-    
 }
 
 //MARK: - UICollectionViewDataSource
@@ -179,7 +177,6 @@ extension CheckPayViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -243,7 +240,3 @@ extension CheckPayViewController: PayViewDelegate {
         navigationController?.pushViewController(userAgreementViewController, animated: true)
     }
 }
-
-
-
-

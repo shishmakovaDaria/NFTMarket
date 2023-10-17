@@ -10,17 +10,7 @@ import ProgressHUD
 
 final class CatalogViewController: UIViewController {
     
-    private var viewModel: CatalogueViewModelProtocol
-    
-    init(viewModel: CatalogueViewModelProtocol = CatalogueViewModel()) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - Layout properties
     private lazy var sortButton: UIButton = {
         let editButton = UIButton(type: .system)
         editButton.setBackgroundImage(UIImage.Icons.sort, for: .normal)
@@ -37,6 +27,19 @@ final class CatalogViewController: UIViewController {
         return tableView
     }()
     
+    //MARK: - Properties
+    private var viewModel: CatalogViewModelProtocol
+    
+    //MARK: - LifeCycle
+    init(viewModel: CatalogViewModelProtocol = CatalogViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -51,10 +54,12 @@ final class CatalogViewController: UIViewController {
         viewModel.updateCollections()
     }
     
+    //MARK: - Actions
     @objc private func sortButtonDidTap(_ sender: Any?) {
-        showAlertSort(viewModel: viewModel, valueSort: .catalogue)
+        showAlertSort(viewModel: viewModel, valueSort: .catalog)
     }
     
+    //MARK: - Methods
     private func bind() {
         viewModel.collectionsObservable.bind() { [weak self] _ in
             self?.tableView.reloadData()
