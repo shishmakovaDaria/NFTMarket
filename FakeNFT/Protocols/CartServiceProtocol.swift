@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol CartServiceProtocol {
     var networkClient: NetworkClient { get }
     func getOrder(completion: @escaping (Result<[String], Error>) -> Void)

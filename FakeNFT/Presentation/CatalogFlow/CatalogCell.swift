@@ -16,6 +16,7 @@ struct CatalogCellModel {
 
 final class CatalogCell: UITableViewCell {
     
+    //MARK: - Layout properties
     private lazy var coverImageView: UIImageView = {
         let coverImageView = UIImageView()
         coverImageView.layer.masksToBounds = true
@@ -32,6 +33,7 @@ final class CatalogCell: UITableViewCell {
         return nameLabel
     }()
     
+    //MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -49,6 +51,7 @@ final class CatalogCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Methods
     func configureCell(cellModel: CatalogCellModel) {
         nameLabel.text = cellModel.name
         updateCollectionImage(url: cellModel.image.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "")
@@ -98,4 +101,3 @@ final class CatalogCell: UITableViewCell {
         ])
     }
 }
-

@@ -139,7 +139,6 @@ final class CartNFTCell: UITableViewCell {
             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
-    
 }
 
 // MARK: - ReuseIdentifying

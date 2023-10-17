@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol UsersServiceProtocol {
     var networkClient: NetworkClient { get }
     func getUsers(completion: @escaping (Result<[UserModel], Error>) -> Void)

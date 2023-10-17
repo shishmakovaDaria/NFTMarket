@@ -12,7 +12,7 @@ final class SummaryView: UIView {
     
     //MARK: - Layout properties
     
-    private var nftCountLabel: UILabel = {
+    private lazy var nftCountLabel: UILabel = {
         let label = UILabel()
         label.font = .caption1
         label.textColor = .blackDay
@@ -20,7 +20,7 @@ final class SummaryView: UIView {
         return label
     }()
     
-    private var priceLabel: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = .bodyBold
         label.textColor = .ypGreen
@@ -28,14 +28,14 @@ final class SummaryView: UIView {
         return label
     }()
     
-    private var labelsStack: UIStackView = {
+    private lazy var labelsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 2
         return stack
     }()
     
-    private var toPayButton: UIButton = {
+    private lazy var toPayButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 16
@@ -108,6 +108,4 @@ final class SummaryView: UIView {
             toPayButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
-    
 }
-

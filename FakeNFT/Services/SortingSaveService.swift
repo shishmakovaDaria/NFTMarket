@@ -26,7 +26,7 @@ final class SortingSaveService: SortingSaveServiceProtocol {
         
         if sortConfig == nil {
             switch screen {
-            case .catalogue:
+            case .catalog:
                 sorting = .NFTCount
             case .profile:
                 sorting = .rating
@@ -47,7 +47,7 @@ final class SortingSaveService: SortingSaveServiceProtocol {
     
     private var sortConfig: String? {
         switch screen {
-        case .catalogue:
+        case .catalog:
             return userDefaults.string(forKey: Keys.sortConfigCatalogue.rawValue)
         case .profile:
             return userDefaults.string(forKey: Keys.sortConfigProfile.rawValue)
@@ -60,7 +60,7 @@ final class SortingSaveService: SortingSaveServiceProtocol {
     
     func saveSorting(param: Sort) {
         switch screen {
-        case .catalogue:
+        case .catalog:
             saveSortingForScreen(param: param, key: Keys.sortConfigCatalogue.rawValue)
         case .profile:
             saveSortingForScreen(param: param, key: Keys.sortConfigProfile.rawValue)

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol UserByIDServiceProtocol {
     var networkClient: NetworkClient { get }
     func getUserByID(with userID: String, completion: @escaping (Result<UserModel, Error>) -> Void)

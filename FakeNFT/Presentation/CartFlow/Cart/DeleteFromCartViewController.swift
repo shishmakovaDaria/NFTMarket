@@ -143,5 +143,4 @@ final class DeleteFromCartViewController: UIViewController {
             buttonsStackView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
-    
 }

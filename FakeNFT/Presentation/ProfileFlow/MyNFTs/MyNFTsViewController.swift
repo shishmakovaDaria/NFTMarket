@@ -10,17 +10,7 @@ import ProgressHUD
 
 final class MyNFTsViewController: UIViewController {
     
-    private var viewModel: MyNFTsViewModelProtocol
-    
-    init(viewModel: MyNFTsViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - Layout properties
     private lazy var sortButton: UIButton = {
         let editButton = UIButton(type: .system)
         editButton.setBackgroundImage(UIImage.Icons.sort, for: .normal)
@@ -44,6 +34,19 @@ final class MyNFTsViewController: UIViewController {
         return tableView
     }()
     
+    //MARK: - Properties
+    private var viewModel: MyNFTsViewModelProtocol
+    
+    //MARK: - LifeCycle
+    init(viewModel: MyNFTsViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -59,10 +62,12 @@ final class MyNFTsViewController: UIViewController {
         reloadPlaceholder()
     }
     
+    //MARK: - Actions
     @objc private func sortButtonDidTap(_ sender: Any?) {
         showAlertSort(viewModel: viewModel, valueSort: .profile)
     }
     
+    //MARK: - Methods
     private func reloadPlaceholder() {
         if viewModel.nfts.count == 0 {
             placeholder.isHidden = false

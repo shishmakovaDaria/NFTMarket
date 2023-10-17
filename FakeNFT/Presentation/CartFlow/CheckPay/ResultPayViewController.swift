@@ -119,5 +119,4 @@ final class ResultPayViewController: UIViewController {
             returnButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-    
 }

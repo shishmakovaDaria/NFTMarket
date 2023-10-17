@@ -18,6 +18,7 @@ struct FavoriteNFTsCellModel {
 
 final class FavoriteNFTsCell: UICollectionViewCell {
     
+    //MARK: - Layout properties
     private lazy var nftImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
@@ -63,7 +64,7 @@ final class FavoriteNFTsCell: UICollectionViewCell {
         return priceLabel
     }()
     
-    
+    //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -84,6 +85,7 @@ final class FavoriteNFTsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Actions
     var likeButtonTappedHandler: (() -> Void)?
     
     @objc private func likeButtonDidTap(_ sender: Any?) {
@@ -91,6 +93,7 @@ final class FavoriteNFTsCell: UICollectionViewCell {
         likeButtonTappedHandler?()
     }
     
+    //MARK: - Methods
     func configureCell(cellModel: FavoriteNFTsCellModel) {
         nftNameLabel.text = cellModel.name
         updateNFTImage(url: cellModel.image)

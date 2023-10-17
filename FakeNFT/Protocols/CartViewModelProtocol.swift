@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol CartViewModelProtocol {
     var nfts: [NFTModel] { get }
     var isCartEmpty: Bool { get }

@@ -16,7 +16,7 @@ enum Sort {
 }
 
 enum SortForScreen {
-    case catalogue
+    case catalog
     case profile
     case cart
     case statistic
@@ -56,7 +56,7 @@ extension UIViewController {
         let closeAction = UIAlertAction(title: "Close".localized(), style: .cancel)
         
         switch valueSort {
-            case .catalogue:
+            case .catalog:
             alert.addAction(sortByNFTNameAction)
             alert.addAction(sortByNFTCountAction)
             case .profile:

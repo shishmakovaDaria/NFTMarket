@@ -221,6 +221,4 @@ extension CartViewController: DeleteFromCartViewControllerDelegate {
             self?.dismiss(animated: true)
         }
     }
-    
 }
-

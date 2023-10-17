@@ -17,9 +17,10 @@ final class TabBarController: UITabBarController {
         setupTabBarItems()
     }
     
-    private func createNavController(for rootViewController: UIViewController,
-                                     title: String,
-                                     image: UIImage
+    private func createNavController(
+        for rootViewController: UIViewController,
+        title: String,
+        image: UIImage
     ) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
@@ -32,21 +33,20 @@ final class TabBarController: UITabBarController {
         viewControllers = [
             createNavController(for: ProfileViewController(),
                                 title: "Profile".localized(),
-                                image: .Icons.profileTab!),
+                                image: UIImage.Icons.profileTab ?? UIImage()),
             
             createNavController(for: CatalogViewController(),
                                 title: "Catalog".localized(),
-                                image: .Icons.catalogueTab!),
+                                image: .Icons.catalogTab ?? UIImage()),
             
             createNavController(for: CartViewController(),
                                 title: "Cart".localized(),
-                                image: .Icons.cartTab!),
+                                image: .Icons.cartTab ?? UIImage()),
             
             createNavController(for: StatisticViewController(),
                                 title: "Statistics".localized(),
-                                image: .Icons.statisticsTab!)
+                                image: .Icons.statisticsTab ?? UIImage())
         ]
         tabBar.unselectedItemTintColor = .blackDay
     }
-    
 }
