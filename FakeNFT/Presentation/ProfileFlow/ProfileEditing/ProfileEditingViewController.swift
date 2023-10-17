@@ -149,6 +149,7 @@ final class ProfileEditingViewController: UIViewController {
         setupUI()
         setupConstraints()
         bind()
+        registerNotifications()
     }
     
     //MARK: - Actions
@@ -163,6 +164,21 @@ final class ProfileEditingViewController: UIViewController {
     @objc private func uploadAvatarButtonDidTap(_ sender: Any?) {
         uploadAvatarButton.isHidden = true
         viewModel.changeProfileAvatar()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
     }
     
     //MARK: - Methods
@@ -190,6 +206,10 @@ final class ProfileEditingViewController: UIViewController {
                 UIBlockingProgressHUD.dismiss()
             }
         }
+    }
+    private func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupUI() {
